@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tipsCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="707dp"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:padding="5dp"
+        android:stateListAnimator="@animator/lift_on_touch"
+        app:cardBackgroundColor="@color/details"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".24"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".44"
+        android:foreground="?attr/selectableItemBackground">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/text_Tips"
+                android:textSize="27sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/tipsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:backgroundTintMode="src_in"
+                android:clickable="true"
+                android:contentDescription="@string/todo"
+                android:padding="30dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/tips" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/newsCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="707dp"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:stateListAnimator="@animator/lift_on_touch"
+        app:cardBackgroundColor="@color/details"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tipsCard"
+        app:layout_constraintHeight_percent=".24"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".44"
+        android:foreground="?attr/selectableItemBackground">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/news"
+                android:textSize="27sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/newsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:backgroundTintMode="src_in"
+                android:clickable="true"
+                android:contentDescription="@string/todo"
+                android:padding="30dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/news" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/strategiesCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="100dp"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:stateListAnimator="@animator/lift_on_touch"
+        app:cardBackgroundColor="@color/details"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".24"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tipsCard"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".44"
+        android:foreground="?attr/selectableItemBackground">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/strategies"
+                android:textSize="27sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/strategiesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:backgroundTintMode="src_in"
+                android:contentDescription="@string/todo"
+                android:padding="30dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/strategies" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/technicalsCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="250dp"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:stateListAnimator="@animator/lift_on_touch"
+        app:cardBackgroundColor="@color/details"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/strategiesCard"
+        app:layout_constraintHeight_percent=".24"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newsCard"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".44"
+        android:foreground="?attr/selectableItemBackground">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/technicals"
+                android:textSize="27sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/technicalsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:backgroundTintMode="src_in"
+                android:clickable="true"
+                android:contentDescription="@string/todo"
+                android:padding="30dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/analytics" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/searchCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="25dp"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:stateListAnimator="@animator/lift_on_touch"
+        app:cardBackgroundColor="@color/nav_icons"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/strategiesCard"
+        android:foreground="?attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/search_coins"
+                android:textSize="27sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:backgroundTintMode="src_in"
+                android:clickable="true"
+                android:contentDescription="@string/todo"
+                android:padding="45dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/find" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

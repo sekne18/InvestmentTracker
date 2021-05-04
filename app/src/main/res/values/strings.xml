@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">InvestmentTracker</string>
+    <string name="text_home">Home</string>
+    <string name="text_exp">Explore</string>
+    <string name="text_fav">Favourite</string>
+    <string name="text_port">Portfolio</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_confirm">Confirm</string>
+    <string name="text_portValueInPrec">Portfolio allocation in %</string>
+    <string name="text_allocatedcoins">Money allocated to coins</string>
+    <string name="text_Tips">Tips</string>
+    <string name="news">News</string>
+    <string name="strategies">Strategies</string>
+    <string name="technicals">Technicals</string>
+    <string name="search_coins">Search Coins</string>
+    <string name="todo">TODO</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <!-- Optional, round your corners -->
+    <corners android:bottomLeftRadius="35dp"
+        android:topLeftRadius="35dp"
+        android:bottomRightRadius="35dp"
+        android:topRightRadius="35dp" />
+
+    <!-- Optional, fill the rest of your background with a color or gradient, use transparent if you only want the border to be displayed-->
+    <gradient android:startColor="@color/details"
+        android:endColor="@color/details"
+        android:angle="90"/>
+
+</shape>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/cardRelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/add_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/cardPager"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-45dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/add_coin"
+                android:clickable="true"
+                android:contentDescription="Add button"
+                android:elevation="7dp"
+                android:padding="8dp"
+                android:paddingStart="1dp"
+                android:paddingEnd="4dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/add_icoin" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardPager"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/background"
+                android:backgroundTint="@color/background"
+                android:padding="30dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background">
+
+                </androidx.viewpager2.widget.ViewPager2>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardRelLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
+            android:elevation="7dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:id="@+id/linLayoutPortfolio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycle_portfolio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Popup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/add_coin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:hint="Ime"
+                android:text="Name: "
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/textVnosName"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@id/textView8"
+                android:ems="8"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:nextFocusForward="@id/textVnosValue" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView8"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Value: "
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/textVnosValue"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/textVnosName"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@id/textView9"
+                android:ems="8"
+                android:hint="Value"
+                android:inputType="number"
+                android:nextFocusForward="@id/textVnosQuantity" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView9"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Quantity: "
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/textVnosQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textVnosValue"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@id/textView10"
+                android:ems="8"
+                android:hint="Quantity"
+                android:inputType="number"
+                android:nextFocusForward="@id/switchRealData" />
+
+            <Switch
+                android:id="@+id/switchRealData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView10"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Live price"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/confirm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/switchRealData"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/text_confirm" />
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/switchRealData"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/confirm_button"
+                android:text="@string/text_cancel" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
