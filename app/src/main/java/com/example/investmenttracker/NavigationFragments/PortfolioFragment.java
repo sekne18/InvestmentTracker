@@ -1,4 +1,4 @@
-package com.example.investmenttracker;
+package com.example.investmenttracker.NavigationFragments;
 
 import android.animation.LayoutTransition;
 import android.content.DialogInterface;
@@ -32,6 +32,7 @@ import com.example.investmenttracker.API.API_Coinbase;
 import com.example.investmenttracker.Coins.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
+import com.example.investmenttracker.R;
 import com.example.investmenttracker.SlidePage.Fragments.MoneyAllocFragment;
 import com.example.investmenttracker.SlidePage.Fragments.PercentFragment;
 import com.example.investmenttracker.SlidePage.ViewPagerAdapter;

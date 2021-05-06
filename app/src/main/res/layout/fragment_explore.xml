@@ -17,6 +17,7 @@
         android:layout_marginBottom="707dp"
         android:clickable="true"
         android:elevation="8dp"
+        android:foreground="?attr/selectableItemBackground"
         android:padding="5dp"
         android:stateListAnimator="@animator/lift_on_touch"
         app:cardBackgroundColor="@color/details"
@@ -30,8 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintWidth_percent=".44"
-        android:foreground="?attr/selectableItemBackground">
+        app:layout_constraintWidth_percent=".44">
 
 
         <RelativeLayout
@@ -48,18 +48,14 @@
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/tipsButton"
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@android:color/transparent"
-                android:backgroundTintMode="src_in"
-                android:clickable="true"
-                android:contentDescription="@string/todo"
                 android:padding="30dp"
-                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/tips" />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -104,17 +100,12 @@
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/newsButton"
+            <ImageView
+                android:id="@+id/newsImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@android:color/transparent"
-                android:backgroundTintMode="src_in"
-                android:clickable="true"
-                android:contentDescription="@string/todo"
                 android:padding="30dp"
-                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/news" />
 
         </RelativeLayout>
@@ -161,17 +152,14 @@
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/strategiesButton"
+            <ImageView
+                android:id="@+id/strategieImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@android:color/transparent"
-                android:backgroundTintMode="src_in"
-                android:contentDescription="@string/todo"
                 android:padding="30dp"
-                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/strategies" />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -204,8 +192,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView5"
@@ -217,18 +204,14 @@
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/technicalsButton"
+            <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@android:color/transparent"
-                android:backgroundTintMode="src_in"
-                android:clickable="true"
-                android:contentDescription="@string/todo"
                 android:padding="30dp"
-                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/analytics" />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -266,18 +249,14 @@
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/searchButton"
+            <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@android:color/transparent"
-                android:backgroundTintMode="src_in"
-                android:clickable="true"
-                android:contentDescription="@string/todo"
                 android:padding="45dp"
-                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/find" />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

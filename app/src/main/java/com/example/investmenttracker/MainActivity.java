@@ -1,19 +1,15 @@
 package com.example.investmenttracker;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.investmenttracker.NavigationFragments.ExploreFragment;
+import com.example.investmenttracker.NavigationFragments.FavouriteFragment;
+import com.example.investmenttracker.NavigationFragments.PortfolioFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

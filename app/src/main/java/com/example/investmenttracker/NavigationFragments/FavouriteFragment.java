@@ -1,4 +1,4 @@
-package com.example.investmenttracker;
+package com.example.investmenttracker.NavigationFragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.investmenttracker.Coins.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
+import com.example.investmenttracker.R;
 
 import java.util.ArrayList;
 import java.util.List;
