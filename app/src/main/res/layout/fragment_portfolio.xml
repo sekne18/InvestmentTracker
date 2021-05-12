@@ -148,20 +148,6 @@
                 android:text="Value: "
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/textVnosValue"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_below="@id/textVnosName"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="20dp"
-                android:layout_toEndOf="@id/textView9"
-                android:ems="8"
-                android:hint="Value"
-                android:inputType="number"
-                android:nextFocusForward="@id/textVnosQuantity" />
-
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
@@ -175,15 +161,27 @@
             <EditText
                 android:id="@+id/textVnosQuantity"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_below="@id/textVnosValue"
                 android:layout_marginStart="28dp"
                 android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@id/textView10"
                 android:ems="8"
                 android:hint="Quantity"
-                android:inputType="number"
-                android:nextFocusForward="@id/switchRealData" />
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/textVnosValue"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/textVnosName"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@id/textView9"
+                android:ems="8"
+                android:hint="Value"
+                android:inputType="numberDecimal" />
 
             <Switch
                 android:id="@+id/switchRealData"
