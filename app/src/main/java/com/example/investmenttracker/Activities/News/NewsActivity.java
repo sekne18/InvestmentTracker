@@ -1,30 +1,32 @@
-package com.example.investmenttracker.Activities;
+package com.example.investmenttracker.Activities.News;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.investmenttracker.R;
 
-public class StrategiesActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_strategies);
+        setContentView(R.layout.activity_news);
         backbutton();
+
     }
 
     private void backbutton() {
-        ImageButton backButton = findViewById(R.id.backButton4);
+        ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-    }
 
+    }
 }

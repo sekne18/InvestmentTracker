@@ -5,19 +5,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.example.investmenttracker.Activities.NewsActivity;
-import com.example.investmenttracker.Activities.SearchActivity;
-import com.example.investmenttracker.Activities.StrategiesActivity;
-import com.example.investmenttracker.Activities.TechnicalsActivity;
-import com.example.investmenttracker.Activities.TipsActivity;
-import com.example.investmenttracker.MainActivity;
+import com.example.investmenttracker.Activities.News.NewsActivity;
+import com.example.investmenttracker.Activities.Search.SearchActivity;
+import com.example.investmenttracker.Activities.Strategies.StrategiesActivity;
+import com.example.investmenttracker.Activities.Technicals.TechnicalsActivity;
+import com.example.investmenttracker.Activities.Tips.TipsActivity;
 import com.example.investmenttracker.R;
 
 public class ExploreFragment extends Fragment {

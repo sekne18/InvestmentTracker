@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".Activities.TechnicalsActivity">
+    tools:context=".Activities.Technicals.TechnicalsActivity">
 
     <ImageButton
         android:id="@+id/backButton5"
