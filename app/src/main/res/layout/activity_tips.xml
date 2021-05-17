@@ -21,7 +21,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -30,22 +30,20 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.gridlayout.widget.GridLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="23dp"
             app:columnCount="2"
             app:rowCount="3">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
+                app:cardElevation="6dp"
                 app:layout_column="0"
                 app:layout_row="0">
 
@@ -53,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="15dp"
+                    android:layout_margin="25dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -62,13 +60,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/cake" />
+                        android:src="@drawable/leverage"
+                        app:tint="@color/background" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Panic Selling"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Spot vs Leverage"
                         android:textAlignment="center"
                         android:textStyle="bold" />
 
@@ -79,19 +79,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
+                app:cardElevation="6dp"
                 app:layout_column="1"
                 app:layout_row="0">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="25dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -100,13 +99,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/cake" />
+                        android:src="@drawable/wallet"
+                        app:tint="@color/background" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Panic Selling"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Hot&amp;Cold Wallets"
                         android:textAlignment="center"
                         android:textStyle="bold" />
 
@@ -116,20 +117,19 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
+                app:cardElevation="6dp"
                 app:layout_column="0"
                 app:layout_row="1">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="25dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -138,13 +138,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/cake" />
+                        android:src="@drawable/fluctuation"
+                        app:tint="@color/background" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Panic Selling"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text='Ignore the "noise"'
                         android:textAlignment="center"
                         android:textStyle="bold" />
 
@@ -155,19 +157,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
+                app:cardElevation="6dp"
                 app:layout_column="1"
                 app:layout_row="1">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="25dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -176,13 +177,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/cake" />
+                        android:src="@drawable/fear"
+                        app:tint="@color/background" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Panic Selling"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Don't FOMO"
                         android:textAlignment="center"
                         android:textStyle="bold" />
 
@@ -192,20 +195,19 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="18dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="15dp"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
+                app:cardElevation="6dp"
                 app:layout_column="0"
                 app:layout_row="2">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="25dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -214,13 +216,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/cake" />
+                        android:src="@drawable/cost_average"
+                        app:tint="@color/background" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Panic Selling"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="$ Cost Average"
                         android:textAlignment="center"
                         android:textStyle="bold" />
 
@@ -232,18 +236,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="15dp"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="15dp"
+                app:cardElevation="6dp"
                 app:layout_column="1"
                 app:layout_row="2">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="25dp"
                     android:orientation="vertical">
 
                     <ImageView
@@ -252,13 +255,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/cake" />
+                        android:src="@drawable/low_price"
+                        app:tint="@color/background" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Panic Selling"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text='Buying "CHEAP" '
                         android:textAlignment="center"
                         android:textStyle="bold" />
 
