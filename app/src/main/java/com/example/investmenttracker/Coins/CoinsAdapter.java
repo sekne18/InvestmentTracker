@@ -29,6 +29,7 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
         void onItemClick(int position);
         void onDeleteClick(int position);
         void onFavouriteClick(int position);
+        void onEditClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -36,7 +37,7 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
     }
 
     public static class CoinsViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageView, mDeleteImage, mFavouriteImage;
+        public ImageView mImageView, mDeleteImage, mFavouriteImage, mEditImage;
         public TextView mTextName, mTextValue, mTextOwned;
         public CardView mCardView;
         private LinearLayout detailsLayout;
@@ -56,6 +57,7 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
             mCardView = itemView.findViewById(R.id.cardView);
             mImageView = itemView.findViewById(R.id.imageCoin);
             mDeleteImage = itemView.findViewById(R.id.imageDelete);
+            mEditImage = itemView.findViewById(R.id.imageEdit);
             mTextName = itemView.findViewById(R.id.textName);
             mTextValue = itemView.findViewById(R.id.textValue);
             mTextOwned = itemView.findViewById(R.id.textOwned);
@@ -97,6 +99,18 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onFavouriteClick(position);
+                        }
+                    }
+                }
+            });
+
+            mEditImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onEditClick(position);
                         }
                     }
                 }

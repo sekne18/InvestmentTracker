@@ -141,6 +141,11 @@ public class FavouriteFragment extends Fragment {
             public void onFavouriteClick(int position) {
                 changeStateOfFavouriteCoin(position);
             }
+
+            @Override
+            public void onEditClick(int position) {
+                //
+            }
         });
 
     }

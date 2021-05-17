@@ -71,6 +71,17 @@
                 android:contentDescription="TODO" />
 
             <ImageView
+                android:id="@+id/imageEdit"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="115dp"
+                android:background="@drawable/pencil"
+                android:contentDescription="TODO" />
+
+            <ImageView
                 android:id="@+id/imageDelete"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
