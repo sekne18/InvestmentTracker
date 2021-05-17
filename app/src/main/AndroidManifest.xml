@@ -18,11 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.NewsActivity" />
-        <activity android:name=".Activities.TipsActivity"/>
-        <activity android:name=".Activities.StrategiesActivity"/>
-        <activity android:name=".Activities.TechnicalsActivity"/>
-        <activity android:name=".Activities.SearchActivity"/>
+        <activity android:name=".Activities.News.NewsActivity" />
+        <activity android:name=".Activities.Tips.TipsActivity"/>
+        <activity android:name=".Activities.Strategies.StrategiesActivity"/>
+        <activity android:name=".Activities.Technicals.TechnicalsActivity"/>
+        <activity android:name=".Activities.Search.SearchActivity"/>
     </application>
 
 </manifest>

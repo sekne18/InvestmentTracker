@@ -1,4 +1,4 @@
-package com.example.investmenttracker.Activities;
+package com.example.investmenttracker.Activities.Tips;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,24 +8,22 @@ import android.widget.ImageButton;
 
 import com.example.investmenttracker.R;
 
-public class SearchActivity extends AppCompatActivity {
+public class TipsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_tips);
         backbutton();
     }
 
     private void backbutton() {
-        ImageButton backButton = findViewById(R.id.backButton3);
+        ImageButton backButton = findViewById(R.id.backButton2);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
     }
-
 }

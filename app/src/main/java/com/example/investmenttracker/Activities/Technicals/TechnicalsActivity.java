@@ -1,4 +1,4 @@
-package com.example.investmenttracker.Activities;
+package com.example.investmenttracker.Activities.Technicals;
 
 import androidx.appcompat.app.AppCompatActivity;
 
