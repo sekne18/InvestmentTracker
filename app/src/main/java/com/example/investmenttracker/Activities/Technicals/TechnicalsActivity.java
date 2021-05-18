@@ -13,7 +13,7 @@ public class TechnicalsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_technicals);
+        setContentView(R.layout.activity_analysis);
         backbutton();
     }
 

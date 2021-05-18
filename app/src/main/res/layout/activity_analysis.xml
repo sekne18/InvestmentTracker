@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".Activities.Tips.TipsActivity">
+    tools:context=".Activities.Technicals.TechnicalsActivity">
 
     <ImageButton
-        android:id="@+id/backButton2"
+        android:id="@+id/backButton5"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:backgroundTint="@android:color/transparent"
@@ -39,10 +39,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="#5E7683"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
+                app:layout_columnSpan="2"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill|left"
                 app:layout_rowWeight="1">
@@ -60,7 +61,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/leverage"
+                        android:src="@drawable/fundamental"
                         app:tint="@color/fonts" />
 
                     <TextView
@@ -68,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:text="Spot vs Leverage"
+                        android:text="Fundamentals"
                         android:textAlignment="center"
                         android:textColor="@color/fonts"
                         android:textStyle="bold" />
@@ -84,10 +85,9 @@
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
-                app:layout_column="1"
+                app:layout_columnSpan="2"
                 app:layout_columnWeight="1"
-                app:layout_gravity="right|fill"
-                app:layout_row="0"
+                app:layout_gravity="fill|left"
                 app:layout_rowWeight="1">
 
                 <LinearLayout
@@ -101,9 +101,9 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/wallet"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:src="@drawable/indicator"
                         app:tint="@color/fonts" />
 
                     <TextView
@@ -111,51 +111,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:text="Hot&amp;Cold Wallets"
+                        android:text="Indicators &amp; Oscillators"
                         android:textAlignment="center"
                         android:textColor="@color/fonts"
                         android:textStyle="bold" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
-                android:clickable="true"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="6dp"
-                app:layout_columnWeight="1"
-                app:layout_gravity="fill|left"
-                app:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="25dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/fluctuation"
-                        app:tint="@color/fonts" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text='Ignore the "noise"'
-                        android:textAlignment="center"
-                        android:textStyle="bold"
-                        android:textColor="@color/fonts" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -185,7 +144,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/fear"
+                        android:src="@drawable/chartlines"
                         app:tint="@color/fonts" />
 
                     <TextView
@@ -193,48 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:text="Don't FOMO"
-                        android:textAlignment="center"
-                        android:textColor="@color/fonts"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
-                android:clickable="true"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="6dp"
-                app:layout_columnWeight="1"
-                app:layout_gravity="fill"
-                app:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="25dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/cost_average"
-                        app:tint="@color/fonts" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="$ Cost Average"
+                        android:text="Charting Lines"
                         android:textAlignment="center"
                         android:textColor="@color/fonts"
                         android:textStyle="bold" />
@@ -266,7 +184,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:src="@drawable/low_price"
+                        android:src="@drawable/bullmarket"
                         app:tint="@color/fonts" />
 
                     <TextView
@@ -274,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:text='Buying "CHEAP" '
+                        android:text="Patterns"
                         android:textAlignment="center"
                         android:textColor="@color/fonts"
                         android:textStyle="bold" />
