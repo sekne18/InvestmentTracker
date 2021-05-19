@@ -7,6 +7,22 @@
     android:background="@color/background"
     tools:context=".Activities.News.NewsActivity">
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="197dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="220dp"
+        android:text="Coming soon..."
+        android:textAlignment="center"
+        android:textColor="@color/fonts"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="60dp"
@@ -19,8 +35,10 @@
         app:srcCompat="@drawable/abc_vector_test" />
 
     <ScrollView
+        android:id="@+id/scrollView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
