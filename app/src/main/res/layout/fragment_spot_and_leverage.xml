@@ -44,7 +44,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView3"
-                    android:text="TextView" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Leverage trading allows you to borrow money from your platform in return for better profits. It also allows you to put long or short position. Leverage rate differs from coins and platforms. For example you want to buy ETH at 2000$ for 100$ and you decide to leverage it at x10, that would mean you just bought 0,5 ETH (100 x 10 = 1000). But as good as it sound there are some downsides. Leveraging with 10x also means the % difference multiplies for you which leaves you liquidated if the price drops for 10% unless you put more money in to cover position."
+                    android:textAlignment="center"
+                    android:textColor="@color/fonts" />
 
                 <ImageView
                     android:id="@+id/imageView3"
