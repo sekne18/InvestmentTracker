@@ -31,11 +31,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView2"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
-                    android:text="@string/Margin_trading"
+                    android:text="Hot wallets are meant for everyday cryptocurrency users. If you regularly trade crypto on an exchange or spend crypto to make everyday purchases, you want to store your digital currency in a hot wallet. "
+                    android:textAlignment="center"
+                    android:textColor="@color/fonts"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView6"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Cold wallets are considered the more secure cryptocurrency storage solution as they are not connected to the internet. You only connect your cold wallet to the internet when you want to make a transaction. "
                     android:textAlignment="center"
                     android:textColor="@color/fonts"
                     android:textSize="20sp" />
@@ -44,24 +60,15 @@
                     android:id="@+id/textView14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/imageView3"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="55dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
-                    android:text="@string/spot_trading"
+                    android:text="A crypto wallet allows you to store, send and receive cryptocurrency. It is essentially a digital bank account for your cryptocurrency. "
                     android:textAlignment="center"
                     android:textColor="@color/fonts"
                     android:textSize="20sp" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="175dp"
-                    android:layout_height="173dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="0dp"
-                    android:src="@drawable/immediate" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -69,7 +76,17 @@
                     android:layout_height="121dp"
                     android:layout_below="@id/textView14"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/leveragetrans" />
+                    android:src="@drawable/wallet" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="186dp"
+                    android:layout_height="121dp"
+                    android:layout_below="@id/textView15"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="-5dp"
+                    android:src="@drawable/hotandcold" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -79,7 +96,7 @@
         android:id="@+id/closeButton2"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@color/background"
+        android:background="@android:color/transparent"
         android:rotation="45"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_baseline_add_24"

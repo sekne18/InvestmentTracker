@@ -26,6 +26,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="186dp"
+                    android:layout_height="121dp"
+                    android:layout_below="@id/textView14"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/volatility" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="186dp"
+                    android:layout_height="121dp"
+                    android:layout_below="@id/textView14"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/volatility" />
+
                 <TextView
                     android:id="@+id/textView15"
                     android:layout_width="match_parent"
@@ -35,7 +51,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
-                    android:text="@string/Margin_trading"
+                    android:text="Market noise is simply all of the price data that distorts the picture of the underlying trend. This includes mostly small corrections and intraday volatility. If you are long term oriented investor than you should definitely ignore the noise."
                     android:textAlignment="center"
                     android:textColor="@color/fonts"
                     android:textSize="20sp" />
@@ -44,32 +60,14 @@
                     android:id="@+id/textView14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/imageView3"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="55dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
-                    android:text="@string/spot_trading"
+                    android:text="Noise removal is one of the most important aspects of active trading. By employing noise-removal techniques, traders can avoid false signals and get a clearer picture of an overall trend."
                     android:textAlignment="center"
                     android:textColor="@color/fonts"
                     android:textSize="20sp" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="175dp"
-                    android:layout_height="173dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="0dp"
-                    android:src="@drawable/immediate" />
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="186dp"
-                    android:layout_height="121dp"
-                    android:layout_below="@id/textView14"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/leveragetrans" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -79,7 +77,7 @@
         android:id="@+id/closeButton6"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@color/background"
+        android:background="@android:color/transparent"
         android:rotation="45"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_baseline_add_24"
