@@ -79,7 +79,7 @@
         android:id="@+id/closeButton8"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@color/background"
+        android:background="@android:color/transparent"
         android:rotation="45"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_baseline_add_24"
