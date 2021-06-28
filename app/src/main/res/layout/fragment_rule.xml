@@ -31,37 +31,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView2"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="5dp"
-                    android:text="@string/Margin_trading"
-                    android:textAlignment="center"
+                    android:justificationMode="inter_word"
+                    android:text='It’s common, for example, to see portfolios split at 50% (high), 30% (medium), and 20% (low) market cap coins, respectively. For example BTC would be "High cap", BNB would be "Medium cap" and VET would be "Low cap" - looking at july in 2021. '
                     android:textColor="@color/fonts"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textView14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/imageView3"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="5dp"
-                    android:text="@string/spot_trading"
-                    android:textAlignment="center"
+                    android:justificationMode="inter_word"
+                    android:text="A cryptocurrency portfolio with a diverse market cap should have a couple of high market cap coins, medium market cap coins, and low market cap coins. The diversity helps you plan for both short and long term growth without exposing yourself to too much risk."
                     android:textColor="@color/fonts"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="175dp"
-                    android:layout_height="173dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="0dp"
-                    android:src="@drawable/immediate" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -69,7 +59,7 @@
                     android:layout_height="121dp"
                     android:layout_below="@id/textView14"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/leveragetrans" />
+                    android:src="@drawable/diversification" />
 
             </RelativeLayout>
         </LinearLayout>

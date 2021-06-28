@@ -32,14 +32,14 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView2"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="5dp"
+                    android:justificationMode="inter_word"
                     android:text="Hot wallets are meant for everyday cryptocurrency users. If you regularly trade crypto on an exchange or spend crypto to make everyday purchases, you want to store your digital currency in a hot wallet. "
-                    android:textAlignment="center"
                     android:textColor="@color/fonts"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textView16"
@@ -47,28 +47,28 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView6"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="1dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="5dp"
+                    android:justificationMode="inter_word"
                     android:text="Cold wallets are considered the more secure cryptocurrency storage solution as they are not connected to the internet. You only connect your cold wallet to the internet when you want to make a transaction. "
-                    android:textAlignment="center"
                     android:textColor="@color/fonts"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textView14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="55dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="5dp"
+                    android:justificationMode="inter_word"
                     android:text="A crypto wallet allows you to store, send and receive cryptocurrency. It is essentially a digital bank account for your cryptocurrency. "
-                    android:textAlignment="center"
                     android:textColor="@color/fonts"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/imageView2"

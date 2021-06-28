@@ -30,14 +30,14 @@
                     android:id="@+id/textView15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="70dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="5dp"
-                    android:text="FOMO stands for »Fear of missing out« and many new traders who are new to trading are entering markets when prices are at all time high or just overbought. Key thing to avoid FOMO is to get good at technical analys, know where market is headed and also look into fundamentals of the project you are investing in. If you do get stuck high, than fundamentals might just save you from panic selling because you will know and believe in project you just invested."
-                    android:textAlignment="center"
+                    android:justificationMode="inter_word"
+                    android:text="@string/fomo_text"
                     android:textColor="@color/fonts"
-                    android:textSize="20sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/imageView3"
