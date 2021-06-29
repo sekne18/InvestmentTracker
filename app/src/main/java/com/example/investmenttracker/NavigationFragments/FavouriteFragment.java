@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Coins.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
@@ -35,6 +36,8 @@ public class FavouriteFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private CoinsAdapter mAdapter;
+    private boolean isDetailsActive;
+    private API_CoinGecko api;
     ArrayList<Coin> mCoinsList;
 
     @Nullable
@@ -45,6 +48,9 @@ public class FavouriteFragment extends Fragment {
 
         final View favView = inflater.inflate(R.layout.fragment_favourite, container, false);
         mRecyclerView = favView.findViewById(R.id.recycle_Favourite);
+
+        api = new API_CoinGecko();
+        api.startToPullDataFromAPI();
 
         getFavCoins();
         buildRecycleView();
@@ -80,11 +86,10 @@ public class FavouriteFragment extends Fragment {
         CoinViewModel.deleteCoin(mCoinsList.get(position).getId());
     }
 
-
     private void buildRecycleView() {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
-        mAdapter = new CoinsAdapter(mCoinsList);
+        mAdapter = new CoinsAdapter(mCoinsList, "fav", api);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -93,27 +98,13 @@ public class FavouriteFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
-                builder.setTitle("Enter coin name");
-
-                final EditText input = new EditText(getContext());
-                input.setInputType(InputType.TYPE_CLASS_TEXT);
-                builder.setView(input);
-
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //changeItem(position, input.getText().toString());
-                    }
-                });
-
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
+                if (isDetailsActive) {
+                    CoinsAdapter.CoinsViewHolder.setDetailsEnabled(false);
+                    isDetailsActive = false;
+                } else {
+                    CoinsAdapter.CoinsViewHolder.setDetailsEnabled(true);
+                    isDetailsActive = true;
+                }
             }
 
             @Override

@@ -1,8 +1,6 @@
 package com.example.investmenttracker.NavigationFragments;
 
-import android.animation.LayoutTransition;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -21,14 +18,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.investmenttracker.API.API_Coinbase;
+import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Coins.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
@@ -40,7 +36,6 @@ import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -61,6 +56,7 @@ public class PortfolioFragment extends Fragment {
     private boolean isDetailsActive;
     private boolean canReset = true;
     private int posOfChart;
+    private API_CoinGecko api;
     ArrayList<PieEntry> percValues, moneyAllocValues;
     ArrayList<Coin> mCoinsList, mGroupedCoinsList;
     ViewPagerAdapter mPagerAdapter;
@@ -84,6 +80,9 @@ public class PortfolioFragment extends Fragment {
         mRecyclerView = portfView.findViewById(R.id.recycle_portfolio);
         ImageButton add_button = (ImageButton) portfView.findViewById(R.id.add_button);
         pager = portfView.findViewById(R.id.viewPager);
+
+        api = new API_CoinGecko();
+        api.startToPullDataFromAPI();
 
         initViewPager();
         getOwnedCoins();
@@ -121,8 +120,7 @@ public class PortfolioFragment extends Fragment {
                     public void onClick(View v)
                     {
                         if (switchLiveData.isChecked()) {
-                            API_Coinbase.startToPullDataFromAPI();
-                            addCoin(textVnosName.getText().toString(), API_Coinbase.BTC_price, Float.parseFloat(textVnosQuantity.getText().toString()));
+                            addCoin(textVnosName.getText().toString(), api.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price"), Float.parseFloat(textVnosQuantity.getText().toString()));
                         } else {
                             addCoin(textVnosName.getText().toString(), Float.parseFloat(textVnosValue.getText().toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                         }
@@ -222,7 +220,7 @@ public class PortfolioFragment extends Fragment {
 
     private void buildRecycleView() {
         mRecyclerView.setHasFixedSize(true);
-        mAdapter = new CoinsAdapter(mCoinsList);
+        mAdapter = new CoinsAdapter(mCoinsList, "port", api);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
 
