@@ -21,6 +21,8 @@ import com.example.investmenttracker.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.investmenttracker.MainActivity.api;
+
 public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHolder> {
     private List<Coin> mCoinsList;
     private String nameOfFragment;
@@ -128,7 +130,7 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
         }
     }
 
-    public CoinsAdapter(ArrayList<Coin> coinsList, String nameOfFrag, API_CoinGecko api) {
+    public CoinsAdapter(ArrayList<Coin> coinsList, String nameOfFrag) {
         mCoinsList = coinsList;
         nameOfFragment = nameOfFrag;
         data = api;
@@ -147,15 +149,15 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
     public void onBindViewHolder(@NonNull CoinsViewHolder holder, int position) {
         Coin currentItem = mCoinsList.get(position);
         if (nameOfFragment == "fav") {
-            holder.mTextLastPrice.setText(Float.toString(data.Coins.get(currentItem.getName().toLowerCase()).get("current_price")));
-            holder.mTextVolume.setText(Float.toString(data.Coins.get(currentItem.getName().toLowerCase()).get("total_volume")));
-            holder.mTextMarketCap.setText(Float.toString(data.Coins.get(currentItem.getName().toLowerCase()).get("market_cap")));
+            holder.mTextLastPrice.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("current_price").toString());
+            holder.mTextVolume.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("total_volume").toString());
+            holder.mTextMarketCap.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("market_cap").toString());
             holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
             holder.mImageView.setImageResource(currentItem.getCoinImage());
             holder.mTextName.setText(currentItem.getName());
         } else {
-            holder.mTextValue.setText(Float.toString(currentItem.getPrice_curr()));
-            holder.mTextOwned.setText(Float.toString(currentItem.getOwned()));
+            holder.mTextValue.setText("$ "+currentItem.getPrice_curr().toString());
+            holder.mTextOwned.setText(currentItem.getOwned().toString());
             holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
             holder.mImageView.setImageResource(currentItem.getCoinImage());
             holder.mTextName.setText(currentItem.getName());

@@ -7,13 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.NavigationFragments.ExploreFragment;
 import com.example.investmenttracker.NavigationFragments.FavouriteFragment;
 import com.example.investmenttracker.NavigationFragments.PortfolioFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static API_CoinGecko api;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        api = new API_CoinGecko();
+        api.startToPullDataFromAPI();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
     }

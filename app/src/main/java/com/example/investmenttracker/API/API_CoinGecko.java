@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Dictionary;
@@ -22,7 +23,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class API_CoinGecko {
-    public Map<String, Map<String, Float>> Coins = new HashMap<String, Map<String, Float>>();
+    public Map<String, Map<String, BigDecimal>> Coins = new HashMap<String, Map<String, BigDecimal>>();
 
     public void startToPullDataFromAPI() {
         DownloadTask getCoins = new DownloadTask();
@@ -62,12 +63,12 @@ public class API_CoinGecko {
                 JSONArray coinsArray = new JSONArray(inline);
                 for (int i = 0; i < coinsArray.length(); i++) {
                     JSONObject coin = coinsArray.getJSONObject(i);
-                    Map<String, Float> details = new HashMap<String, Float>();
-                    details.put("current_price", Float.parseFloat(coin.getString("current_price")));
-                    details.put("market_cap", Float.parseFloat(coin.getString("market_cap")));
-                    details.put("total_volume", Float.parseFloat(coin.getString("total_volume")));
-                    details.put("price_change_percentage_24h", Float.parseFloat(coin.getString("price_change_percentage_24h")));
-                    details.put("ath", Float.parseFloat(coin.getString("ath")));
+                    Map<String, BigDecimal> details = new HashMap<String, BigDecimal>();
+                    details.put("current_price", new BigDecimal(coin.getString("current_price")));
+                    details.put("market_cap", new BigDecimal(coin.getString("market_cap")));
+                    details.put("total_volume", new BigDecimal(coin.getString("total_volume")));
+                    details.put("price_change_percentage_24h", new BigDecimal(coin.getString("price_change_percentage_24h")));
+                    details.put("ath", new BigDecimal(coin.getString("ath")));
                     Coins.put(coin.getString("symbol"), details);
                 }
 

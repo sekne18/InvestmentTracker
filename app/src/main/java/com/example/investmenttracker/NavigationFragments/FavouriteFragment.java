@@ -20,7 +20,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Coins.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
@@ -37,7 +36,6 @@ public class FavouriteFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private CoinsAdapter mAdapter;
     private boolean isDetailsActive;
-    private API_CoinGecko api;
     ArrayList<Coin> mCoinsList;
 
     @Nullable
@@ -48,9 +46,6 @@ public class FavouriteFragment extends Fragment {
 
         final View favView = inflater.inflate(R.layout.fragment_favourite, container, false);
         mRecyclerView = favView.findViewById(R.id.recycle_Favourite);
-
-        api = new API_CoinGecko();
-        api.startToPullDataFromAPI();
 
         getFavCoins();
         buildRecycleView();
@@ -89,7 +84,7 @@ public class FavouriteFragment extends Fragment {
     private void buildRecycleView() {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
-        mAdapter = new CoinsAdapter(mCoinsList, "fav", api);
+        mAdapter = new CoinsAdapter(mCoinsList, "fav");
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);

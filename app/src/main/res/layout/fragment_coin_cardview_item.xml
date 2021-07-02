@@ -180,6 +180,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/textView23"
+                    android:inputType="number"
                     android:text="____"
                     android:textSize="21sp" />
 
@@ -201,6 +202,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
                     android:layout_toEndOf="@id/textView23"
+                    android:inputType="number"
                     android:text="____"
                     android:textSize="21sp" />
 
@@ -223,6 +225,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
                     android:layout_toEndOf="@id/textView23"
+                    android:inputType="number"
                     android:text="____"
                     android:textSize="21sp" />
             </RelativeLayout>
