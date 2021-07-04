@@ -25,9 +25,16 @@ import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
 import com.example.investmenttracker.R;
 
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+
+import static com.example.investmenttracker.MainActivity.api;
 
 public class FavouriteFragment extends Fragment {
 
@@ -35,6 +42,7 @@ public class FavouriteFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private CoinsAdapter mAdapter;
+    private TextView mTextLastDate;
     private boolean isDetailsActive;
     ArrayList<Coin> mCoinsList;
 
@@ -43,9 +51,18 @@ public class FavouriteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         coinViewModel = new ViewModelProvider.AndroidViewModelFactory(Objects.requireNonNull(getActivity()).getApplication()).create(CoinViewModel.class);
         mCoinsList = new ArrayList<>();
-
         final View favView = inflater.inflate(R.layout.fragment_favourite, container, false);
         mRecyclerView = favView.findViewById(R.id.recycle_Favourite);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        mTextLastDate = favView.findViewById(R.id.textViewLastDate);
+        try {
+            date = format.parse(api.last_updated);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        mTextLastDate.setText("Last updated: "+ format.format(date));
 
         getFavCoins();
         buildRecycleView();

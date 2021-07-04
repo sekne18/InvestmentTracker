@@ -171,7 +171,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:text="Last Price: "
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textViewPrice"
@@ -182,7 +182,7 @@
                     android:layout_toEndOf="@id/textView23"
                     android:inputType="number"
                     android:text="____"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView25"
@@ -192,7 +192,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
                     android:text="Volume: "
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textViewVolume"
@@ -204,7 +204,7 @@
                     android:layout_toEndOf="@id/textView23"
                     android:inputType="number"
                     android:text="____"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView23"
@@ -213,9 +213,8 @@
                     android:layout_below="@id/textView25"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
                     android:text="Market Cap: "
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textViewMrktCap"
@@ -227,7 +226,53 @@
                     android:layout_toEndOf="@id/textView23"
                     android:inputType="number"
                     android:text="____"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView23"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Price change: "
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textViewChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewMrktCap"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@id/textView23"
+                    android:inputType="number"
+                    android:text="____"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView24"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="All time high:"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textViewAth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewChange"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@id/textView23"
+                    android:inputType="number"
+                    android:text="____"
+                    android:textSize="18sp" />
+
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

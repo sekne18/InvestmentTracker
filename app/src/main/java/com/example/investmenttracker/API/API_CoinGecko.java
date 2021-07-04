@@ -1,31 +1,25 @@
 package com.example.investmenttracker.API;
 
-import android.database.sqlite.SQLiteStatement;
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.example.investmenttracker.Database.model.CoinViewModel;
-import com.fasterxml.jackson.core.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class API_CoinGecko {
     public Map<String, Map<String, BigDecimal>> Coins = new HashMap<String, Map<String, BigDecimal>>();
+    public String last_updated;
 
-    public void startToPullDataFromAPI() {
+    public void RefreshDataFromAPI() {
         DownloadTask getCoins = new DownloadTask();
 
         try {
@@ -40,8 +34,6 @@ public class API_CoinGecko {
 
         @Override
         protected String doInBackground(String... strings) {
-
-            String result = "";
             URL url;
             HttpURLConnection urlConnection = null;
 
@@ -64,12 +56,14 @@ public class API_CoinGecko {
                 for (int i = 0; i < coinsArray.length(); i++) {
                     JSONObject coin = coinsArray.getJSONObject(i);
                     Map<String, BigDecimal> details = new HashMap<String, BigDecimal>();
+                    Map<String, String> nameAndDate = new HashMap<String, String>();
                     details.put("current_price", new BigDecimal(coin.getString("current_price")));
                     details.put("market_cap", new BigDecimal(coin.getString("market_cap")));
                     details.put("total_volume", new BigDecimal(coin.getString("total_volume")));
                     details.put("price_change_percentage_24h", new BigDecimal(coin.getString("price_change_percentage_24h")));
                     details.put("ath", new BigDecimal(coin.getString("ath")));
                     Coins.put(coin.getString("symbol"), details);
+                    last_updated = coin.getString("last_updated");
                 }
 
 

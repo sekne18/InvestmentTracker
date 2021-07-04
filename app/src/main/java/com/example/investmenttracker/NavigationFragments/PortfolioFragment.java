@@ -117,6 +117,7 @@ public class PortfolioFragment extends Fragment {
                     @Override
                     public void onClick(View v)
                     {
+                        api.RefreshDataFromAPI();
                         if (switchLiveData.isChecked()) {
                             addCoin(textVnosName.getText().toString(), Float.parseFloat(api.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                         } else {

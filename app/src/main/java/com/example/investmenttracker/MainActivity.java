@@ -23,10 +23,16 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        api = new API_CoinGecko();
-        api.startToPullDataFromAPI();
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
+    }
+
+    @Override
+    protected void onStart() {
+        api = new API_CoinGecko();
+        api.RefreshDataFromAPI();
+        super.onStart();
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

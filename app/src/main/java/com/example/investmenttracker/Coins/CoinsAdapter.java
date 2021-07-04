@@ -43,7 +43,7 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
 
     public static class CoinsViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView, mDeleteImage, mFavouriteImage, mEditImage;
-        public TextView mTextName, mTextValue, mTextOwned, mTextLastPrice, mTextVolume, mTextMarketCap;
+        public TextView mTextName, mTextValue, mTextOwned, mTextLastPrice, mTextVolume, mTextMarketCap, mTextAth, mTextPriceChange;
         public CardView mCardView;
         private LinearLayout detailsLayout, favDetailsLinLayout;
         private LottieAnimationView rocketAnim;
@@ -64,6 +64,8 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
             mDeleteImage = itemView.findViewById(R.id.imageDelete);
             mEditImage = itemView.findViewById(R.id.imageEdit);
             mTextName = itemView.findViewById(R.id.textName);
+            mTextAth = itemView.findViewById(R.id.textViewAth);
+            mTextPriceChange = itemView.findViewById(R.id.textViewChange);
             mTextValue = itemView.findViewById(R.id.textValue);
             mTextOwned = itemView.findViewById(R.id.textOwned);
             mTextLastPrice = itemView.findViewById(R.id.textViewPrice);
@@ -152,6 +154,8 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
             holder.mTextLastPrice.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("current_price").toString());
             holder.mTextVolume.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("total_volume").toString());
             holder.mTextMarketCap.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("market_cap").toString());
+            holder.mTextAth.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("ath").toString());
+            holder.mTextPriceChange.setText(data.Coins.get(currentItem.getName().toLowerCase()).get("price_change_percentage_24h").toString()+" %");
             holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
             holder.mImageView.setImageResource(currentItem.getCoinImage());
             holder.mTextName.setText(currentItem.getName());
