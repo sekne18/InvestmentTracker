@@ -53,7 +53,7 @@ public class FavouriteFragment extends Fragment {
         mCoinsList = new ArrayList<>();
         final View favView = inflater.inflate(R.layout.fragment_favourite, container, false);
         mRecyclerView = favView.findViewById(R.id.recycle_Favourite);
-
+        
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         mTextLastDate = favView.findViewById(R.id.textViewLastDate);
@@ -73,10 +73,12 @@ public class FavouriteFragment extends Fragment {
     private void changeStateOfFavouriteCoin(int position) {
         if (mCoinsList.get(position).getFavouriteImage() == R.drawable.heart_border_full) {
             CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), R.drawable.heart_border_empty);
-            Toast.makeText(getContext(), "Coins was removed from favourites!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Coin "+mCoinsList.get(position).getName().toUpperCase()+" was removed from favourites!", Toast.LENGTH_SHORT).show();
+
         } else {
             CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), R.drawable.heart_border_full);
         }
+
     }
 
     private void getFavCoins() {
@@ -85,6 +87,10 @@ public class FavouriteFragment extends Fragment {
             @Override
             public void onChanged(List<Coin> coins) {
                 mAdapter.setCoins(coins);
+                if (coins.size() == 0) {
+//                    Toast.makeText(getContext(), "EMPTY!!", Toast.LENGTH_SHORT).show();
+                    mTextLastDate.setText("");
+                }
             }
         });
 
@@ -96,6 +102,7 @@ public class FavouriteFragment extends Fragment {
 
     private void removeItem(int position) {
         CoinViewModel.deleteCoin(mCoinsList.get(position).getId());
+
     }
 
     private void buildRecycleView() {
