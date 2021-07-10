@@ -54,7 +54,7 @@
                     android:justificationMode="inter_word"
                     android:text="Market noise is simply all of the price data that distorts the picture of the underlying trend. This includes mostly small corrections and intraday volatility. If you are long term oriented investor than you should definitely ignore the noise."
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -67,7 +67,7 @@
                     android:justificationMode="inter_word"
                     android:text="Noise removal is one of the most important aspects of active trading. By employing noise-removal techniques, traders can avoid false signals and get a clearer picture of an overall trend."
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
             </RelativeLayout>
         </LinearLayout>

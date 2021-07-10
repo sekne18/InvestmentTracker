@@ -38,7 +38,7 @@
                     android:justificationMode="inter_word"
                     android:text='It’s common, for example, to see portfolios split at 50% (high), 30% (medium), and 20% (low) market cap coins, respectively. For example BTC would be "High cap", BNB would be "Medium cap" and VET would be "Low cap" - looking at july in 2021. '
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -51,7 +51,7 @@
                     android:justificationMode="inter_word"
                     android:text="A cryptocurrency portfolio with a diverse market cap should have a couple of high market cap coins, medium market cap coins, and low market cap coins. The diversity helps you plan for both short and long term growth without exposing yourself to too much risk."
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <ImageView
                     android:id="@+id/imageView2"

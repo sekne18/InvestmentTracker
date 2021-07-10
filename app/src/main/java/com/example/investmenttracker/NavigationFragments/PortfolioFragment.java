@@ -2,12 +2,14 @@ package com.example.investmenttracker.NavigationFragments;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.inputmethodservice.Keyboard;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -131,7 +133,6 @@ public class PortfolioFragment extends Fragment {
                         fadeAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.fade_out);
                         popUpLayout.startAnimation(fadeAnimation);
                         popUpLayout.setVisibility(View.INVISIBLE);
-
                     }
                 });
                 cancelButton.setOnClickListener(new View.OnClickListener() {

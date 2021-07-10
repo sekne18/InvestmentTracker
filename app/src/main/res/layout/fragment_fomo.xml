@@ -37,7 +37,7 @@
                     android:justificationMode="inter_word"
                     android:text="@string/fomo_text"
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <ImageView
                     android:id="@+id/imageView3"

@@ -38,7 +38,7 @@
                     android:justificationMode="inter_word"
                     android:text="@string/lines1_text"
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/textView21"
@@ -52,7 +52,7 @@
                     android:justificationMode="inter_word"
                     android:text="@string/lines2_text"
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -65,7 +65,7 @@
                     android:justificationMode="inter_word"
                     android:text="@string/lines_text"
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <ImageView
                     android:id="@+id/imageView2"

@@ -39,7 +39,7 @@
                     android:justificationMode="inter_word"
                     android:text="@string/Margin_trading"
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -52,7 +52,7 @@
                     android:justificationMode="inter_word"
                     android:text="@string/spot_trading"
                     android:textColor="@color/fonts"
-                    android:textSize="14sp" />
+                    android:textSize="17sp" />
 
                 <ImageView
                     android:id="@+id/imageView2"
