@@ -1,6 +1,9 @@
 package com.example.investmenttracker.NavigationFragments;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -20,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Coins.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
@@ -42,6 +46,7 @@ public class FavouriteFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private CoinsAdapter mAdapter;
+    private boolean connected;
     private TextView mTextLastDate;
     private boolean isDetailsActive;
     ArrayList<Coin> mCoinsList;
@@ -81,6 +86,55 @@ public class FavouriteFragment extends Fragment {
 
     }
 
+    @Override
+    public void onStart() {
+        connected = CheckConnection();
+
+        if (connected) {
+            api = new API_CoinGecko();
+            api.RefreshDataFromAPI();
+        }
+        super.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        if (!connected)
+            openDialog();
+        super.onResume();
+    }
+
+    private void openDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
+        builder.setTitle("No internet. Please check your connection status!");
+
+        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                connected = CheckConnection();
+                if (!connected) {
+                    openDialog();
+                }
+                else {
+                    api = new API_CoinGecko();
+                    api.RefreshDataFromAPI();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private boolean CheckConnection() {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            return true;
+        }
+        else
+            return false;
+    }
+
     private void getFavCoins() {
 
         coinViewModel.getFavouriteCoins().observe(this, new Observer<List<Coin>>() {
@@ -88,7 +142,6 @@ public class FavouriteFragment extends Fragment {
             public void onChanged(List<Coin> coins) {
                 mAdapter.setCoins(coins);
                 if (coins.size() == 0) {
-//                    Toast.makeText(getContext(), "EMPTY!!", Toast.LENGTH_SHORT).show();
                     mTextLastDate.setText("");
                 }
             }
