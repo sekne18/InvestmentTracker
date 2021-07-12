@@ -102,18 +102,6 @@ public class FavouriteFragment extends Fragment {
         super.onStart();
     }
 
-//    private void startTimer() {
-//        new CountDownTimer(30000, 1000) {
-//            public void onTick(long millisUntilFinished) {
-//                canRefresh = false;
-//            }
-//
-//            public void onFinish() {
-//                canRefresh = true;
-//            }
-//        }.start();
-//    }
-
     private void refreshTimeOfUpdate() {
         SimpleDateFormat format = new SimpleDateFormat("kk:mm:ss");
         Date myDate = null;

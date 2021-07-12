@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.investmenttracker.API.API_News;
 import com.example.investmenttracker.R;
 
 public class NewsActivity extends AppCompatActivity {
@@ -16,6 +17,9 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
         backbutton();
+        API_News api_news = new API_News();
+        api_news.RefreshDataFromAPI();
+
 
     }
 
