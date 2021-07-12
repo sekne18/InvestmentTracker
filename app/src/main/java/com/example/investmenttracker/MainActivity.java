@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     public static API_CoinGecko api;
+    public static boolean canRefresh = true;
     private boolean connected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,24 +105,40 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
-
+            String tag = "";
             switch (item.getItemId()) {
                 case R.id.nav_port:
+                    tag = "nav";
                     selectedFragment = new PortfolioFragment();
                     break;
                 case R.id.nav_fav:
+                    tag = "fav";
                     selectedFragment = new FavouriteFragment();
                     break;
                 case R.id.nav_exp:
+                    tag = "exp";
                     selectedFragment = new ExploreFragment();
                     break;
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, selectedFragment).commit();
+            addFragmentOnlyOnce(getSupportFragmentManager(),selectedFragment,tag);
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, selectedFragment, tag).commit();
 
             return true;
         }
     };
+
+    public static void addFragmentOnlyOnce(FragmentManager fragmentManager, Fragment fragment, String tag) {
+        // Make sure the current transaction finishes first
+        fragmentManager.executePendingTransactions();
+
+        // If there is no fragment yet with this tag...
+        if (fragmentManager.findFragmentByTag(tag) == null) {
+            // Add it
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.content_container,fragment, tag).commit();
+        }
+    }
 
 
 }

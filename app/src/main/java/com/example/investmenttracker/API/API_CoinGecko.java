@@ -51,7 +51,7 @@ public class API_CoinGecko {
                 }
                 scanner.close();
                 Log.i("URLContent", inline);
-
+                Coins.clear();
                 JSONArray coinsArray = new JSONArray(inline);
                 for (int i = 0; i < coinsArray.length(); i++) {
                     JSONObject coin = coinsArray.getJSONObject(i);

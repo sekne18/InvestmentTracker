@@ -143,6 +143,13 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
     @Override
     public CoinsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_coin_cardview_item, parent, false);
+        ImageView mImageDelete = v.findViewById(R.id.imageDelete);
+        if (nameOfFragment == "fav")
+            mImageDelete.setVisibility(View.GONE);
+        else
+            mImageDelete.setVisibility(View.VISIBLE);
+
+
         CoinsViewHolder ovh = new CoinsViewHolder(v, mListener, nameOfFragment);
         return ovh;
     }

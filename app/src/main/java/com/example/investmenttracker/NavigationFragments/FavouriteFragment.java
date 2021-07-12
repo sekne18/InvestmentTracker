@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Coins.CoinsAdapter;
@@ -30,15 +32,19 @@ import com.example.investmenttracker.Database.model.CoinViewModel;
 import com.example.investmenttracker.R;
 
 import java.text.DateFormat;
+import java.text.DateFormatSymbols;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Timer;
 
 import static com.example.investmenttracker.MainActivity.api;
+import static com.example.investmenttracker.MainActivity.canRefresh;
 
 public class FavouriteFragment extends Fragment {
 
@@ -46,32 +52,37 @@ public class FavouriteFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private CoinsAdapter mAdapter;
+    private SwipeRefreshLayout swipeLayout;
     private boolean connected;
     private TextView mTextLastDate;
     private boolean isDetailsActive;
+    private Date lastUpdate;
     ArrayList<Coin> mCoinsList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         coinViewModel = new ViewModelProvider.AndroidViewModelFactory(Objects.requireNonNull(getActivity()).getApplication()).create(CoinViewModel.class);
         mCoinsList = new ArrayList<>();
         final View favView = inflater.inflate(R.layout.fragment_favourite, container, false);
         mRecyclerView = favView.findViewById(R.id.recycle_Favourite);
-        
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = null;
         mTextLastDate = favView.findViewById(R.id.textViewLastDate);
-        try {
-            date = format.parse(api.last_updated);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        mTextLastDate.setText("Last updated: "+ format.format(date));
+        swipeLayout = favView.findViewById(R.id.swipeLayout);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (connected & canRefresh) {
+                    api.RefreshDataFromAPI();
+                    buildRecycleView();
+                    refreshTimeOfUpdate();
+                }
+                swipeLayout.setRefreshing(false);
+            }
+        });
 
         getFavCoins();
         buildRecycleView();
-
         return favView;
     }
 
@@ -79,7 +90,6 @@ public class FavouriteFragment extends Fragment {
         if (mCoinsList.get(position).getFavouriteImage() == R.drawable.heart_border_full) {
             CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), R.drawable.heart_border_empty);
             Toast.makeText(getContext(), "Coin "+mCoinsList.get(position).getName().toUpperCase()+" was removed from favourites!", Toast.LENGTH_SHORT).show();
-
         } else {
             CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), R.drawable.heart_border_full);
         }
@@ -89,18 +99,44 @@ public class FavouriteFragment extends Fragment {
     @Override
     public void onStart() {
         connected = CheckConnection();
-
-        if (connected) {
-            api = new API_CoinGecko();
-            api.RefreshDataFromAPI();
-        }
         super.onStart();
+    }
+
+//    private void startTimer() {
+//        new CountDownTimer(30000, 1000) {
+//            public void onTick(long millisUntilFinished) {
+//                canRefresh = false;
+//            }
+//
+//            public void onFinish() {
+//                canRefresh = true;
+//            }
+//        }.start();
+//    }
+
+    private void refreshTimeOfUpdate() {
+        SimpleDateFormat format = new SimpleDateFormat("kk:mm:ss");
+        Date myDate = null;
+        Date myTime = null;
+        String time = "";
+        String date = "";
+        try {
+            myTime = format.parse(api.last_updated.substring(11));
+            time = format.format(myTime);
+            format = new SimpleDateFormat("yyyy-mm-dd");
+            myDate = format.parse(api.last_updated);
+            date = format.format(myDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        mTextLastDate.setText("Last updated: "+ date + " at " + time);
     }
 
     @Override
     public void onResume() {
         if (!connected)
             openDialog();
+        refreshTimeOfUpdate();
         super.onResume();
     }
 
@@ -115,8 +151,7 @@ public class FavouriteFragment extends Fragment {
                 if (!connected) {
                     openDialog();
                 }
-                else {
-                    api = new API_CoinGecko();
+                else if (canRefresh){
                     api.RefreshDataFromAPI();
                 }
             }
@@ -162,10 +197,12 @@ public class FavouriteFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         mAdapter = new CoinsAdapter(mCoinsList, "fav");
-
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+        setListeners(mAdapter);
+    }
 
+    private void setListeners(CoinsAdapter mAdapter) {
         mAdapter.setOnItemClickListener(new CoinsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -210,7 +247,10 @@ public class FavouriteFragment extends Fragment {
                 //
             }
         });
-
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }
