@@ -5,13 +5,9 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,24 +21,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.investmenttracker.API.API_CoinGecko;
-import com.example.investmenttracker.Coins.CoinsAdapter;
+import com.example.investmenttracker.Adapters.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
+import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 
-import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.Timer;
 
+import static com.example.investmenttracker.Helper.CheckConnection;
+import static com.example.investmenttracker.Helper.openDialogForNetworkConnection;
 import static com.example.investmenttracker.MainActivity.api;
 import static com.example.investmenttracker.MainActivity.canRefresh;
 
@@ -53,7 +46,6 @@ public class FavouriteFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private CoinsAdapter mAdapter;
     private SwipeRefreshLayout swipeLayout;
-    private boolean connected;
     private TextView mTextLastDate;
     private boolean isDetailsActive;
     private Date lastUpdate;
@@ -72,7 +64,7 @@ public class FavouriteFragment extends Fragment {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if (connected & canRefresh) {
+                if (Helper.connected & canRefresh) {
                     api.RefreshDataFromAPI();
                     buildRecycleView();
                     refreshTimeOfUpdate();
@@ -98,7 +90,7 @@ public class FavouriteFragment extends Fragment {
 
     @Override
     public void onStart() {
-        connected = CheckConnection();
+        Helper.connected = CheckConnection(getContext());
         super.onStart();
     }
 
@@ -122,40 +114,10 @@ public class FavouriteFragment extends Fragment {
 
     @Override
     public void onResume() {
-        if (!connected)
-            openDialog();
+        if (!Helper.connected)
+            openDialogForNetworkConnection(getContext());
         refreshTimeOfUpdate();
         super.onResume();
-    }
-
-    private void openDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
-        builder.setTitle("No internet. Please check your connection status!");
-
-        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                connected = CheckConnection();
-                if (!connected) {
-                    openDialog();
-                }
-                else if (canRefresh){
-                    api.RefreshDataFromAPI();
-                }
-            }
-        });
-        builder.show();
-    }
-
-    private boolean CheckConnection() {
-        ConnectivityManager connectivityManager = (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
-            return true;
-        }
-        else
-            return false;
     }
 
     private void getFavCoins() {

@@ -1,7 +1,5 @@
-package com.example.investmenttracker.Coins;
+package com.example.investmenttracker.Adapters;
 
-import android.animation.ObjectAnimator;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

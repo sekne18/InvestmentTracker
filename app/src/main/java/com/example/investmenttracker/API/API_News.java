@@ -8,23 +8,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class API_News {
 
-    public Map<String, Map<String, BigDecimal>> News = new HashMap<String, Map<String, BigDecimal>>();
+    public Map<Integer, Map<String, String>> News = new HashMap<Integer, Map<String, String>>();
     public String last_updated;
+    public AsyncTask.Status currentStatus = AsyncTask.Status.RUNNING;
 
     public void RefreshDataFromAPI() {
-        API_News.DownloadTask getCoins = new API_News.DownloadTask();
+        API_News.DownloadTask getNews = new API_News.DownloadTask();
 
         try {
-            getCoins.execute("https://min-api.cryptocompare.com/data/v2/news/?lang=EN");
+            getNews.execute("https://min-api.cryptocompare.com/data/v2/news/?lang=EN");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,21 +59,19 @@ public class API_News {
                 JSONArray newsArray = dataArray.getJSONArray("Data");
 
                 for (int i = 0; i < newsArray.length(); i++) {
-                    JSONObject news = newsArray.getJSONObject(i);
-                    String tmp = news.getString("imageurl");
-                    Log.i("TMP", news.getString("imageurl"));
-
-//                    Map<String, BigDecimal> details = new HashMap<String, BigDecimal>();
-//                    Map<String, String> nameAndDate = new HashMap<String, String>();
-//                    details.put("current_price", new BigDecimal(coin.getString("current_price")));
-//                    details.put("market_cap", new BigDecimal(coin.getString("market_cap")));
-//                    details.put("total_volume", new BigDecimal(coin.getString("total_volume")));
-//                    details.put("price_change_percentage_24h", new BigDecimal(coin.getString("price_change_percentage_24h")));
-//                    details.put("ath", new BigDecimal(coin.getString("ath")));
-//                    News.put(coin.getString("symbol"), details);
-//                    last_updated = coin.getString("last_updated");
+                    JSONObject newsJson = newsArray.getJSONObject(i);
+                    Map<String, String> details = new HashMap<String, String>();
+                    details.put("imageurl", newsJson.getString("imageurl"));
+                    details.put("url", newsJson.getString("url"));
+                    details.put("title", newsJson.getString("title"));
+                    details.put("body", newsJson.getString("body"));
+                    News.put(i, details);
                 }
-
+                // Get current date
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                Date date = new Date();
+                last_updated = format.format(date);
+                currentStatus = this.getStatus();
 
             } catch (IOException | JSONException e) {
                 e.printStackTrace();

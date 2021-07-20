@@ -2,14 +2,12 @@ package com.example.investmenttracker.NavigationFragments;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.inputmethodservice.Keyboard;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -30,7 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.investmenttracker.API.API_CoinGecko;
-import com.example.investmenttracker.Coins.CoinsAdapter;
+import com.example.investmenttracker.Adapters.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
 import com.example.investmenttracker.R;
@@ -39,7 +37,6 @@ import com.example.investmenttracker.SlidePage.Fragments.PercentFragment;
 import com.example.investmenttracker.SlidePage.ViewPagerAdapter;
 import com.github.mikephil.charting.data.PieEntry;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -125,6 +122,9 @@ public class PortfolioFragment extends Fragment {
                     public void onClick(View v)
                     {
                         api.RefreshDataFromAPI();
+                        while (api.Coins.isEmpty()) {
+
+                        }
                         if (switchLiveData.isChecked()) {
                             addCoin(textVnosName.getText().toString(), Float.parseFloat(api.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                         } else {
