@@ -3,7 +3,6 @@ package com.example.investmenttracker.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,18 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.LottieAnimationView;
-import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.API.API_News;
-import com.example.investmenttracker.Database.model.Coin;
+import com.example.investmenttracker.Activities.News.NewsActivity;
 import com.example.investmenttracker.Database.model.News;
 import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.investmenttracker.MainActivity.api;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     private List<News> mNewsList;
@@ -55,6 +52,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             mNewsCardView = itemView.findViewById(R.id.newsCardView);
             mTextTitle = itemView.findViewById(R.id.textTitle);
             mTextContent = itemView.findViewById(R.id.textContent);
+            mNewsImage = itemView.findViewById(R.id.imageNews);
             newsContentLinLayout = itemView.findViewById(R.id.newsContentLinLayout);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +62,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onItemClick(position);
+                            newsContentLinLayout.setVisibility(detailsEnabled ? View.VISIBLE : View.GONE);
                         }
                     }
                 }
@@ -72,9 +71,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         }
     }
 
-    public NewsAdapter(ArrayList<News> newsList, API_News api) {
+    public NewsAdapter(ArrayList<News> newsList) {
         mNewsList = newsList;
-        data = api;
     }
 
     @NonNull
@@ -90,6 +88,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         News currentItem = mNewsList.get(position);
         holder.mTextTitle.setText(currentItem.getTitle());
         holder.mTextContent.setText(currentItem.getBody());
+        Picasso.get().load(currentItem.getImageUrl()).fit().into(holder.mNewsImage);
 //        new Helper.DownloadImageTask((holder.mNewsImage)).execute(currentItem.getImageUrl());
     }
 

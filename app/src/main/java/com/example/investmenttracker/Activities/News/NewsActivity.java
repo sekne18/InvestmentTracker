@@ -73,7 +73,7 @@ public class NewsActivity extends AppCompatActivity {
     private void buildRecycleView() {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new NewsAdapter(mNewsList, api_news);
+        mAdapter = new NewsAdapter(mNewsList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         setListeners(mAdapter);
