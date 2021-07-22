@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.example.investmenttracker.API.API_CoinGecko;
+import com.example.investmenttracker.API.API_News;
 import com.example.investmenttracker.NavigationFragments.ExploreFragment;
 import com.example.investmenttracker.NavigationFragments.FavouriteFragment;
 import com.example.investmenttracker.NavigationFragments.PortfolioFragment;
@@ -28,9 +29,10 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
-    public static API_CoinGecko api;
+    public static API_CoinGecko api_coin;
+    public static API_News api_news;
     public static boolean canRefresh = true;
-    private boolean connected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,52 +44,23 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
     }
 
-    private void openDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(this));
-        builder.setTitle("No internet. Please check your connection status!");
-
-        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                connected = CheckConnection();
-                if (!connected) {
-                    openDialog();
-                }
-                else {
-                    api = new API_CoinGecko();
-                    api.RefreshDataFromAPI();
-                }
-
-            }
-        });
-        builder.show();
-    }
-
     @Override
     protected void onResume() {
-        if (!connected)
-            openDialog();
+        if (!Helper.connected)
+            Helper.openDialogForNetworkConnection(this);
         super.onResume();
-    }
-
-    private boolean CheckConnection() {
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
-            return true;
-        }
-        else
-            return false;
     }
 
     @Override
     protected void onStart() {
-        connected = CheckConnection();
+        Helper.connected = Helper.CheckConnection(this);
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
 
-        if (connected) {
-            api = new API_CoinGecko();
-            api.RefreshDataFromAPI();
+        if (Helper.connected) {
+            api_coin = new API_CoinGecko();
+            api_coin.RefreshDataFromAPI();
+            api_news = new API_News();
+            api_news.RefreshDataFromAPI();
         }
         super.onStart();
     }

@@ -13,41 +13,37 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 
+import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.Objects;
 
-import static com.example.investmenttracker.MainActivity.api;
+import static com.example.investmenttracker.MainActivity.api_coin;
+import static com.example.investmenttracker.MainActivity.api_news;
 import static com.example.investmenttracker.MainActivity.canRefresh;
 
 public class Helper {
 
     public static boolean connected;
 
-    public static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
+    public static class InternetCheck extends AsyncTask<Void,Void,Boolean> {
 
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
+        private Consumer mConsumer;
+        public interface Consumer { void accept(Boolean internet); }
 
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon;
-        }
+        public  InternetCheck(Consumer consumer) { mConsumer = consumer; execute(); }
 
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
+        @Override protected Boolean doInBackground(Void... voids) { try {
+            Socket sock = new Socket();
+            sock.connect(new InetSocketAddress("8.8.8.8", 53), 1500);
+            sock.close();
+            return true;
+        } catch (IOException e) { return false; } }
+
+        @Override protected void onPostExecute(Boolean internet) { mConsumer.accept(internet); }
     }
+
 
     public static boolean CheckConnection(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -68,11 +64,14 @@ public class Helper {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 connected = CheckConnection(context);
+                new Helper.InternetCheck(internet -> { connected = internet; });
+
                 if (!connected) {
                     openDialogForNetworkConnection(context);
                 }
                 else if (canRefresh){
-                    api.RefreshDataFromAPI();
+                    api_news.RefreshDataFromAPI();
+                    api_coin.RefreshDataFromAPI();
                 }
             }
         });

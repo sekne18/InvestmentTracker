@@ -31,6 +31,7 @@ import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Adapters.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
+import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 import com.example.investmenttracker.SlidePage.Fragments.MoneyAllocFragment;
 import com.example.investmenttracker.SlidePage.Fragments.PercentFragment;
@@ -43,7 +44,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.example.investmenttracker.MainActivity.api;
+import static com.example.investmenttracker.MainActivity.api_coin;
 
 
 public class PortfolioFragment extends Fragment {
@@ -54,7 +55,6 @@ public class PortfolioFragment extends Fragment {
     private EditText textVnosName, textVnosValue, textVnosQuantity;
     private Animation fadeAnimation;
     private Switch switchLiveData;
-    private boolean connected;
     private ViewPager2 pager;
     private Float portfolio_value = 0f;
     private ConstraintLayout popUpLayout;
@@ -121,12 +121,12 @@ public class PortfolioFragment extends Fragment {
                     @Override
                     public void onClick(View v)
                     {
-                        api.RefreshDataFromAPI();
-                        while (api.Coins.isEmpty()) {
+                        api_coin.RefreshDataFromAPI();
+                        while (api_coin.Coins.isEmpty()) {
 
                         }
                         if (switchLiveData.isChecked()) {
-                            addCoin(textVnosName.getText().toString(), Float.parseFloat(api.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
+                            addCoin(textVnosName.getText().toString(), Float.parseFloat(api_coin.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                         } else {
                             addCoin(textVnosName.getText().toString(), Float.parseFloat(textVnosValue.getText().toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                         }
@@ -151,11 +151,12 @@ public class PortfolioFragment extends Fragment {
 
     @Override
     public void onStart() {
-        connected = CheckConnection();
+        Helper.connected = Helper.CheckConnection(getContext());
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
 
-        if (connected) {
-            api = new API_CoinGecko();
-            api.RefreshDataFromAPI();
+        if (Helper.connected) {
+            api_coin = new API_CoinGecko();
+            api_coin.RefreshDataFromAPI();
         }
         super.onStart();
     }
@@ -167,40 +168,9 @@ public class PortfolioFragment extends Fragment {
 
     @Override
     public void onResume() {
-        if (!connected)
-            openDialog();
+        if (!Helper.connected)
+            Helper.openDialogForNetworkConnection(getContext());
         super.onResume();
-    }
-
-    private void openDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()));
-        builder.setTitle("No internet. Please check your connection status!");
-
-        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                connected = CheckConnection();
-                if (!connected) {
-                    openDialog();
-                }
-                else {
-                    api = new API_CoinGecko();
-                    api.RefreshDataFromAPI();
-                }
-            }
-        });
-        builder.show();
-    }
-
-    private boolean CheckConnection() {
-        ConnectivityManager connectivityManager = (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
-            return true;
-        }
-        else
-            return false;
     }
 
     private void getOwnedCoins() {

@@ -20,11 +20,11 @@ import java.util.ArrayList;
 
 import static com.example.investmenttracker.Helper.CheckConnection;
 import static com.example.investmenttracker.Helper.openDialogForNetworkConnection;
+import static com.example.investmenttracker.MainActivity.api_news;
 
 
 public class NewsActivity extends AppCompatActivity {
 
-    API_News api_news;
     private ImageView img;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -38,9 +38,7 @@ public class NewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news);
         backbutton();
         mNewsList = new ArrayList<News>();
-        api_news = new API_News();
         mRecyclerView = this.findViewById(R.id.recyclerNews);
-        api_news.RefreshDataFromAPI();
 
         while (api_news.News.isEmpty()) {
             Log.i("Cakanje","Cakanje na podatke novic");
@@ -67,6 +65,7 @@ public class NewsActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         Helper.connected = CheckConnection(this);
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
         super.onStart();
     }
 

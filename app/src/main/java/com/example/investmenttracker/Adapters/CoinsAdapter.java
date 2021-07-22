@@ -12,19 +12,17 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.investmenttracker.MainActivity.api;
+import static com.example.investmenttracker.MainActivity.api_coin;
 
 public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHolder> {
     private List<Coin> mCoinsList;
     private String nameOfFragment;
-    private API_CoinGecko data;
     private OnItemClickListener mListener;
 
 
@@ -133,7 +131,6 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
     public CoinsAdapter(ArrayList<Coin> coinsList, String nameOfFrag) {
         mCoinsList = coinsList;
         nameOfFragment = nameOfFrag;
-        data = api;
     }
 
 
@@ -156,11 +153,11 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
     public void onBindViewHolder(@NonNull CoinsViewHolder holder, int position) {
         Coin currentItem = mCoinsList.get(position);
         if (nameOfFragment == "fav") {
-            holder.mTextLastPrice.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("current_price").toString());
-            holder.mTextVolume.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("total_volume").toString());
-            holder.mTextMarketCap.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("market_cap").toString());
-            holder.mTextAth.setText("$ "+data.Coins.get(currentItem.getName().toLowerCase()).get("ath").toString());
-            holder.mTextPriceChange.setText(data.Coins.get(currentItem.getName().toLowerCase()).get("price_change_percentage_24h").toString()+" %");
+            holder.mTextLastPrice.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("current_price").toString());
+            holder.mTextVolume.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("total_volume").toString());
+            holder.mTextMarketCap.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("market_cap").toString());
+            holder.mTextAth.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("ath").toString());
+            holder.mTextPriceChange.setText(api_coin.Coins.get(currentItem.getName().toLowerCase()).get("price_change_percentage_24h").toString()+" %");
             holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
             holder.mImageView.setImageResource(currentItem.getCoinImage());
             holder.mTextName.setText(currentItem.getName());

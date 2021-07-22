@@ -24,7 +24,6 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     private List<News> mNewsList;
-    private API_News data;
     private NewsAdapter.OnItemClickListener mListener;
 
 
@@ -89,7 +88,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.mTextTitle.setText(currentItem.getTitle());
         holder.mTextContent.setText(currentItem.getBody());
         Picasso.get().load(currentItem.getImageUrl()).fit().into(holder.mNewsImage);
-//        new Helper.DownloadImageTask((holder.mNewsImage)).execute(currentItem.getImageUrl());
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,13 +31,14 @@ import com.example.investmenttracker.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import static com.example.investmenttracker.Helper.CheckConnection;
 import static com.example.investmenttracker.Helper.openDialogForNetworkConnection;
-import static com.example.investmenttracker.MainActivity.api;
+import static com.example.investmenttracker.MainActivity.api_coin;
 import static com.example.investmenttracker.MainActivity.canRefresh;
 
 public class FavouriteFragment extends Fragment {
@@ -65,7 +67,7 @@ public class FavouriteFragment extends Fragment {
             @Override
             public void onRefresh() {
                 if (Helper.connected & canRefresh) {
-                    api.RefreshDataFromAPI();
+                    api_coin.RefreshDataFromAPI();
                     buildRecycleView();
                     refreshTimeOfUpdate();
                 }
@@ -91,25 +93,18 @@ public class FavouriteFragment extends Fragment {
     @Override
     public void onStart() {
         Helper.connected = CheckConnection(getContext());
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
+
         super.onStart();
     }
 
     private void refreshTimeOfUpdate() {
         SimpleDateFormat format = new SimpleDateFormat("kk:mm:ss");
-        Date myDate = null;
         Date myTime = null;
         String time = "";
-        String date = "";
-        try {
-            myTime = format.parse(api.last_updated.substring(11));
-            time = format.format(myTime);
-            format = new SimpleDateFormat("yyyy-mm-dd");
-            myDate = format.parse(api.last_updated);
-            date = format.format(myDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        mTextLastDate.setText("Last updated: "+ date + " at " + time);
+        Log.i("DATUM",Calendar.getInstance().getTime().toString().substring(0,19));
+        time = Calendar.getInstance().getTime().toString().substring(0,19);
+        mTextLastDate.setText("Last updated: "+ time);
     }
 
     @Override
