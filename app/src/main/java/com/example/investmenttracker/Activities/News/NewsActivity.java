@@ -51,7 +51,7 @@ public class NewsActivity extends AppCompatActivity {
 
     private void pullDataFromApiToArray() {
         for (int i = 0; i < api_news.News.size(); i++) {
-            mNewsList.add(new News(api_news.News.get(i).get("title"),api_news.News.get(i).get("body"),api_news.News.get(i).get("imageurl"),api_news.News.get(i).get("url")));
+            mNewsList.add(new News(api_news.News.get(i).get("title"),api_news.News.get(i).get("body"),api_news.News.get(i).get("imageurl"),api_news.News.get(i).get("url"),api_news.News.get(i).get("source")));
         }
     }
 

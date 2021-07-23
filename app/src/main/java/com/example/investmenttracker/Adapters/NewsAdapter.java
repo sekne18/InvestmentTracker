@@ -21,6 +21,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     private List<News> mNewsList;
@@ -37,7 +39,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder {
         public ImageView mNewsImage;
-        public TextView mTextContent, mTextTitle;
+        public TextView mTextContent, mTextTitle, mTextContentTitle, mTextSource, mTextUrl;
         public CardView mNewsCardView;
         private LinearLayout newsContentLinLayout;
         private static boolean detailsEnabled;
@@ -52,6 +54,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             mTextTitle = itemView.findViewById(R.id.textTitle);
             mTextContent = itemView.findViewById(R.id.textContent);
             mNewsImage = itemView.findViewById(R.id.imageNews);
+            mTextSource = itemView.findViewById(R.id.textSource);
+            mTextUrl = itemView.findViewById(R.id.textUrl);
+            mTextContentTitle = itemView.findViewById(R.id.textContentTitle);
             newsContentLinLayout = itemView.findViewById(R.id.newsContentLinLayout);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +92,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         News currentItem = mNewsList.get(position);
         holder.mTextTitle.setText(currentItem.getTitle());
         holder.mTextContent.setText(currentItem.getBody());
-        Picasso.get().load(currentItem.getImageUrl()).fit().into(holder.mNewsImage);
+        holder.mTextContentTitle.setText(currentItem.getTitle());
+        holder.mTextUrl.setText("Read more: " + currentItem.getUrl());
+        holder.mTextSource.setText(currentItem.getSource());
+        Picasso.get().load(currentItem.getImageUrl()).transform(new CropCircleTransformation()).fit().into(holder.mNewsImage);
     }
 
     @Override

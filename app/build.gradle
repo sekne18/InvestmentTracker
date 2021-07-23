@@ -50,6 +50,8 @@ dependencies {
     // Pie chart component
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    implementation 'jp.wasabeef:picasso-transformations:2.4.0'
+
     // Rocket animation component
     implementation 'com.airbnb.android:lottie:3.5.0'
     // Room components

@@ -10,7 +10,7 @@
     android:layout_marginEnd="5dp"
     android:layout_marginBottom="10dp"
     android:animateLayoutChanges="true"
-    android:background="@color/details"
+    android:background="@color/nav_bar"
     android:elevation="35dp"
     android:orientation="horizontal"
     app:cardCornerRadius="10dp"
@@ -21,13 +21,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:background="@color/details"
+        android:background="@color/nav_bar"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textTitle"
+                android:layout_marginEnd="25dp"
+                android:layout_toEndOf="@id/imageNews"
+                android:text="Source: "
+                android:textColor="@color/fonts"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/imageNews"
@@ -44,17 +55,18 @@
             <TextView
                 android:id="@+id/textTitle"
                 android:layout_width="match_parent"
-                android:layout_height="77dp"
+                android:layout_height="60dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
-                android:layout_centerVertical="false"
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="17dp"
                 android:layout_toEndOf="@id/imageNews"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="This is a title!"
+                android:textColor="@color/fonts"
                 android:textSize="21sp"
                 android:textStyle="bold" />
-
 
 
         </RelativeLayout>
@@ -63,6 +75,7 @@
             android:id="@+id/newsContentLinLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/nav_bar"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -71,14 +84,40 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/textUrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textContent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginBottom="15dp"
+                    android:autoLink="web"
+                    android:text="Read more: "
+                    android:textColor="@color/fonts"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textContentTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="TextView"
+                    android:textColor="@color/fonts"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/textContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/textContentTitle"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
                     android:layout_marginBottom="15dp"
                     android:text="This is the content that will be replaced when api receives data....."
+                    android:textColor="@color/fonts"
                     android:textSize="18sp" />
 
             </RelativeLayout>

@@ -50,7 +50,6 @@ public class FavouriteFragment extends Fragment {
     private SwipeRefreshLayout swipeLayout;
     private TextView mTextLastDate;
     private boolean isDetailsActive;
-    private Date lastUpdate;
     ArrayList<Coin> mCoinsList;
 
     @Nullable
@@ -62,6 +61,8 @@ public class FavouriteFragment extends Fragment {
         final View favView = inflater.inflate(R.layout.fragment_favourite, container, false);
         mRecyclerView = favView.findViewById(R.id.recycle_Favourite);
         mTextLastDate = favView.findViewById(R.id.textViewLastDate);
+        while (api_coin.Coins.isEmpty()) {
+        }
         swipeLayout = favView.findViewById(R.id.swipeLayout);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -94,7 +95,6 @@ public class FavouriteFragment extends Fragment {
     public void onStart() {
         Helper.connected = CheckConnection(getContext());
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
-
         super.onStart();
     }
 
@@ -192,10 +192,5 @@ public class FavouriteFragment extends Fragment {
                 //
             }
         });
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 }
