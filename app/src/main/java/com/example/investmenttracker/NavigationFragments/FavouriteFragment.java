@@ -56,6 +56,14 @@ public class FavouriteFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+        Helper.connected = Helper.CheckConnection(getContext());
+        if (Helper.connected) {
+            new Helper.InternetCheck(internet -> { Helper.connected = internet; });
+            if (!Helper.connected) {
+                Helper.openDialogForNetworkConnection(getContext());
+            }
+        }
+
         coinViewModel = new ViewModelProvider.AndroidViewModelFactory(Objects.requireNonNull(getActivity()).getApplication()).create(CoinViewModel.class);
         mCoinsList = new ArrayList<>();
         final View favView = inflater.inflate(R.layout.fragment_favourite, container, false);
