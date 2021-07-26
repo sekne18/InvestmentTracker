@@ -64,7 +64,14 @@ public class API_News {
                     details.put("imageurl", newsJson.getString("imageurl"));
                     details.put("url", newsJson.getString("url"));
                     details.put("title", newsJson.getString("title"));
-                    details.put("body", newsJson.getString("body").replace("[&#8216;]","'").replace("[&#8217;]","'") .replace("[&#8230;]","..."));
+                    details.put("body", newsJson.getString("body")
+                            .replace("&#8217;","'")
+                            .replace("&#8220;","\"")
+                            .replace("&#8220;","\"")
+                            .replace("&#160;","")
+                            .replace("[&#8216;]","'")
+                            .replace("[&#8217;]","'")
+                            .replace("[&#8230;]","..."));
                     details.put("source", newsJson.getString("source"));
                     News.put(i, details);
                 }
