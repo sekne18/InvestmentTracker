@@ -1,9 +1,11 @@
 package com.example.investmenttracker.NavigationFragments;
 
+import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -43,6 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 
 import static com.example.investmenttracker.MainActivity.api_coin;
 
@@ -146,6 +150,7 @@ public class PortfolioFragment extends Fragment {
                 });
             }
         });
+
         return portfView;
     }
 
@@ -252,14 +257,6 @@ public class PortfolioFragment extends Fragment {
         mAdapter.setOnItemClickListener(new CoinsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
-                if (isDetailsActive) {
-                    CoinsAdapter.CoinsViewHolder.setDetailsEnabled(false);
-                    isDetailsActive = false;
-                } else {
-                    CoinsAdapter.CoinsViewHolder.setDetailsEnabled(true);
-                    isDetailsActive = true;
-                }
             }
 
             @Override

@@ -1,9 +1,11 @@
 package com.example.investmenttracker.NavigationFragments;
 
+import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -71,6 +73,7 @@ public class FavouriteFragment extends Fragment {
         mTextLastDate = favView.findViewById(R.id.textViewLastDate);
         while (api_coin.Coins.isEmpty()) {
         }
+
         swipeLayout = favView.findViewById(R.id.swipeLayout);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -163,9 +166,11 @@ public class FavouriteFragment extends Fragment {
                 if (isDetailsActive) {
                     CoinsAdapter.CoinsViewHolder.setDetailsEnabled(false);
                     isDetailsActive = false;
+                    mRecyclerView.scheduleLayoutAnimation();
                 } else {
                     CoinsAdapter.CoinsViewHolder.setDetailsEnabled(true);
                     isDetailsActive = true;
+                    mRecyclerView.scheduleLayoutAnimation();
                 }
             }
 

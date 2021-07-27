@@ -27,7 +27,8 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     private List<News> mNewsList;
     private NewsAdapter.OnItemClickListener mListener;
-
+    private int mExpandedPosition = -1;
+    private int previousExpandedPosition = 0;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -41,7 +42,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         public ImageView mNewsImage;
         public TextView mTextContent, mTextTitle, mTextContentTitle, mTextSource, mTextUrl;
         public CardView mNewsCardView;
-        private LinearLayout newsContentLinLayout;
+        private LinearLayout newsContentLinLayout, newsLinLayout;
         private static boolean detailsEnabled;
 
         public static void setDetailsEnabled(boolean isActionEnabled){
@@ -57,6 +58,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             mTextSource = itemView.findViewById(R.id.textSource);
             mTextUrl = itemView.findViewById(R.id.textUrl);
             mTextContentTitle = itemView.findViewById(R.id.textContentTitle);
+            newsLinLayout = itemView.findViewById(R.id.newsLinLayout);
             newsContentLinLayout = itemView.findViewById(R.id.newsContentLinLayout);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +98,26 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.mTextUrl.setText("Read more: " + currentItem.getUrl());
         holder.mTextSource.setText(currentItem.getSource());
         Picasso.get().load(currentItem.getImageUrl()).transform(new CropCircleTransformation()).fit().into(holder.mNewsImage);
+
+        boolean isExpanded = position==mExpandedPosition;
+        holder.newsContentLinLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+
+        holder.itemView.setActivated(isExpanded);
+
+        if (isExpanded)
+            previousExpandedPosition = position;
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExpandedPosition = isExpanded ? -1:position;
+                notifyItemChanged(previousExpandedPosition);
+                notifyItemChanged(position);
+
+            }
+        });
+
+
     }
 
     @Override

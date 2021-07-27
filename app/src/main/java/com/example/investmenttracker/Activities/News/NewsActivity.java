@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.LayoutTransition;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -41,7 +44,6 @@ public class NewsActivity extends AppCompatActivity {
         mRecyclerView = this.findViewById(R.id.recyclerNews);
 
         while (api_news.News.isEmpty()) {
-            Log.i("Cakanje","Cakanje na podatke novic");
         }
 
         pullDataFromApiToArray();

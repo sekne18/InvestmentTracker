@@ -1,5 +1,6 @@
 package com.example.investmenttracker.Adapters;
 
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.investmenttracker.Database.model.Coin;
+import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 
 import java.util.ArrayList;
@@ -24,7 +26,8 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
     private List<Coin> mCoinsList;
     private String nameOfFragment;
     private OnItemClickListener mListener;
-
+    private int mExpandedPosition = -1;
+    private int previousExpandedPosition = 0;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -41,8 +44,9 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
         public ImageView mImageView, mDeleteImage, mFavouriteImage, mEditImage;
         public TextView mTextName, mTextValue, mTextOwned, mTextLastPrice, mTextVolume, mTextMarketCap, mTextAth, mTextPriceChange;
         public CardView mCardView;
-        private LinearLayout detailsLayout, favDetailsLinLayout;
+        private LinearLayout favDetailsLinLayout, linLayoutCoin, detailsLayout;
         private LottieAnimationView rocketAnim;
+        private RecyclerView recPortView, recFavView;
         private static boolean detailsEnabled, rocketAnimEnabled;
 
         public static void setDetailsEnabled(boolean isActionEnabled){
@@ -70,6 +74,9 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
             mFavouriteImage = itemView.findViewById(R.id.imageFavourite);
             detailsLayout = itemView.findViewById(R.id.detailsLinLayout);
             favDetailsLinLayout = itemView.findViewById(R.id.favDetailsLinLayout);
+            linLayoutCoin = itemView.findViewById(R.id.linLayoutCoin);
+            recPortView = itemView.findViewById(R.id.recycle_portfolio);
+            recFavView = itemView.findViewById(R.id.recycle_Favourite);
             rocketAnim = itemView.findViewById(R.id.rocket_anim);
             rocketAnim.setVisibility(rocketAnimEnabled ? View.VISIBLE : View.GONE);
 
@@ -80,11 +87,6 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onItemClick(position);
-                            if (nameOfFragment == "fav") {
-                                favDetailsLinLayout.setVisibility(detailsEnabled ? View.VISIBLE : View.GONE);
-                            } else {
-                                detailsLayout.setVisibility(detailsEnabled ? View.VISIBLE : View.GONE);
-                            }
                         }
                     }
                 }
@@ -152,6 +154,7 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
     @Override
     public void onBindViewHolder(@NonNull CoinsViewHolder holder, int position) {
         Coin currentItem = mCoinsList.get(position);
+
         if (nameOfFragment == "fav") {
             holder.mTextLastPrice.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("current_price").toString());
             holder.mTextVolume.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("total_volume").toString());
@@ -167,7 +170,29 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
             holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
             holder.mImageView.setImageResource(currentItem.getCoinImage());
             holder.mTextName.setText(currentItem.getName());
+
         }
+
+        boolean isExpanded = position==mExpandedPosition;
+        if (nameOfFragment == "fav")
+            holder.favDetailsLinLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        else
+            holder.detailsLayout.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+
+        holder.itemView.setActivated(isExpanded);
+
+        if (isExpanded)
+            previousExpandedPosition = position;
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExpandedPosition = isExpanded ? -1:position;
+                notifyItemChanged(previousExpandedPosition);
+                notifyItemChanged(position);
+
+            }
+        });
     }
 
     @Override
