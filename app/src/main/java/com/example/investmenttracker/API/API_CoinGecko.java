@@ -60,6 +60,7 @@ public class API_CoinGecko {
                     details.put("current_price", new BigDecimal(coin.getString("current_price")));
                     details.put("market_cap", new BigDecimal(coin.getString("market_cap")));
                     details.put("total_volume", new BigDecimal(coin.getString("total_volume")));
+                    details.put("imageUrl", new BigDecimal(coin.getString("image")));
                     details.put("price_change_percentage_24h", new BigDecimal(coin.getString("price_change_percentage_24h")));
                     details.put("ath", new BigDecimal(coin.getString("ath")));
                     Coins.put(coin.getString("symbol"), details);

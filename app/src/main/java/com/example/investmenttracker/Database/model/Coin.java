@@ -1,6 +1,7 @@
 package com.example.investmenttracker.Database.model;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,22 +17,22 @@ public class Coin {
     private Float price_curr;
     private Float owned;
     private int favouriteImage;
-    private int coinImage;
+    private String imageUrl;
 
-    public Coin(@NonNull int coinImage, String name, Float price_curr, Float owned, int favouriteImage) {
-        this.coinImage = coinImage;
+    public Coin(@NonNull String coinImage, String name, Float price_curr, Float owned, int favouriteImage) {
+        this.imageUrl = coinImage;
         this.name = name;
         this.price_curr = price_curr;
         this.owned = owned;
         this.favouriteImage = favouriteImage; // 1 is true, 0 is false
     }
 
-    public int getCoinImage() {
-        return coinImage;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public void setCoinImage(int coinImage) {
-        this.coinImage = coinImage;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public int getFavouriteImage() {

@@ -40,6 +40,7 @@ import com.example.investmenttracker.SlidePage.Fragments.MoneyAllocFragment;
 import com.example.investmenttracker.SlidePage.Fragments.PercentFragment;
 import com.example.investmenttracker.SlidePage.ViewPagerAdapter;
 import com.github.mikephil.charting.data.PieEntry;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -226,8 +227,8 @@ public class PortfolioFragment extends Fragment {
 
     private void addCoin(String name, Float value, float owned) {
         canReset = true;
-        CoinViewModel.insert(new Coin(getResources().getIdentifier(name.toLowerCase(), "drawable", getContext().getPackageName()), name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
-        mCoinsList.add(new Coin(getResources().getIdentifier(name.toLowerCase(), "drawable", getContext().getPackageName()), name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
+        CoinViewModel.insert(new Coin(api_coin.Coins.get(name.toLowerCase()).get("imageUrl").toString(),name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
+        mCoinsList.add(new Coin(api_coin.Coins.get(name.toLowerCase()).get("imageUrl").toString(),name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
     }
 
     private void removeItem(int position) {

@@ -29,7 +29,7 @@ public abstract class CoinRoomDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (CoinRoomDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), CoinRoomDatabase.class, "coin_database").build(); // .addCallback(sRoomDatabaseCallback)
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), CoinRoomDatabase.class, "coin_database").addCallback(sRoomDatabaseCallback).build(); // .addCallback(sRoomDatabaseCallback)
                 }
             }
         }
@@ -54,10 +54,10 @@ public abstract class CoinRoomDatabase extends RoomDatabase {
                 CoinDao coinDao = INSTANCE.coinDao();
                 coinDao.deleteAll();
 
-                Coin coin = new Coin(R.drawable.btc, "BTC", 63540f, 10f, R.drawable.heart_border_full);
+                Coin coin = new Coin("","BTC", 63540f, 10f, R.drawable.heart_border_full);
                 coinDao.insert(coin);
 
-                coin = new Coin(R.drawable.eth, "ETH", 2500f, 20f, R.drawable.heart_border_empty);
+                coin = new Coin("","ETH", 2500f, 20f, R.drawable.heart_border_empty);
                 coinDao.insert(coin);
             });
         }

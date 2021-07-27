@@ -16,9 +16,12 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 import static com.example.investmenttracker.MainActivity.api_coin;
 
@@ -162,13 +165,13 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
             holder.mTextAth.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("ath").toString());
             holder.mTextPriceChange.setText(api_coin.Coins.get(currentItem.getName().toLowerCase()).get("price_change_percentage_24h").toString()+" %");
             holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
-            holder.mImageView.setImageResource(currentItem.getCoinImage());
+            Picasso.get().load(currentItem.getImageUrl()).transform(new CropCircleTransformation()).fit().into(holder.mImageView);
             holder.mTextName.setText(currentItem.getName());
         } else {
             holder.mTextValue.setText("$ "+currentItem.getPrice_curr().toString());
             holder.mTextOwned.setText(currentItem.getOwned().toString());
             holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
-            holder.mImageView.setImageResource(currentItem.getCoinImage());
+            Picasso.get().load(currentItem.getImageUrl()).transform(new CropCircleTransformation()).fit().into(holder.mImageView);
             holder.mTextName.setText(currentItem.getName());
 
         }
