@@ -21,8 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/nav_bar"
-        android:layoutAnimation="@anim/layout_animation"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:orientation="vertical">
 
         <RelativeLayout
