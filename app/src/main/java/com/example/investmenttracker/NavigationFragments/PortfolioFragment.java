@@ -227,8 +227,8 @@ public class PortfolioFragment extends Fragment {
 
     private void addCoin(String name, Float value, float owned) {
         canReset = true;
-        CoinViewModel.insert(new Coin(api_coin.Coins.get(name.toLowerCase()).get("imageUrl").toString(),name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
-        mCoinsList.add(new Coin(api_coin.Coins.get(name.toLowerCase()).get("imageUrl").toString(),name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
+        CoinViewModel.insert(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
+        mCoinsList.add(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
     }
 
     private void removeItem(int position) {

@@ -16,7 +16,7 @@ import com.example.investmenttracker.R;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Coin.class}, version=6,exportSchema = false)
+@Database(entities = {Coin.class}, version=7,exportSchema = false)
 public abstract class CoinRoomDatabase extends RoomDatabase {
 
     public abstract CoinDao coinDao();
@@ -29,14 +29,14 @@ public abstract class CoinRoomDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (CoinRoomDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), CoinRoomDatabase.class, "coin_database").addCallback(sRoomDatabaseCallback).build(); // .addCallback(sRoomDatabaseCallback)
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), CoinRoomDatabase.class, "coin_database").fallbackToDestructiveMigration().build(); // .addCallback(sRoomDatabaseCallback)
                 }
             }
         }
         return INSTANCE;
     }
 
-    static final Migration MIGRATION_1_2 = new Migration(2, 3) {
+    static final Migration MIGRATION_1_2 = new Migration(6, 7) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE coin_table "

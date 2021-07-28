@@ -17,6 +17,7 @@ import java.util.Scanner;
 
 public class API_CoinGecko {
     public Map<String, Map<String, BigDecimal>> Coins = new HashMap<String, Map<String, BigDecimal>>();
+    public Map<String, String> coin_Images = new HashMap<String, String>();
     public String last_updated;
 
     public void RefreshDataFromAPI() {
@@ -60,10 +61,10 @@ public class API_CoinGecko {
                     details.put("current_price", new BigDecimal(coin.getString("current_price")));
                     details.put("market_cap", new BigDecimal(coin.getString("market_cap")));
                     details.put("total_volume", new BigDecimal(coin.getString("total_volume")));
-                    details.put("imageUrl", new BigDecimal(coin.getString("image")));
                     details.put("price_change_percentage_24h", new BigDecimal(coin.getString("price_change_percentage_24h")));
                     details.put("ath", new BigDecimal(coin.getString("ath")));
                     Coins.put(coin.getString("symbol"), details);
+                    coin_Images.put(coin.getString("symbol"), coin.getString("image"));
                     last_updated = coin.getString("last_updated");
                 }
 

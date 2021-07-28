@@ -1,26 +1,23 @@
 package com.example.investmenttracker.Database.model;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.investmenttracker.R;
 
 @Entity(tableName = "coin_table")
 public class Coin {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-
+    private String imageUrl;
     private String name;
     private Float price_curr;
     private Float owned;
     private int favouriteImage;
-    private String imageUrl;
 
-    public Coin(@NonNull String coinImage, String name, Float price_curr, Float owned, int favouriteImage) {
-        this.imageUrl = coinImage;
+
+    public Coin(String imageUrl, String name, Float price_curr, Float owned, int favouriteImage) {
+        this.imageUrl = imageUrl;
         this.name = name;
         this.price_curr = price_curr;
         this.owned = owned;
