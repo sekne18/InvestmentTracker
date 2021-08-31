@@ -38,6 +38,7 @@ import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 import com.example.investmenttracker.SlidePage.Fragments.MoneyAllocFragment;
 import com.example.investmenttracker.SlidePage.Fragments.PercentFragment;
+import com.example.investmenttracker.SlidePage.Fragments.PortfolioProfitFragment;
 import com.example.investmenttracker.SlidePage.ViewPagerAdapter;
 import com.github.mikephil.charting.data.PieEntry;
 import com.squareup.picasso.Picasso;
@@ -67,9 +68,10 @@ public class PortfolioFragment extends Fragment {
     private boolean isDetailsActive;
     private boolean canReset = true;
     private int posOfChart;
-    ArrayList<PieEntry> percValues, moneyAllocValues;
-    ArrayList<Coin> mCoinsList, mGroupedCoinsList;
-    ViewPagerAdapter mPagerAdapter;
+    private Map<String, Map<Float,Float>> grouppedcoins = new HashMap<>();
+    private ArrayList<PieEntry> percValues, moneyAllocValues;
+    private ArrayList<Coin> mCoinsList, mGroupedCoinsList;
+    private ViewPagerAdapter mPagerAdapter;
 
     @Nullable
     @Override
@@ -99,6 +101,9 @@ public class PortfolioFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 if (position == 1) {
+//                    PortfolioProfitFragment.getInstance().createProfitChart(grouppedcoins);
+                    MoneyAllocFragment.getInstance().createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
+                } else if (position == 2){
                     MoneyAllocFragment.getInstance().createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
                 } else {
                     PercentFragment.getInstance().createPercChart(percValues, portfolio_value.toString());
@@ -194,15 +199,19 @@ public class PortfolioFragment extends Fragment {
             percValues = new ArrayList<PieEntry>();
             moneyAllocValues = new ArrayList<PieEntry>();
             Map<String, Float> hm = new HashMap<>();
-            for (Coin coin: coins) {
+
+            for (Coin coin : coins) {
                 portfolio_value = portfolio_value + (coin.getOwned()*coin.getPrice_curr());
                 mCoinsList.add(coin);
-            }
-            for (Coin coin : coins) {
+
                 String name = coin.getName();
                 Float price = hm.containsKey(name) ? hm.get(name) : 0f;
                 price += (coin.getPrice_curr()*coin.getOwned());
                 hm.put(name, price);
+
+                Map<Float, Float> value = new HashMap<>();
+                value.put(coin.getOwned(), coin.getPrice_curr());
+                grouppedcoins.put(coin.getName(), value);
             }
             for (String key : hm.keySet()) {
                 percValues.add(new PieEntry(hm.get(key), key));
