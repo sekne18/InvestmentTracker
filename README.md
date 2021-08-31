@@ -5,7 +5,11 @@ This is android app written in android studio and was made for pesonal use only.
 Screenshots: 
 
 <p float="left">
-  <img src="/img1.png" width="100" />
-  <img src="/img2.png" width="100" /> 
-  <img src="/img3.png" width="100" />
+  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr1.png" width="230" height="450" />
+  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr2.png" width="230" height="450" /> 
+  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr3.png" width="230" height="450" />
+  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr4.png" width="230" height="450" />
+  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr5.png" width="230" height="450" />
+  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr6.png" width="230" height="450" />
+  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr7.png" width="230" height="450" />
 </p>
