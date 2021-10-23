@@ -23,6 +23,7 @@ import com.example.investmenttracker.API.API_News;
 import com.example.investmenttracker.NavigationFragments.ExploreFragment;
 import com.example.investmenttracker.NavigationFragments.FavouriteFragment;
 import com.example.investmenttracker.NavigationFragments.PortfolioFragment;
+import com.example.investmenttracker.NavigationFragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
@@ -91,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_exp:
                     tag = "exp";
                     selectedFragment = new ExploreFragment();
+                    break;
+                case R.id.nav_set:
+                    tag = "set";
+                    selectedFragment = new SettingsFragment();
                     break;
             }
 

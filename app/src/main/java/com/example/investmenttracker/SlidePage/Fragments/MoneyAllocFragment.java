@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -49,7 +50,7 @@ public class MoneyAllocFragment extends Fragment {
         moneyAllocChart.getLegend().setEnabled(false);
 
         mMoneyAllocValues = moneyAllocValues;
-        moneyAllocChart.setCenterText(portValue + " €");
+        moneyAllocChart.setCenterText(portValue + Helper.currency);
 
         PieDataSet dataSet = new PieDataSet(mMoneyAllocValues, null);
         PieData data = new PieData(dataSet);

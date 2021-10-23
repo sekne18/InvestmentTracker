@@ -28,6 +28,7 @@ import static com.example.investmenttracker.MainActivity.canRefresh;
 public class Helper {
 
     public static boolean connected = false;
+    public static String currency = "$";
 
     public static class InternetCheck extends AsyncTask<Void,Void,Boolean> {
 

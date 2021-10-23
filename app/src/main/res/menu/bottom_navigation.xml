@@ -14,4 +14,8 @@
         android:id="@+id/nav_exp"
         android:icon="@drawable/ic_baseline_explore_24"
         android:title="@string/text_exp" />
+    <item
+        android:id="@+id/nav_set"
+        android:icon="@drawable/ic_baseline_explore_24"
+        android:title="@string/nav_set" />
 </menu>

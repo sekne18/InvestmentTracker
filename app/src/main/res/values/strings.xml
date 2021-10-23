@@ -47,4 +47,6 @@
     <string name="patterns1_text">Patterns that emerge over a longer period of time generally are more reliable, with larger moves resulting once price breaks out of the pattern. Therefore, a pattern that develops on a daily chart is expected to result in a larger move than the same pattern observed on an intraday chart, such as a one-minute chart.</string>
     <string name="patterns_text"><b>Price patterns</b> appear when traders are buying and selling at certain levels, and therefore, price oscillates between these levels, creating chart patterns. When price finally does break out of the price pattern, it can represent a significant change in sentiment.</string>
     <string name="patterns2_text">There is 16 different patterns and they all 2 types of signal which is reversal or continuation of a trend. These patterns are <b>dubble bottom/top</b>, <b>Head and Shoulders</b>, <b>Wedge</b>, <b>Rectangle</b>, <b>Pennant</b> and <b>Triangle</b>.</string>
+    <string name="nav_set">Settings</string>
+    <string name="text_settings">Settings</string>
 </resources>
