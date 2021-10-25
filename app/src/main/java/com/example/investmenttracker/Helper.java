@@ -14,21 +14,31 @@ import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static com.example.investmenttracker.MainActivity.api_coin;
+import static com.example.investmenttracker.MainActivity.api_currencies;
 import static com.example.investmenttracker.MainActivity.api_news;
 import static com.example.investmenttracker.MainActivity.canRefresh;
+
+import com.example.investmenttracker.Database.model.Coin;
+import com.example.investmenttracker.Database.model.CoinViewModel;
 
 public class Helper {
 
     public static boolean connected = false;
     public static String currency = "$";
+    public static CoinViewModel coinViewModel;
+    public static ArrayList<Coin> mCoinsList = new ArrayList<>();
 
     public static class InternetCheck extends AsyncTask<Void,Void,Boolean> {
 
@@ -79,6 +89,16 @@ public class Helper {
             }
         });
         builder.show();
+    }
+
+    public static void ConvertCoins() {
+        DecimalFormat df = new DecimalFormat("#.#");
+        for (Coin coin: mCoinsList) {
+            if (!coin.getCurrency().equals(Helper.currency)) {
+                coin.setCurrency(Helper.currency);
+                coin.setPrice_curr(Float.parseFloat(df.format((coin.getPrice_curr()*api_currencies.Currency.get(Helper.currency)))));
+            }
+        }
     }
 
     public static void expand(final View v) {
@@ -132,8 +152,10 @@ public class Helper {
         };
 
         // Collapse speed of 1dp/ms
-        a.setDuration(((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density)) * 4);
+        a.setDuration(((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density)) * 4L);
         v.startAnimation(a);
     }
 
+
+    
 }

@@ -27,6 +27,7 @@ public class API_News {
 
         try {
             getNews.execute("https://min-api.cryptocompare.com/data/v2/news/?lang=EN");
+            AsyncTask.Status currentStatus = AsyncTask.Status.RUNNING;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,7 +80,7 @@ public class API_News {
                 SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                 Date date = new Date();
                 last_updated = format.format(date);
-                currentStatus = this.getStatus();
+                currentStatus = Status.FINISHED;;
 
             } catch (IOException | JSONException e) {
                 e.printStackTrace();

@@ -11,12 +11,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.investmenttracker.Database.data.CoinDao;
 import com.example.investmenttracker.Database.model.Coin;
+import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Coin.class}, version=7,exportSchema = false)
+@Database(entities = {Coin.class}, version=8,exportSchema = false)
 public abstract class CoinRoomDatabase extends RoomDatabase {
 
     public abstract CoinDao coinDao();
@@ -54,10 +55,10 @@ public abstract class CoinRoomDatabase extends RoomDatabase {
                 CoinDao coinDao = INSTANCE.coinDao();
                 coinDao.deleteAll();
 
-                Coin coin = new Coin("","BTC", 63540f, 10f, R.drawable.heart_border_full);
+                Coin coin = new Coin("","BTC", 63540f, 10f, Helper.currency, R.drawable.heart_border_full);
                 coinDao.insert(coin);
 
-                coin = new Coin("","ETH", 2500f, 20f, R.drawable.heart_border_empty);
+                coin = new Coin("","ETH", 2500f, 20f, Helper.currency, R.drawable.heart_border_empty);
                 coinDao.insert(coin);
             });
         }

@@ -1,11 +1,6 @@
 package com.example.investmenttracker.NavigationFragments;
 
-import android.animation.LayoutTransition;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +11,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -24,13 +18,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Adapters.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
@@ -41,21 +32,20 @@ import com.example.investmenttracker.SlidePage.Fragments.PercentFragment;
 import com.example.investmenttracker.SlidePage.Fragments.PortfolioProfitFragment;
 import com.example.investmenttracker.SlidePage.ViewPagerAdapter;
 import com.github.mikephil.charting.data.PieEntry;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 
+import static com.example.investmenttracker.Helper.coinViewModel;
+import static com.example.investmenttracker.Helper.mCoinsList;
 import static com.example.investmenttracker.MainActivity.api_coin;
 
 
 public class PortfolioFragment extends Fragment {
 
-    private CoinViewModel coinViewModel;
     private RecyclerView mRecyclerView;
     private CoinsAdapter mAdapter;
     private EditText textVnosName, textVnosValue, textVnosQuantity;
@@ -70,16 +60,11 @@ public class PortfolioFragment extends Fragment {
     private int posOfChart;
     private Map<String, Map<Float,Float>> grouppedcoins = new HashMap<>();
     private ArrayList<PieEntry> percValues, moneyAllocValues;
-    private ArrayList<Coin> mCoinsList, mGroupedCoinsList;
     private ViewPagerAdapter mPagerAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        coinViewModel = new ViewModelProvider.AndroidViewModelFactory(Objects.requireNonNull(getActivity()).getApplication()).create(CoinViewModel.class);
-        mCoinsList = new ArrayList<>();
-        mGroupedCoinsList = new ArrayList<>();
         CoinsAdapter.CoinsViewHolder.setRocketAnimEnabled(false);
         final View portfView = inflater.inflate(R.layout.fragment_portfolio, container, false);
         popUpLayout = (ConstraintLayout) portfView.findViewById(R.id.Popup);
@@ -100,12 +85,11 @@ public class PortfolioFragment extends Fragment {
         pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                if (position == 1) {
-//                    PortfolioProfitFragment.getInstance().createProfitChart(grouppedcoins);
+                if (position == 0) {
+                    PortfolioProfitFragment.getInstance().createProfitChart();
+                } else if (position == 1) {
                     MoneyAllocFragment.getInstance().createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
-                } else if (position == 2){
-                    MoneyAllocFragment.getInstance().createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
-                } else {
+                } else if (position == 2) {
                     PercentFragment.getInstance().createPercChart(percValues, portfolio_value.toString());
                 }
                 posOfChart = position;
@@ -131,11 +115,11 @@ public class PortfolioFragment extends Fragment {
                     @Override
                     public void onClick(View v)
                     {
-                        api_coin.RefreshDataFromAPI();
-                        while (api_coin.Coins.isEmpty()) {
-
-                        }
                         if (switchLiveData.isChecked()) {
+                            api_coin.RefreshDataFromAPI();
+                            while (api_coin.Coins.isEmpty()) {
+
+                            }
                             addCoin(textVnosName.getText().toString(), Float.parseFloat(api_coin.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                         } else {
                             addCoin(textVnosName.getText().toString(), Float.parseFloat(textVnosValue.getText().toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
@@ -164,11 +148,6 @@ public class PortfolioFragment extends Fragment {
     public void onStart() {
         Helper.connected = Helper.CheckConnection(getContext());
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
-
-        if (Helper.connected) {
-            api_coin = new API_CoinGecko();
-            api_coin.RefreshDataFromAPI();
-        }
         super.onStart();
     }
 
@@ -185,15 +164,8 @@ public class PortfolioFragment extends Fragment {
     }
 
     private void getOwnedCoins() {
-
-        coinViewModel.getAllCoins().observe(this, new Observer<List<Coin>>() {
-            @Override
-            public void onChanged(List<Coin> coins) {
-                mAdapter.setCoins(coins);
-            }
-        });
-
         coinViewModel.getAllCoins().observe(this, coins -> {
+            mAdapter.setCoins(coins);
             mCoinsList.clear();
             portfolio_value = 0f;
             percValues = new ArrayList<PieEntry>();
@@ -205,7 +177,7 @@ public class PortfolioFragment extends Fragment {
                 mCoinsList.add(coin);
 
                 String name = coin.getName();
-                Float price = hm.containsKey(name) ? hm.get(name) : 0f;
+                float price = hm.containsKey(name) ? hm.get(name) : 0f;
                 price += (coin.getPrice_curr()*coin.getOwned());
                 hm.put(name, price);
 
@@ -226,8 +198,10 @@ public class PortfolioFragment extends Fragment {
     private void drawCharts() {
         if (mPagerAdapter.getCurrFragment() != null) {
             if (posOfChart == 0) {
+                PortfolioProfitFragment.getInstance().createProfitChart();
+            } else if (posOfChart == 1){
                 PercentFragment.getInstance().createPercChart(percValues, portfolio_value.toString());
-            } else {
+            } else if (posOfChart == 2) {
                 MoneyAllocFragment.getInstance().createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
             }
             mPagerAdapter.notifyItemChanged(pager.getCurrentItem());
@@ -236,8 +210,8 @@ public class PortfolioFragment extends Fragment {
 
     private void addCoin(String name, Float value, float owned) {
         canReset = true;
-        CoinViewModel.insert(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
-        mCoinsList.add(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, R.drawable.heart_border_empty));
+        CoinViewModel.insert(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, Helper.currency, R.drawable.heart_border_empty));
+        mCoinsList.add(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, Helper.currency, R.drawable.heart_border_empty));
     }
 
     private void removeItem(int position) {
@@ -316,11 +290,5 @@ public class PortfolioFragment extends Fragment {
                 changeStateOfFavouriteCoin(position);
             }
         });
-
-
-
     }
-
-
-
 }

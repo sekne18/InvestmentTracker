@@ -39,13 +39,13 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.example.investmenttracker.Helper.CheckConnection;
+import static com.example.investmenttracker.Helper.coinViewModel;
 import static com.example.investmenttracker.Helper.openDialogForNetworkConnection;
 import static com.example.investmenttracker.MainActivity.api_coin;
 import static com.example.investmenttracker.MainActivity.canRefresh;
 
 public class FavouriteFragment extends Fragment {
 
-    private CoinViewModel coinViewModel;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private CoinsAdapter mAdapter;
@@ -65,8 +65,6 @@ public class FavouriteFragment extends Fragment {
                 Helper.openDialogForNetworkConnection(getContext());
             }
         }
-
-        coinViewModel = new ViewModelProvider.AndroidViewModelFactory(Objects.requireNonNull(getActivity()).getApplication()).create(CoinViewModel.class);
         mCoinsList = new ArrayList<>();
         final View favView = inflater.inflate(R.layout.fragment_favourite, container, false);
         mRecyclerView = favView.findViewById(R.id.recycle_Favourite);

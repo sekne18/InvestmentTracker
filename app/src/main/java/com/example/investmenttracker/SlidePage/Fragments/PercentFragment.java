@@ -1,5 +1,6 @@
 package com.example.investmenttracker.SlidePage.Fragments;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -44,13 +46,15 @@ public class PercentFragment extends Fragment {
         return instance;
     }
 
+    @SuppressLint("DefaultLocale")
     public void createPercChart(ArrayList<PieEntry> procValues, String portValue) {
         percChart.setExtraOffsets(12f, 12f,12f,12f);
         percChart.getDescription().setEnabled(false);
         percChart.getLegend().setEnabled(false);
 
         mProcValues = procValues;
-        percChart.setCenterText(portValue + " €");
+
+        percChart.setCenterText(String.format("%.0f", (double)Math.round(Double.parseDouble(portValue))) + " " + Helper.currency);
 
         percChart.setUsePercentValues(true);
         PieDataSet dataSet = new PieDataSet(mProcValues, null);

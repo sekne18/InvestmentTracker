@@ -1,5 +1,6 @@
 package com.example.investmenttracker.Adapters;
 
+import android.annotation.SuppressLint;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -154,21 +155,22 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
         return ovh;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull CoinsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CoinsViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Coin currentItem = mCoinsList.get(position);
 
         if (nameOfFragment == "fav") {
-            holder.mTextLastPrice.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("current_price").toString());
-            holder.mTextVolume.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("total_volume").toString());
-            holder.mTextMarketCap.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("market_cap").toString());
-            holder.mTextAth.setText("$ "+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("ath").toString());
+            holder.mTextLastPrice.setText(Helper.currency+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("current_price").toString());
+            holder.mTextVolume.setText(Helper.currency+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("total_volume").toString());
+            holder.mTextMarketCap.setText(Helper.currency+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("market_cap").toString());
+            holder.mTextAth.setText(Helper.currency+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("ath").toString());
             holder.mTextPriceChange.setText(api_coin.Coins.get(currentItem.getName().toLowerCase()).get("price_change_percentage_24h").toString()+" %");
             holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
             Picasso.get().load(currentItem.getImageUrl()).transform(new CropCircleTransformation()).fit().into(holder.mImageView);
             holder.mTextName.setText(currentItem.getName());
         } else {
-            holder.mTextValue.setText("$ "+currentItem.getPrice_curr().toString());
+            holder.mTextValue.setText(Helper.currency+currentItem.getPrice_curr().toString());
             holder.mTextOwned.setText(currentItem.getOwned().toString());
             holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
             Picasso.get().load(currentItem.getImageUrl()).transform(new CropCircleTransformation()).fit().into(holder.mImageView);

@@ -13,4 +13,6 @@
     <color name="details">#9c786c</color>
     <color name="nav_text">#40241a</color>
     <color name="nav_icons">#6d4c41</color>
+    <color name="plus_port">#008000</color>
+    <color name="minus_port">#FF0000</color>
 </resources>

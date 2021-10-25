@@ -26,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background"
+        android:elevation="15dp"
         app:layout_constraintTop_toBottomOf="@+id/textView27">
 
         <RelativeLayout
@@ -50,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="21dp"
                 android:layout_toEndOf="@id/imageCoin2"
                 android:text="Dark Mode"
                 android:textColor="@color/fonts"
@@ -67,7 +68,8 @@
                 android:layout_marginEnd="20dp"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
-                android:theme="@style/SCBSwitch" />
+                android:theme="@style/SCBSwitch"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -76,7 +78,9 @@
         android:id="@+id/CardCurrency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
         android:background="@color/background"
+        android:elevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardDarkMode"
         app:layout_constraintVertical_bias="0.0">
@@ -102,9 +106,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="21dp"
                 android:layout_toEndOf="@id/imageView11"
-                android:text="Currency"
+                android:text="@string/currency"
                 android:textColor="@color/fonts"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -115,8 +119,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="15dp"
+                android:minHeight="48dp"
+                android:popupBackground="@color/background"
+                android:textAlignment="center"
+                android:theme="@style/SpinnerTheme"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

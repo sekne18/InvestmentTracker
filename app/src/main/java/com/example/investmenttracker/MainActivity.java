@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,7 +20,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.example.investmenttracker.API.API_CoinGecko;
+import com.example.investmenttracker.API.API_CurrencyExchange;
 import com.example.investmenttracker.API.API_News;
+import com.example.investmenttracker.Database.model.CoinViewModel;
 import com.example.investmenttracker.NavigationFragments.ExploreFragment;
 import com.example.investmenttracker.NavigationFragments.FavouriteFragment;
 import com.example.investmenttracker.NavigationFragments.PortfolioFragment;
@@ -32,16 +35,17 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
     public static API_CoinGecko api_coin;
     public static API_News api_news;
+    public static API_CurrencyExchange api_currencies;
+    public static String EUR, USD;
     public static boolean canRefresh = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
+        Helper.coinViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(CoinViewModel.class);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
     }
 
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             api_coin.RefreshDataFromAPI();
             api_news = new API_News();
             api_news.RefreshDataFromAPI();
+            api_currencies = new API_CurrencyExchange();
         }
         super.onStart();
     }
@@ -98,10 +103,8 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new SettingsFragment();
                     break;
             }
-
             addFragmentOnlyOnce(getSupportFragmentManager(),selectedFragment,tag);
             getSupportFragmentManager().beginTransaction().replace(R.id.content_container, selectedFragment, tag).commit();
-
             return true;
         }
     };

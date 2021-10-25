@@ -1,5 +1,6 @@
 package com.example.investmenttracker.SlidePage.Fragments;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -50,7 +51,7 @@ public class MoneyAllocFragment extends Fragment {
         moneyAllocChart.getLegend().setEnabled(false);
 
         mMoneyAllocValues = moneyAllocValues;
-        moneyAllocChart.setCenterText(portValue + Helper.currency);
+        moneyAllocChart.setCenterText(String.format("%.0f", (double)Math.round(Double.parseDouble(portValue))) + " " + Helper.currency);
 
         PieDataSet dataSet = new PieDataSet(mMoneyAllocValues, null);
         PieData data = new PieData(dataSet);

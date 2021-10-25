@@ -49,4 +49,10 @@
     <string name="patterns2_text">There is 16 different patterns and they all 2 types of signal which is reversal or continuation of a trend. These patterns are <b>dubble bottom/top</b>, <b>Head and Shoulders</b>, <b>Wedge</b>, <b>Rectangle</b>, <b>Pennant</b> and <b>Triangle</b>.</string>
     <string name="nav_set">Settings</string>
     <string name="text_settings">Settings</string>
+    <string name="currency">Currency</string>
+    <string name="portfolio_balance">Portfolio Balance</string>
+    <string-array name="currencies">
+        <item>$</item>
+        <item>€</item>
+    </string-array>
 </resources>

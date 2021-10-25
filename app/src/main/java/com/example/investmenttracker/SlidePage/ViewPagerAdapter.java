@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.investmenttracker.SlidePage.Fragments.MoneyAllocFragment;
 import com.example.investmenttracker.SlidePage.Fragments.PercentFragment;
+import com.example.investmenttracker.SlidePage.Fragments.PortfolioProfitFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
@@ -22,10 +23,13 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new PercentFragment();
+                fragment = new PortfolioProfitFragment();
                 break;
             case 1:
                 fragment = new MoneyAllocFragment();
+                break;
+            case 2:
+                fragment = new PercentFragment();
                 break;
         }
         currFragment = fragment;
@@ -38,7 +42,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 
 

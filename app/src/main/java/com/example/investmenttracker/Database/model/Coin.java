@@ -13,20 +13,26 @@ public class Coin {
     private String name;
     private Float price_curr;
     private Float owned;
+    private String currency;
     private int favouriteImage;
 
 
-    public Coin(String imageUrl, String name, Float price_curr, Float owned, int favouriteImage) {
+    public Coin(String imageUrl, String name, Float price_curr, Float owned, String currency, int favouriteImage) {
         this.imageUrl = imageUrl;
         this.name = name;
         this.price_curr = price_curr;
         this.owned = owned;
-        this.favouriteImage = favouriteImage; // 1 is true, 0 is false
+        this.currency = currency;
+        this.favouriteImage = favouriteImage;
     }
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public String getCurrency() { return currency; }
+
+    public void setCurrency(String curr) { this.currency = curr; }
 
     public String getImageUrl() {
         return imageUrl;
