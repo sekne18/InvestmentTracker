@@ -24,7 +24,7 @@ public class CoinViewModel extends AndroidViewModel {
     public LiveData<List<Coin>> getAllCoins() { return allCoins; }
     public static void insert(Coin coin) { repository.insert(coin); }
     public static void deleteCoin(int coinId) { repository.deleteCoin(coinId); }
-    public static void favouriteImage(String coinName, int favourite) { repository.favouriteState(coinName, favourite); }
+    public static void favouriteImage(String coinName, byte favourite) { repository.favouriteState(coinName, favourite); }
     public LiveData<List<Coin>> getFavouriteCoins() { return favCoins; }
 
 

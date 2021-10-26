@@ -24,6 +24,7 @@ public class API_CoinGecko {
     public Map<String, String> coin_Images = new HashMap<String, String>();
     public String last_updated;
     public AsyncTask.Status currentStatus = AsyncTask.Status.PENDING;
+    public boolean isCompleted = false;
 
     public void RefreshDataFromAPI() {
         DownloadTask getCoins = new DownloadTask();
@@ -51,7 +52,7 @@ public class API_CoinGecko {
         protected String doInBackground(String... strings) {
             URL url;
             HttpURLConnection urlConnection = null;
-
+            isCompleted = false;
             try {
                 url = new URL(strings[0]);
 
@@ -90,6 +91,7 @@ public class API_CoinGecko {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            isCompleted = true;
         }
 
     }

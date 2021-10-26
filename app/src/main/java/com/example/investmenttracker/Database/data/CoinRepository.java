@@ -31,7 +31,7 @@ public class CoinRepository {
         });
     }
 
-    public void favouriteState(String coinName, int favouriteImage) {
+    public void favouriteState(String coinName, byte favouriteImage) {
         CoinRoomDatabase.databaseWriteExecutor.execute( () -> {
             coinDao.setFavouriteState(coinName, favouriteImage);
         });

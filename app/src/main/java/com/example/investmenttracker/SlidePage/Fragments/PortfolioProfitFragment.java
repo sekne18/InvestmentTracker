@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.investmenttracker.Database.model.Coin;
@@ -69,10 +70,10 @@ public class PortfolioProfitFragment extends Fragment {
             imageUpOrDown.setVisibility(View.VISIBLE);
             profitText.setVisibility(View.VISIBLE);
         }
-//        api_coin.RefreshDataFromAPI();
-        while (api_coin.currentStatus != AsyncTask.Status.FINISHED) {
 
-        }
+        if (api_coin.isCompleted)
+            api_coin.RefreshDataFromAPI();
+
         for (Coin coin : Helper.mCoinsList) {
             sumCoinPrices += coin.getPrice_curr()*coin.getOwned();
             sumCurrentPrice += Float.parseFloat(api_coin.Coins.get(coin.getName().toLowerCase()).get("current_price").toString())*coin.getOwned();

@@ -77,7 +77,8 @@ public class FavouriteFragment extends Fragment {
             @Override
             public void onRefresh() {
                 if (Helper.connected & canRefresh) {
-                    api_coin.RefreshDataFromAPI();
+                    if (api_coin.isCompleted)
+                        api_coin.RefreshDataFromAPI();
                     buildRecycleView();
                     refreshTimeOfUpdate();
                 }
@@ -91,11 +92,11 @@ public class FavouriteFragment extends Fragment {
     }
 
     private void changeStateOfFavouriteCoin(int position) {
-        if (mCoinsList.get(position).getFavouriteImage() == R.drawable.heart_border_full) {
-            CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), R.drawable.heart_border_empty);
+        if (mCoinsList.get(position).isFavourite() == 1) {
+            CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), (byte) 0);
             Toast.makeText(getContext(), "Coin "+mCoinsList.get(position).getName().toUpperCase()+" was removed from favourites!", Toast.LENGTH_SHORT).show();
         } else {
-            CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), R.drawable.heart_border_full);
+            CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), (byte) 1);
         }
 
     }

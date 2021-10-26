@@ -17,7 +17,7 @@ import com.example.investmenttracker.R;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Coin.class}, version=8,exportSchema = false)
+@Database(entities = {Coin.class}, version=9,exportSchema = false)
 public abstract class CoinRoomDatabase extends RoomDatabase {
 
     public abstract CoinDao coinDao();
@@ -55,10 +55,10 @@ public abstract class CoinRoomDatabase extends RoomDatabase {
                 CoinDao coinDao = INSTANCE.coinDao();
                 coinDao.deleteAll();
 
-                Coin coin = new Coin("","BTC", 63540f, 10f, Helper.currency, R.drawable.heart_border_full);
+                Coin coin = new Coin("","BTC", 63540f, 10f, Helper.currency, (byte)1);
                 coinDao.insert(coin);
 
-                coin = new Coin("","ETH", 2500f, 20f, Helper.currency, R.drawable.heart_border_empty);
+                coin = new Coin("","ETH", 2500f, 20f, Helper.currency, (byte)0);
                 coinDao.insert(coin);
             });
         }

@@ -14,16 +14,16 @@ public class Coin {
     private Float price_curr;
     private Float owned;
     private String currency;
-    private int favouriteImage;
+    private byte isFavourite;
 
 
-    public Coin(String imageUrl, String name, Float price_curr, Float owned, String currency, int favouriteImage) {
+    public Coin(String imageUrl, String name, Float price_curr, Float owned, String currency, byte isFavourite) {
         this.imageUrl = imageUrl;
         this.name = name;
         this.price_curr = price_curr;
         this.owned = owned;
         this.currency = currency;
-        this.favouriteImage = favouriteImage;
+        this.isFavourite = isFavourite;
     }
 
     public void setImageUrl(String imageUrl) {
@@ -38,12 +38,12 @@ public class Coin {
         return imageUrl;
     }
 
-    public int getFavouriteImage() {
-        return favouriteImage;
+    public byte isFavourite() {
+        return isFavourite;
     }
 
-    public void setFavouriteImage(int favouriteImage) {
-        this.favouriteImage = favouriteImage;
+    public void isFavourite(byte favouriteImage) {
+        this.isFavourite = favouriteImage;
     }
 
     public Float getOwned() {

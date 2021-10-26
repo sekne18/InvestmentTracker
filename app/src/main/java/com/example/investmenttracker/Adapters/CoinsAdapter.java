@@ -166,13 +166,13 @@ public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHol
             holder.mTextMarketCap.setText(Helper.currency+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("market_cap").toString());
             holder.mTextAth.setText(Helper.currency+api_coin.Coins.get(currentItem.getName().toLowerCase()).get("ath").toString());
             holder.mTextPriceChange.setText(api_coin.Coins.get(currentItem.getName().toLowerCase()).get("price_change_percentage_24h").toString()+" %");
-            holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
+            holder.mFavouriteImage.setImageResource(currentItem.isFavourite() == 1 ? R.drawable.heart_border_full : R.drawable.heart_border_empty);
             Picasso.get().load(currentItem.getImageUrl()).transform(new CropCircleTransformation()).fit().into(holder.mImageView);
             holder.mTextName.setText(currentItem.getName());
         } else {
             holder.mTextValue.setText(Helper.currency+currentItem.getPrice_curr().toString());
             holder.mTextOwned.setText(currentItem.getOwned().toString());
-            holder.mFavouriteImage.setImageResource(currentItem.getFavouriteImage());
+            holder.mFavouriteImage.setImageResource(currentItem.isFavourite() == 1 ? R.drawable.heart_border_full : R.drawable.heart_border_empty);
             Picasso.get().load(currentItem.getImageUrl()).transform(new CropCircleTransformation()).fit().into(holder.mImageView);
             holder.mTextName.setText(currentItem.getName());
 

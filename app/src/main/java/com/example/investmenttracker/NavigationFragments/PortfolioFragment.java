@@ -116,10 +116,8 @@ public class PortfolioFragment extends Fragment {
                     public void onClick(View v)
                     {
                         if (switchLiveData.isChecked()) {
-                            api_coin.RefreshDataFromAPI();
-                            while (api_coin.Coins.isEmpty()) {
-
-                            }
+                            if (api_coin.isCompleted)
+                                api_coin.RefreshDataFromAPI();
                             addCoin(textVnosName.getText().toString(), Float.parseFloat(api_coin.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                         } else {
                             addCoin(textVnosName.getText().toString(), Float.parseFloat(textVnosValue.getText().toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
@@ -146,8 +144,8 @@ public class PortfolioFragment extends Fragment {
 
     @Override
     public void onStart() {
-        Helper.connected = Helper.CheckConnection(getContext());
-        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
+//        Helper.connected = Helper.CheckConnection(getContext());
+//        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
         super.onStart();
     }
 
@@ -210,8 +208,8 @@ public class PortfolioFragment extends Fragment {
 
     private void addCoin(String name, Float value, float owned) {
         canReset = true;
-        CoinViewModel.insert(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, Helper.currency, R.drawable.heart_border_empty));
-        mCoinsList.add(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, Helper.currency, R.drawable.heart_border_empty));
+        CoinViewModel.insert(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, Helper.currency, (byte)0));
+        mCoinsList.add(new Coin(api_coin.coin_Images.get(name.toLowerCase()),name.toUpperCase(), Float.parseFloat(value.toString()), owned, Helper.currency, (byte)1));
     }
 
     private void removeItem(int position) {
@@ -221,12 +219,12 @@ public class PortfolioFragment extends Fragment {
 
     private void changeStateOfFavouriteCoin(int position) {
         canReset = false;
-        if (mCoinsList.get(position).getFavouriteImage() == R.drawable.heart_border_full) {
-            CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), R.drawable.heart_border_empty);
-            mCoinsList.get(position).setFavouriteImage(R.drawable.heart_border_empty);
+        if (mCoinsList.get(position).isFavourite() == 1) {
+            CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), (byte)0);
+            mCoinsList.get(position).isFavourite((byte)0);
         } else {
-            CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), R.drawable.heart_border_full);
-            mCoinsList.get(position).setFavouriteImage(R.drawable.heart_border_full);
+            CoinViewModel.favouriteImage(mCoinsList.get(position).getName(), (byte)1);
+            mCoinsList.get(position).isFavourite((byte)1);
         }
 
     }

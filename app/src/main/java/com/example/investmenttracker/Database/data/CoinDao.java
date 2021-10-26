@@ -27,11 +27,11 @@ public interface CoinDao {
     @Query("SELECT * FROM coin_table ORDER BY name ASC")
     LiveData<List<Coin>> getAllCoins();
 
-    @Query("SELECT * FROM coin_table WHERE favouriteImage=2131165320 GROUP BY name ORDER BY name ASC") // 2131165317 is value of R.drawable.heart_border_full
+    @Query("SELECT * FROM coin_table WHERE isFavourite=1 GROUP BY name ORDER BY name ASC") // 2131165320 is value of R.drawable.heart_border_full
     LiveData<List<Coin>> getFavCoins();
 
-    @Query("UPDATE coin_table SET favouriteImage=:favouriteImage WHERE name=:coinName")
-    void setFavouriteState(String coinName, int favouriteImage);
+    @Query("UPDATE coin_table SET isFavourite=:favouriteImage WHERE name=:coinName")
+    void setFavouriteState(String coinName, byte favouriteImage);
 
 
 }

@@ -74,5 +74,11 @@ public class API_CurrencyExchange {
             }
             return null;
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Helper.ConvertCoins();
+        }
     }
 }

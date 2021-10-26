@@ -48,9 +48,6 @@ public class SettingsFragment extends Fragment {
                 Helper.currency = currSpinner.getItemAtPosition(position).toString();
                 if (!oldCurr.equals(Helper.currency)) {
                     api_currencies.RefreshDataFromAPI(Helper.currency);
-                    while (api_currencies.currentStatus == AsyncTask.Status.RUNNING) {
-                    }
-                    Helper.ConvertCoins();
                 }
             }
 
