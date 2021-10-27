@@ -1,11 +1,6 @@
 package com.example.investmenttracker.NavigationFragments;
 
-import android.animation.LayoutTransition;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -30,7 +24,6 @@ import com.example.investmenttracker.Database.model.CoinViewModel;
 import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -72,7 +65,7 @@ public class FavouriteFragment extends Fragment {
         while (api_coin.Coins.isEmpty()) {
         }
 
-        swipeLayout = favView.findViewById(R.id.swipeLayout);
+        swipeLayout = favView.findViewById(R.id.swipeLayoutPort);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

@@ -1,6 +1,7 @@
 package com.example.investmenttracker.NavigationFragments;
 
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.investmenttracker.Adapters.CoinsAdapter;
@@ -42,6 +45,7 @@ import java.util.Objects;
 import static com.example.investmenttracker.Helper.coinViewModel;
 import static com.example.investmenttracker.Helper.mCoinsList;
 import static com.example.investmenttracker.MainActivity.api_coin;
+import static com.example.investmenttracker.MainActivity.canRefresh;
 
 
 public class PortfolioFragment extends Fragment {
@@ -55,12 +59,12 @@ public class PortfolioFragment extends Fragment {
     private Float portfolio_value = 0f;
     private ConstraintLayout popUpLayout;
     private Button confButton, cancelButton;
-    private boolean isDetailsActive;
     private boolean canReset = true;
     private int posOfChart;
     private Map<String, Map<Float,Float>> grouppedcoins = new HashMap<>();
     private ArrayList<PieEntry> percValues, moneyAllocValues;
     private ViewPagerAdapter mPagerAdapter;
+    private SwipeRefreshLayout swipeLayoutPort;
 
     @Nullable
     @Override
@@ -75,12 +79,24 @@ public class PortfolioFragment extends Fragment {
         textVnosQuantity = (EditText) portfView.findViewById(R.id.textVnosQuantity);
         switchLiveData = (Switch) portfView.findViewById(R.id.switchRealData);
         mRecyclerView = portfView.findViewById(R.id.recycle_portfolio);
+        swipeLayoutPort = portfView.findViewById(R.id.swipeLayoutPort);
         ImageButton add_button = (ImageButton) portfView.findViewById(R.id.add_button);
         pager = portfView.findViewById(R.id.viewPager);
 
         initViewPager();
         getOwnedCoins();
         buildRecycleView();
+
+        swipeLayoutPort.setRefreshing(false);
+        swipeLayoutPort.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (api_coin.isCompleted)
+                    api_coin.RefreshDataFromAPI();
+                PortfolioProfitFragment.getInstance().createProfitChart();
+                swipeLayoutPort.setRefreshing(false);
+            }
+        });
 
         pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -144,8 +160,8 @@ public class PortfolioFragment extends Fragment {
 
     @Override
     public void onStart() {
-//        Helper.connected = Helper.CheckConnection(getContext());
-//        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
+        Helper.connected = Helper.CheckConnection(getContext());
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
         super.onStart();
     }
 
@@ -195,6 +211,8 @@ public class PortfolioFragment extends Fragment {
 
     private void drawCharts() {
         if (mPagerAdapter.getCurrFragment() != null) {
+            while (api_coin.Coins.isEmpty()) {
+            }
             if (posOfChart == 0) {
                 PortfolioProfitFragment.getInstance().createProfitChart();
             } else if (posOfChart == 1){

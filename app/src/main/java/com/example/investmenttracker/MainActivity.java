@@ -9,14 +9,17 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.investmenttracker.API.API_CoinGecko;
@@ -34,9 +37,6 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     public static API_CoinGecko api_coin;
-    public static API_News api_news;
-    public static API_CurrencyExchange api_currencies;
-    public static String EUR, USD;
     public static boolean canRefresh = true;
 
     @Override
@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
         if (Helper.connected) {
             api_coin = new API_CoinGecko();
             api_coin.RefreshDataFromAPI();
-            api_news = new API_News();
-            api_news.RefreshDataFromAPI();
-            api_currencies = new API_CurrencyExchange();
         }
         super.onStart();
     }
@@ -103,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new SettingsFragment();
                     break;
             }
+
             addFragmentOnlyOnce(getSupportFragmentManager(),selectedFragment,tag);
             getSupportFragmentManager().beginTransaction().replace(R.id.content_container, selectedFragment, tag).commit();
             return true;

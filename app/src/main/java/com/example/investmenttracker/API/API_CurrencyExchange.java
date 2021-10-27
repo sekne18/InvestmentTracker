@@ -1,52 +1,54 @@
 package com.example.investmenttracker.API;
 
-import static com.example.investmenttracker.MainActivity.api_currencies;
-
 import android.os.AsyncTask;
-import android.util.Log;
+import android.widget.AdapterView;
 
 import com.example.investmenttracker.Helper;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class API_CurrencyExchange {
-    public Map<String, Double> Currency = new HashMap<String, Double>();
-    public AsyncTask.Status currentStatus = AsyncTask.Status.RUNNING;
+//public class API_CurrencyExchange {
+//    public Map<String, Double> Currency = new HashMap<String, Double>();
+//    public AsyncTask.Status currentStatus = AsyncTask.Status.RUNNING;
+//
+//    public void RefreshDataFromAPI(String convertTo) {
+//        API_CurrencyExchange.DownloadTask getCurrencies = new API_CurrencyExchange.DownloadTask();
+//
+//        try {
+//            if (convertTo.equals("€")) {
+//                getCurrencies.execute("https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1");
+//                currentStatus = AsyncTask.Status.RUNNING;
+//            }
+//            else if (convertTo.equals("$")) {
+//                getCurrencies.execute("https://api.exchangerate.host/convert?from=EUR&to=USD&amount=1");
+//                currentStatus = AsyncTask.Status.RUNNING;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
-    public void RefreshDataFromAPI(String convertTo) {
-        API_CurrencyExchange.DownloadTask getCurrencies = new API_CurrencyExchange.DownloadTask();
+    public class API_CurrencyExchange extends AsyncTask<String, Void, Map<String, Double>> {
 
-        try {
-            if (convertTo.equals("€")) {
-                getCurrencies.execute("https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1");
-                currentStatus = AsyncTask.Status.RUNNING;
-            }
-            else if (convertTo.equals("$")) {
-                getCurrencies.execute("https://api.exchangerate.host/convert?from=EUR&to=USD&amount=1");
-                currentStatus = AsyncTask.Status.RUNNING;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        private final OnAsyncRequestComplete caller;
+        public Map<String, Double> Currency = new HashMap<String, Double>();
+        public AsyncTask.Status currentStatus = AsyncTask.Status.RUNNING;
+
+        public API_CurrencyExchange(OnAsyncRequestComplete caller) {
+            this.caller = caller;
         }
 
-    }
-
-    public class DownloadTask extends AsyncTask<String, Void, String> {
-
         @Override
-        protected String doInBackground(String... strings) {
+        protected Map<String, Double> doInBackground(String... strings) {
             URL url;
             HttpURLConnection urlConnection = null;
 
@@ -72,13 +74,25 @@ public class API_CurrencyExchange {
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
-            return null;
+            return Currency;
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Helper.ConvertCoins();
+        protected void onPostExecute(Map<String, Double> currencies) {
+            super.onPostExecute(currencies);
+            caller.onPostExecute(currencies);
         }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            caller.onPreExecute();
+        }
+
+        public interface OnAsyncRequestComplete {
+            void onPostExecute(Map<String, Double> currencies);
+            void onPreExecute();
+        }
+
     }
-}
+//}

@@ -42,7 +42,7 @@ public class MoneyAllocFragment extends Fragment {
     }
 
     public static MoneyAllocFragment getInstance() {
-        return instance;
+        return instance != null ? instance : new MoneyAllocFragment();
     }
 
     public void createMoneyAllocChart(ArrayList<PieEntry> moneyAllocValues, String portValue) {

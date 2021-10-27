@@ -43,7 +43,7 @@ public class PercentFragment extends Fragment {
     }
 
     public static PercentFragment getInstance() {
-        return instance;
+        return instance != null ? instance : new PercentFragment();
     }
 
     @SuppressLint("DefaultLocale")

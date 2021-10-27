@@ -26,8 +26,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import static com.example.investmenttracker.MainActivity.api_coin;
-import static com.example.investmenttracker.MainActivity.api_currencies;
-import static com.example.investmenttracker.MainActivity.api_news;
 import static com.example.investmenttracker.MainActivity.canRefresh;
 
 import com.example.investmenttracker.Database.model.Coin;
@@ -45,7 +43,7 @@ public class Helper {
         private Consumer mConsumer;
         public interface Consumer { void accept(Boolean internet); }
 
-        public  InternetCheck(Consumer consumer) { mConsumer = consumer; execute(); }
+        public InternetCheck(Consumer consumer) { mConsumer = consumer; execute(); }
 
         @Override protected Boolean doInBackground(Void... voids) { try {
             Socket sock = new Socket();
@@ -83,22 +81,12 @@ public class Helper {
                     openDialogForNetworkConnection(context);
                 }
                 else if (canRefresh){
-                    api_news.RefreshDataFromAPI();
+//                    api_news.RefreshDataFromAPI();
                     api_coin.RefreshDataFromAPI();
                 }
             }
         });
         builder.show();
-    }
-
-    public static void ConvertCoins() {
-        DecimalFormat df = new DecimalFormat("#.#");
-        for (Coin coin: mCoinsList) {
-            if (!coin.getCurrency().equals(Helper.currency)) {
-                coin.setCurrency(Helper.currency);
-                coin.setPrice_curr(Float.parseFloat(df.format((coin.getPrice_curr()*api_currencies.Currency.get(Helper.currency)))));
-            }
-        }
     }
 
     public static void expand(final View v) {

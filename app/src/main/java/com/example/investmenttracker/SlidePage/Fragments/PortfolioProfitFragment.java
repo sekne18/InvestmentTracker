@@ -41,7 +41,7 @@ public class PortfolioProfitFragment extends Fragment {
     private ImageView imageUpOrDown;
 
     public static PortfolioProfitFragment getInstance() {
-        return instance;
+        return instance != null ? instance : new PortfolioProfitFragment();
     }
 
     @Override
@@ -70,9 +70,6 @@ public class PortfolioProfitFragment extends Fragment {
             imageUpOrDown.setVisibility(View.VISIBLE);
             profitText.setVisibility(View.VISIBLE);
         }
-
-        if (api_coin.isCompleted)
-            api_coin.RefreshDataFromAPI();
 
         for (Coin coin : Helper.mCoinsList) {
             sumCoinPrices += coin.getPrice_curr()*coin.getOwned();

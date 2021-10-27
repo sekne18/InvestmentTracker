@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeLayout"
+        android:id="@+id/swipeLayoutPort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"

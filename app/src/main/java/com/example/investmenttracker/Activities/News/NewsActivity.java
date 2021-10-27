@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.LayoutTransition;
+import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.example.investmenttracker.API.API_News;
 import com.example.investmenttracker.Adapters.NewsAdapter;
@@ -20,13 +22,14 @@ import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.investmenttracker.Helper.CheckConnection;
 import static com.example.investmenttracker.Helper.openDialogForNetworkConnection;
-import static com.example.investmenttracker.MainActivity.api_news;
 
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity implements API_News.OnAsyncRequestComplete {
 
     private ImageView img;
     private RecyclerView mRecyclerView;
@@ -34,6 +37,8 @@ public class NewsActivity extends AppCompatActivity {
     private NewsAdapter mAdapter;
     private boolean isDetailsActive;
     private ArrayList<News> mNewsList;
+    private API_News api_news;
+    private ProgressBar pgsBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +47,9 @@ public class NewsActivity extends AppCompatActivity {
         backbutton();
         mNewsList = new ArrayList<News>();
         mRecyclerView = this.findViewById(R.id.recyclerNews);
-
-        while (api_news.News.isEmpty()) {
-        }
-
-        pullDataFromApiToArray();
-        buildRecycleView();
-
+        pgsBar = (ProgressBar)findViewById(R.id.pBar);
+        api_news = new API_News(this);
+        api_news.execute("https://min-api.cryptocompare.com/data/v2/news/?lang=EN");
     }
 
     private void pullDataFromApiToArray() {
@@ -106,5 +107,17 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onPreExecute() {
+        pgsBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onPostExecute(Map<Integer, Map<String, String>> news) {
+        pgsBar.setVisibility(View.GONE);
+        pullDataFromApiToArray();
+        buildRecycleView();
     }
 }

@@ -27,12 +27,26 @@
         android:id="@+id/backButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="fitCenter"
         android:tint="@color/fonts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/abc_vector_test" />
+
+    <ProgressBar
+        android:id="@+id/pBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout2"
+        app:layout_constraintVertical_bias="0.38" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -63,8 +77,10 @@
                     android:layout_height="match_parent">
 
                 </androidx.recyclerview.widget.RecyclerView>
+
             </LinearLayout>
         </ScrollView>
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
