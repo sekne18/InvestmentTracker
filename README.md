@@ -16,3 +16,9 @@ Screenshots:
   <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr8.png" width="230" height="450" />
   <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr9.png" width="230" height="450" />
 </p>
+
+Update: 
+<p>
+  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr8.png" width="230" height="450" />
+  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr9.png" width="230" height="450" />
+</p> 
