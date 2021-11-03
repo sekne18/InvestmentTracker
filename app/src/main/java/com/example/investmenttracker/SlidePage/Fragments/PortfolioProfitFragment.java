@@ -71,6 +71,9 @@ public class PortfolioProfitFragment extends Fragment {
             profitText.setVisibility(View.VISIBLE);
         }
 
+        while (api_coin.Coins.isEmpty()) {
+        }
+
         for (Coin coin : Helper.mCoinsList) {
             sumCoinPrices += coin.getPrice_curr()*coin.getOwned();
             sumCurrentPrice += Float.parseFloat(api_coin.Coins.get(coin.getName().toLowerCase()).get("current_price").toString())*coin.getOwned();
