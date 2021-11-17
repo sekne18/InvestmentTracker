@@ -5,10 +5,12 @@
       <map>
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/drawable/heart_border_empty.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/drawable/heart_border_full.xml" value="0.21875" />
+        <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/drawable/ic_baseline_arrow_drop_up_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/activity_news.xml" value="0.3625" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_coin_cardview_item.xml" value="0.3625" />
+        <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_dollar_cost_avg.xml" value="0.203125" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_explore.xml" value="0.3625" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_favourite.xml" value="0.3625" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_news_cardview_item.xml" value="0.20260416666666667" />

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -131,16 +132,27 @@ public class PortfolioFragment extends Fragment {
                     @Override
                     public void onClick(View v)
                     {
-                        if (switchLiveData.isChecked()) {
-                            if (api_coin.isCompleted)
-                                api_coin.RefreshDataFromAPI();
-                            addCoin(textVnosName.getText().toString(), Float.parseFloat(api_coin.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
+                        //Check if coin is in the API
+                        if (api_coin.Coins.get(textVnosName.getText().toString().toLowerCase()) == null) {
+                            new AlertDialog.Builder(getContext()).setTitle("Coin not found").setMessage("This coin is not supported").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+
+                                }
+                            }).show();
                         } else {
-                            addCoin(textVnosName.getText().toString(), Float.parseFloat(textVnosValue.getText().toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
+                            if (switchLiveData.isChecked()) {
+                                if (api_coin.isCompleted)
+                                    api_coin.RefreshDataFromAPI();
+                                addCoin(textVnosName.getText().toString(), Float.parseFloat(api_coin.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
+                            } else {
+                                addCoin(textVnosName.getText().toString(), Float.parseFloat(textVnosValue.getText().toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
+                            }
+                            fadeAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.fade_out);
+                            popUpLayout.startAnimation(fadeAnimation);
+                            popUpLayout.setVisibility(View.INVISIBLE);
                         }
-                        fadeAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.fade_out);
-                        popUpLayout.startAnimation(fadeAnimation);
-                        popUpLayout.setVisibility(View.INVISIBLE);
                     }
                 });
                 cancelButton.setOnClickListener(new View.OnClickListener() {
