@@ -88,11 +88,11 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
     }
 
     public void ConvertCoins() {
-        DecimalFormat df = new DecimalFormat("#.#");
+        DecimalFormat df = new DecimalFormat(".#");
         for (Coin coin: mCoinsList) {
             if (!coin.getCurrency().equals(Helper.currency)) {
                 coin.setCurrency(Helper.currency);
-                coin.setPrice_curr(Float.parseFloat(df.format((coin.getPrice_curr()*api_currencies.Currency.get(Helper.currency)))));
+                coin.setPrice_curr((float) Math.round((Double.parseDouble(String.valueOf(coin.getPrice_curr()*api_currencies.Currency.get(Helper.currency))))*100)/100);
             }
         }
     }
