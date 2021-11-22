@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/mainBackground"
     tools:context=".Activities.News.NewsActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="News"
         android:textAlignment="center"
-        android:textColor="@color/fonts"
+        android:textColor="@color/mainText"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
@@ -31,7 +31,7 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="fitCenter"
-        android:tint="@color/fonts"
+        android:tint="@color/mainText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/abc_vector_test" />

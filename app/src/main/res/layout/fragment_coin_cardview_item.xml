@@ -8,7 +8,7 @@
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
     android:layout_marginBottom="10dp"
-    android:background="@color/details"
+    android:background="@color/colorPrimaryDark"
     android:elevation="35dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="6dp">
@@ -18,7 +18,7 @@
         android:id="@+id/linLayoutCoin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/details"
+        android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -44,6 +44,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="17dp"
                 android:layout_toEndOf="@id/imageCoin"
+                android:textColor="@color/mainText"
                 android:text="Coin"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -96,7 +97,7 @@
             android:id="@+id/detailsLinLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/details"
+            android:background="@color/colorPrimaryDark"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -104,7 +105,7 @@
                 android:id="@+id/relLayoutDetails"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/details">
+                android:background="@color/colorPrimaryDark">
 
                 <TextView
                     android:id="@+id/textView"
@@ -113,6 +114,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:text="Value: "
+                    android:textColor="@color/mainText"
                     android:textSize="21sp" />
 
                 <TextView
@@ -123,6 +125,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/textView"
                     android:text="Value"
+                    android:textColor="@color/mainText"
                     android:textSize="21sp" />
 
                 <TextView
@@ -134,6 +137,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:layout_toEndOf="@id/textViewQuan"
+                    android:textColor="@color/mainText"
                     android:text="Owned"
                     android:textSize="21sp" />
 
@@ -145,6 +149,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
+                    android:textColor="@color/mainText"
                     android:text="Quantity: "
                     android:textSize="21sp" />
 
@@ -170,6 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
+                    android:textColor="@color/mainText"
                     android:text="Last Price: "
                     android:textSize="18sp" />
 
@@ -180,6 +186,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/textView23"
+                    android:textColor="@color/mainText"
                     android:inputType="number"
                     android:text="____"
                     android:textSize="18sp" />
@@ -191,6 +198,7 @@
                     android:layout_below="@id/textContent"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="@color/mainText"
                     android:text="Volume: "
                     android:textSize="18sp" />
 
@@ -202,6 +210,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
                     android:layout_toEndOf="@id/textView23"
+                    android:textColor="@color/mainText"
                     android:inputType="number"
                     android:text="____"
                     android:textSize="18sp" />
@@ -213,6 +222,7 @@
                     android:layout_below="@id/textView25"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
+                    android:textColor="@color/mainText"
                     android:text="Market Cap: "
                     android:textSize="18sp" />
 
@@ -224,6 +234,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
                     android:layout_toEndOf="@id/textView23"
+                    android:textColor="@color/mainText"
                     android:inputType="number"
                     android:text="____"
                     android:textSize="18sp" />
@@ -236,6 +247,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
                     android:text="Price change: "
+                    android:textColor="@color/mainText"
                     android:textSize="18sp" />
 
                 <TextView
@@ -246,6 +258,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
                     android:layout_toEndOf="@id/textView23"
+                    android:textColor="@color/mainText"
                     android:inputType="number"
                     android:text="____"
                     android:textSize="18sp" />
@@ -259,6 +272,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:text="All time high:"
+                    android:textColor="@color/mainText"
                     android:textSize="18sp" />
 
                 <TextView
@@ -271,6 +285,7 @@
                     android:layout_toEndOf="@id/textView23"
                     android:inputType="number"
                     android:text="____"
+                    android:textColor="@color/mainText"
                     android:textSize="18sp" />
 
             </RelativeLayout>

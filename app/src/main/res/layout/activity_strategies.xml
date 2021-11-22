@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/mainBackground"
     tools:context=".Activities.Strategies.StrategiesActivity">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginTop="90dp"
         android:text="You can have a trading strategy too but here we will focus more on long term investment strategies."
         android:textAlignment="center"
-        android:textColor="@color/fonts"
+        android:textColor="@color/mainText"
         android:textSize="27dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
@@ -31,7 +31,7 @@
         android:layout_height="60dp"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="fitCenter"
-        android:tint="@color/fonts"
+        android:tint="@color/mainText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/abc_vector_test" />
@@ -45,8 +45,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton2"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/backButton4"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -84,7 +84,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/hodl"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="HODL"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -107,7 +107,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -120,7 +120,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="25dp"
                     android:gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:textAlignment="center">
 
                     <ImageView
                         android:layout_width="100dp"
@@ -129,7 +130,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/split"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -138,7 +139,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="50/25/25 RULE"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>

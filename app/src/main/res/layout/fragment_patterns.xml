@@ -37,7 +37,7 @@
                     android:layout_marginBottom="5dp"
                     android:justificationMode="inter_word"
                     android:text="@string/patterns1_text"
-                    android:textColor="@color/fonts"
+                    android:textColor="@color/mainText"
                     android:textSize="17sp" />
 
                 <TextView
@@ -51,7 +51,7 @@
                     android:layout_marginBottom="15dp"
                     android:justificationMode="inter_word"
                     android:text="@string/patterns2_text"
-                    android:textColor="@color/fonts"
+                    android:textColor="@color/mainText"
                     android:textSize="17sp" />
 
                 <TextView
@@ -64,7 +64,7 @@
                     android:layout_marginBottom="10dp"
                     android:justificationMode="inter_word"
                     android:text="@string/patterns_text"
-                    android:textColor="@color/fonts"
+                    android:textColor="@color/mainText"
                     android:textSize="17sp" />
 
                 <ImageView
@@ -97,7 +97,7 @@
         android:rotation="45"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_baseline_add_24"
-        android:tint="@color/fonts"
+        android:tint="@color/mainText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </FrameLayout>

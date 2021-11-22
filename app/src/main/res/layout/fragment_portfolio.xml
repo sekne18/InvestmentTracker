@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/mainBackground">
 
     <ProgressBar
         android:id="@+id/progBar"
@@ -58,22 +58,18 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardPager"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/background"
-                    android:backgroundTint="@color/background"
-                    android:padding="30dp"
-                    app:cardCornerRadius="10dp"
+                    android:layout_height="275dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginTop="-25dp"
+                    app:cardCornerRadius="35dp"
                     app:cardElevation="5dp">
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/viewPager"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/background">
+                        android:layout_marginTop="25dp"
+                        android:background="@color/colorPrimaryDark">
 
                     </androidx.viewpager2.widget.ViewPager2>
 

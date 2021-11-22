@@ -5,7 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/mainBackground">
 
 
     <androidx.cardview.widget.CardView
@@ -20,7 +20,7 @@
         android:foreground="?attr/selectableItemBackground"
         android:padding="5dp"
         android:stateListAnimator="@animator/lift_on_touch"
-        app:cardBackgroundColor="@color/details"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
         app:cardPreventCornerOverlap="true"
@@ -45,6 +45,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="@string/text_Tips"
+                android:textColor="@color/mainText"
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
@@ -72,7 +73,7 @@
         android:elevation="8dp"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@animator/lift_on_touch"
-        app:cardBackgroundColor="@color/details"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
         app:cardPreventCornerOverlap="true"
@@ -97,6 +98,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="@string/news"
+                android:textColor="@color/mainText"
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
@@ -123,7 +125,7 @@
         android:elevation="8dp"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@animator/lift_on_touch"
-        app:cardBackgroundColor="@color/details"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
         app:cardPreventCornerOverlap="true"
@@ -148,6 +150,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="@string/strategies"
+                android:textColor="@color/mainText"
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
@@ -175,7 +178,7 @@
         android:elevation="8dp"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@animator/lift_on_touch"
-        app:cardBackgroundColor="@color/details"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
         app:cardPreventCornerOverlap="true"
@@ -201,6 +204,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/technicals"
                 android:textSize="27sp"
+                android:textColor="@color/mainText"
                 android:textStyle="bold" />
 
             <ImageView
@@ -224,7 +228,7 @@
         android:elevation="8dp"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@animator/lift_on_touch"
-        app:cardBackgroundColor="@color/nav_icons"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
         app:cardPreventCornerOverlap="true"
@@ -244,6 +248,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/mainText"
                 android:text="@string/search_coins"
                 android:textSize="27sp"
                 android:textStyle="bold" />

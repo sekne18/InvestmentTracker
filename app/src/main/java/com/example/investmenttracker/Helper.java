@@ -2,6 +2,7 @@ package com.example.investmenttracker;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -37,6 +38,8 @@ public class Helper {
     public static String currency = "$";
     public static CoinViewModel coinViewModel;
     public static ArrayList<Coin> mCoinsList = new ArrayList<>();
+    public static boolean nightMode;
+    public static SharedPreferences sharedPrefs;
 
     public static class InternetCheck extends AsyncTask<Void,Void,Boolean> {
 

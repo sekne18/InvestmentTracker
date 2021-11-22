@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/mainBackground"
     tools:context=".Activities.Tips.TipsActivity">
 
     <ImageButton
@@ -13,7 +13,7 @@
         android:layout_height="60dp"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="fitCenter"
-        android:tint="@color/fonts"
+        android:tint="@color/mainText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/abc_vector_test" />
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -62,7 +62,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/leverage"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Spot vs Leverage"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -106,7 +106,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/wallet"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Hot&amp;Cold Wallets"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -148,7 +148,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/fluctuation"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -157,7 +157,7 @@
                         android:layout_marginBottom="10dp"
                         android:text='Ignore the "noise"'
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -168,7 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -190,7 +190,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/fear"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -199,7 +199,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Don't FOMO"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -210,7 +210,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -232,7 +232,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/cost_average"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -241,7 +241,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="$ Cost Average"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -251,7 +251,7 @@
                 android:id="@+id/buyCard"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -273,7 +273,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/low_price"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -282,7 +282,7 @@
                         android:layout_marginBottom="10dp"
                         android:text='Buying "CHEAP" '
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>

@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/text_portValueInPrec"
         android:textAlignment="center"
-        android:textColor="@color/fonts"
+        android:textColor="@color/mainText"
         android:textSize="20sp"
         android:textStyle="bold" />
 

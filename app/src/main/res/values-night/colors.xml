@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#495057</color>
+    <color name="colorPrimaryDark">#343a40</color>
+
+    <color name="mainText">#f8f9fa</color>
+    <color name="textAlt">#e9ecef</color>
+
+    <color name="mainBackground">#212529</color>
+    <color name="mainNavBackground">#343a40</color>
+
+    <color name="plus_port">#008000</color>
+    <color name="minus_port">#FF0000</color>
+</resources>

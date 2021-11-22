@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/mainBackground"
     tools:context=".Activities.Technicals.TechnicalsActivity">
 
     <ImageButton
@@ -13,7 +13,7 @@
         android:layout_height="60dp"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="fitCenter"
-        android:tint="@color/fonts"
+        android:tint="@color/mainText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/abc_vector_test" />
@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton2"
+        app:layout_constraintTop_toBottomOf="@+id/backButton5"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.gridlayout.widget.GridLayout
@@ -63,7 +63,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/fundamental"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Fundamentals"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -106,7 +106,7 @@
                         android:layout_marginStart="25dp"
                         android:layout_marginEnd="25dp"
                         android:src="@drawable/indicator"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Indicators &amp; Oscillators"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -148,7 +148,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/chartlines"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -157,7 +157,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Charting Lines"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -167,7 +167,7 @@
                 android:id="@+id/patternsCard"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="@color/nav_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
@@ -189,7 +189,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/bullmarket"
-                        app:tint="@color/fonts" />
+                        app:tint="@color/mainText" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -198,7 +198,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Patterns"
                         android:textAlignment="center"
-                        android:textColor="@color/fonts"
+                        android:textColor="@color/mainText"
                         android:textStyle="bold" />
 
                 </LinearLayout>

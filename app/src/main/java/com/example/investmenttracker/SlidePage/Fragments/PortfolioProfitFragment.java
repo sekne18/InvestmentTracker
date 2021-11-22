@@ -61,8 +61,8 @@ public class PortfolioProfitFragment extends Fragment {
         DecimalFormat df = new DecimalFormat("#.#");
         if (Helper.mCoinsList.isEmpty()) {
             imageUpOrDown.setVisibility(View.INVISIBLE);
-            profitText.setTextColor(getResources().getColor(R.color.fonts));
-            textPercentage.setTextColor(getResources().getColor(R.color.fonts));
+            profitText.setTextColor(getResources().getColor(R.color.mainText));
+            textPercentage.setTextColor(getResources().getColor(R.color.mainText));
             textPercentage.setText("0 %");
             profitText.setVisibility(View.INVISIBLE);
             balanceText.setText("0 " +  Helper.currency);
@@ -81,14 +81,14 @@ public class PortfolioProfitFragment extends Fragment {
         }
         balanceText.setText(df.format(sumCurrentPrice) + " " +  Helper.currency);
         if (sumCurrentPrice > sumCoinPrices) {
-            profitText.setTextColor(getResources().getColor(R.color.plus_port));
-            textPercentage.setTextColor(getResources().getColor(R.color.plus_port));
+            profitText.setTextColor(getResources().getColor(R.color.mainText));
+            textPercentage.setTextColor(getResources().getColor(R.color.mainText));
             imageUpOrDown.setImageResource(R.drawable.ic_baseline_arrow_drop_up_24);
             textPercentage.setText(df.format(((sumCurrentPrice-sumCoinPrices)*100)/sumCoinPrices) + " %");
             profitText.setText("+" + df.format(sumCurrentPrice-sumCoinPrices) + " " +  Helper.currency);
         } else {
-            profitText.setTextColor(getResources().getColor(R.color.minus_port));
-            textPercentage.setTextColor(getResources().getColor(R.color.minus_port));
+            profitText.setTextColor(getResources().getColor(R.color.mainText));
+            textPercentage.setTextColor(getResources().getColor(R.color.mainText));
             imageUpOrDown.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
             textPercentage.setText(df.format(((sumCurrentPrice-sumCoinPrices)*100)/sumCoinPrices) + " %");
             profitText.setText("-" + df.format(sumCurrentPrice-sumCoinPrices) + " " +  Helper.currency);

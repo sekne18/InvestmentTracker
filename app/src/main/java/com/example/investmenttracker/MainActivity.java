@@ -62,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
 
         if (Helper.connected) {
+            Helper.sharedPrefs = getSharedPreferences("InvestmentTracker", 0);
+            Helper.nightMode = Helper.sharedPrefs.getBoolean("nightMode", false);
+            if (!Helper.sharedPrefs.contains("currency")) {
+            } else {
+                Helper.currency = Helper.sharedPrefs.getString("currency", "$");
+            }
             api_coin = new API_CoinGecko();
             api_coin.RefreshDataFromAPI();
         }
