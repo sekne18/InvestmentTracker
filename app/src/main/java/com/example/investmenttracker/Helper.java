@@ -15,6 +15,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -40,6 +41,7 @@ public class Helper {
     public static ArrayList<Coin> mCoinsList = new ArrayList<>();
     public static boolean nightMode;
     public static SharedPreferences sharedPrefs;
+    public static Fragment NightModeState;
 
     public static class InternetCheck extends AsyncTask<Void,Void,Boolean> {
 

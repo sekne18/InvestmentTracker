@@ -121,6 +121,7 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
     private void changeTheme(boolean isChecked) {
         nightMode.setChecked(isChecked);
         Helper.nightMode = isChecked;
+        Helper.NightModeState = new SettingsFragment();
         if (isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {

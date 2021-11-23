@@ -1,42 +1,25 @@
 package com.example.investmenttracker;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.os.SystemClock;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.investmenttracker.API.API_CoinGecko;
-import com.example.investmenttracker.API.API_CurrencyExchange;
-import com.example.investmenttracker.API.API_News;
 import com.example.investmenttracker.Database.model.CoinViewModel;
 import com.example.investmenttracker.NavigationFragments.ExploreFragment;
 import com.example.investmenttracker.NavigationFragments.FavouriteFragment;
 import com.example.investmenttracker.NavigationFragments.PortfolioFragment;
 import com.example.investmenttracker.NavigationFragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     public static API_CoinGecko api_coin;
@@ -49,7 +32,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         Helper.coinViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(CoinViewModel.class);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
+        if (Helper.NightModeState != null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, Helper.NightModeState).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
+        }
     }
 
     @Override
@@ -65,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
 
         if (Helper.connected) {
+            api_coin = new API_CoinGecko();
+            api_coin.RefreshDataFromAPI();
             Helper.sharedPrefs = getSharedPreferences("InvestmentTracker", 0);
             Helper.nightMode = Helper.sharedPrefs.getBoolean("nightMode", false);
             if (!Helper.sharedPrefs.contains("currency")) {
@@ -76,10 +65,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 setTheme(R.style.appTheme);
             }
-
-
-            api_coin = new API_CoinGecko();
-            api_coin.RefreshDataFromAPI();
         }
         super.onStart();
     }
@@ -123,12 +108,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public static void addFragmentOnlyOnce(FragmentManager fragmentManager, Fragment fragment, String tag) {
-        // Make sure the current transaction finishes first
         fragmentManager.executePendingTransactions();
-
-        // If there is no fragment yet with this tag...
         if (fragmentManager.findFragmentByTag(tag) == null) {
-            // Add it
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.content_container,fragment, tag).commit();
         }
