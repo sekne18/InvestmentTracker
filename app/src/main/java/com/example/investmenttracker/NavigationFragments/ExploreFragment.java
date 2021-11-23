@@ -20,25 +20,20 @@ import com.example.investmenttracker.R;
 
 public class ExploreFragment extends Fragment {
 
-    private View exploreView;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        exploreView = inflater.inflate(R.layout.fragment_explore, container, false);
-
-        CreateButtonListeners();
-
-        return exploreView;
+        return inflater.inflate(R.layout.fragment_explore, container, false);
     }
 
-    private void CreateButtonListeners() {
-
-        CardView newsCard = exploreView.findViewById(R.id.newsCard);
-        CardView tipsCard = exploreView.findViewById(R.id.tipsCard);
-        CardView strategiesCard = exploreView.findViewById(R.id.strategiesCard);
-        CardView technicalsCard = exploreView.findViewById(R.id.technicalsCard);
-        CardView searchCard = exploreView.findViewById(R.id.searchCard);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        CardView newsCard = view.findViewById(R.id.newsCard);
+        CardView tipsCard = view.findViewById(R.id.tipsCard);
+        CardView strategiesCard = view.findViewById(R.id.strategiesCard);
+        CardView technicalsCard = view.findViewById(R.id.technicalsCard);
+        CardView searchCard = view.findViewById(R.id.searchCard);
 
         newsCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,9 +69,6 @@ public class ExploreFragment extends Fragment {
                 startActivity(new Intent(getActivity(), SearchActivity.class));
             }
         });
-
-
     }
-
 
 }

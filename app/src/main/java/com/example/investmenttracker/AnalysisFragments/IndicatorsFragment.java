@@ -2,6 +2,8 @@ package com.example.investmenttracker.AnalysisFragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,18 +17,16 @@ import com.example.investmenttracker.R;
 
 public class IndicatorsFragment extends Fragment {
 
-    private View ruleView;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ruleView = inflater.inflate(R.layout.fragment_indicators, container, false);
-        closebutton();
-        return ruleView;
+        return inflater.inflate(R.layout.fragment_indicators, container, false);
     }
 
-    private void closebutton() {
-        ImageButton closeButton = ruleView.findViewById(R.id.closeButton9);
-        FrameLayout container = getActivity().findViewById(R.id.fragment_container2);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ImageButton closeButton = view.findViewById(R.id.closeButton9);
+        FrameLayout container = view.findViewById(R.id.fragment_container2);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -10,5 +10,5 @@
     <color name="mainNavBackground">#ced4da</color>
 
     <color name="plus_port">#008000</color>
-    <color name="minus_port">#FF0000</color>
+    <color name="minus_port">#FF0000</color>0
 </resources>

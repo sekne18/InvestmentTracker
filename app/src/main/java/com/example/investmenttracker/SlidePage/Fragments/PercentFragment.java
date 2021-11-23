@@ -34,12 +34,16 @@ public class PercentFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup percentView = (ViewGroup) inflater.inflate(R.layout.fragment_percent, container, false);
-        percChart = percentView.findViewById(R.id.percentChart);
+        return (ViewGroup) inflater.inflate(R.layout.fragment_percent, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        percChart = view.findViewById(R.id.percentChart);
         mProcValues = new ArrayList<>();
         instance = this;
         createPercChart(mProcValues, "0.0");
-        return percentView;
     }
 
     public static PercentFragment getInstance() {

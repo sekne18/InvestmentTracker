@@ -33,12 +33,16 @@ public class MoneyAllocFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup moneyAllocView = (ViewGroup) inflater.inflate(R.layout.fragment_money_allocated, container, false);
-        moneyAllocChart = moneyAllocView.findViewById(R.id.moneyAllocChart);
+        return (ViewGroup) inflater.inflate(R.layout.fragment_money_allocated, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        moneyAllocChart = view.findViewById(R.id.moneyAllocChart);
         mMoneyAllocValues = new ArrayList<>();
         instance = this;
         createMoneyAllocChart(mMoneyAllocValues, "0.0");
-        return moneyAllocView;
     }
 
     public static MoneyAllocFragment getInstance() {

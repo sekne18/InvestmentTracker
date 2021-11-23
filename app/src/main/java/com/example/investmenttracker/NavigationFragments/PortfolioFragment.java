@@ -66,25 +66,32 @@ public class PortfolioFragment extends Fragment {
     private ArrayList<PieEntry> percValues, moneyAllocValues;
     private ViewPagerAdapter mPagerAdapter;
     private SwipeRefreshLayout swipeLayoutPort;
+    private ImageButton add_button;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         CoinsAdapter.CoinsViewHolder.setRocketAnimEnabled(false);
-        final View portfView = inflater.inflate(R.layout.fragment_portfolio, container, false);
-        popUpLayout = (ConstraintLayout) portfView.findViewById(R.id.Popup);
-        confButton = (Button) popUpLayout.findViewById(R.id.confirm_button);
-        cancelButton = (Button) popUpLayout.findViewById(R.id.cancelButton);
-        textVnosName = (EditText) portfView.findViewById(R.id.textVnosName);
-        textVnosValue = (EditText) portfView.findViewById(R.id.textVnosValue);
-        textVnosQuantity = (EditText) portfView.findViewById(R.id.textVnosQuantity);
-        switchLiveData = (Switch) portfView.findViewById(R.id.switchRealData);
-        mRecyclerView = portfView.findViewById(R.id.recycle_portfolio);
-        swipeLayoutPort = portfView.findViewById(R.id.swipeLayoutPort);
-        ImageButton add_button = (ImageButton) portfView.findViewById(R.id.add_button);
-        pager = portfView.findViewById(R.id.viewPager);
+        return inflater.inflate(R.layout.fragment_portfolio, container, false);
+    }
 
-        initViewPager();
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        popUpLayout = (ConstraintLayout) view.findViewById(R.id.Popup);
+        confButton = (Button) view.findViewById(R.id.confirm_button);
+        cancelButton = (Button) view.findViewById(R.id.cancelButton);
+        textVnosName = (EditText) view.findViewById(R.id.textVnosName);
+        textVnosValue = (EditText) view.findViewById(R.id.textVnosValue);
+        textVnosQuantity = (EditText) view.findViewById(R.id.textVnosQuantity);
+        switchLiveData = (Switch) view.findViewById(R.id.switchRealData);
+        mRecyclerView = view.findViewById(R.id.recycle_portfolio);
+        swipeLayoutPort = view.findViewById(R.id.swipeLayoutPort);
+        add_button = (ImageButton) view.findViewById(R.id.add_button);
+        pager = view.findViewById(R.id.viewPager);
+        mPagerAdapter = new ViewPagerAdapter(getActivity());
+        pager.setAdapter(mPagerAdapter);
         getOwnedCoins();
         buildRecycleView();
 
@@ -166,8 +173,6 @@ public class PortfolioFragment extends Fragment {
                 });
             }
         });
-
-        return portfView;
     }
 
     @Override
@@ -175,11 +180,6 @@ public class PortfolioFragment extends Fragment {
         Helper.connected = Helper.CheckConnection(getContext());
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
         super.onStart();
-    }
-
-    private void initViewPager() {
-        mPagerAdapter = new ViewPagerAdapter(getActivity());
-        pager.setAdapter(mPagerAdapter);
     }
 
     @Override
@@ -223,8 +223,6 @@ public class PortfolioFragment extends Fragment {
 
     private void drawCharts() {
         if (mPagerAdapter.getCurrFragment() != null) {
-            while (api_coin.Coins.isEmpty()) {
-            }
             if (posOfChart == 0) {
                 PortfolioProfitFragment.getInstance().createProfitChart();
             } else if (posOfChart == 1){

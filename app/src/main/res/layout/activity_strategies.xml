@@ -13,7 +13,7 @@
         android:layout_height="135dp"
         android:layout_margin="10dp"
         android:layout_marginTop="90dp"
-        android:text="You can have a trading strategy too but here we will focus more on long term investment strategies."
+        android:text="You can have a strategy for anything but here we will focus more on long term investment strategies."
         android:textAlignment="center"
         android:textColor="@color/mainText"
         android:textSize="27dp"
@@ -34,7 +34,8 @@
         android:tint="@color/mainText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test" />
+        app:srcCompat="@drawable/abc_vector_test"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -67,11 +68,10 @@
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
                 app:layout_columnWeight="1"
-                app:layout_gravity="right|fill"
                 app:layout_rowWeight="1">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="25dp"
                     android:gravity="center_horizontal|center_vertical"
@@ -112,16 +112,13 @@
                 app:cardCornerRadius="15dp"
                 app:cardElevation="6dp"
                 app:layout_columnWeight="1"
-                app:layout_gravity="fill"
                 app:layout_rowWeight="1">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="25dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical"
-                    android:textAlignment="center">
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="100dp"

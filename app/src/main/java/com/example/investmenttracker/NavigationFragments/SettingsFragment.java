@@ -35,7 +35,6 @@ import java.util.Map;
 public class SettingsFragment extends Fragment implements API_CurrencyExchange.OnAsyncRequestComplete {
 
     private API_CurrencyExchange api_currencies;
-    private API_News api_news;
     private ProgressBar progressBarCurr;
     private SettingsFragment thisFragment;
     private Switch nightMode;
@@ -44,10 +43,15 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        final View settView = inflater.inflate(R.layout.fragment_settings, container, false);
-        nightMode = settView.findViewById(R.id.nightmodeSwitch);
-        Spinner currSpinner = (Spinner) settView.findViewById(R.id.spinner);
-        progressBarCurr = settView.findViewById(R.id.progBarCurrency);
+        return inflater.inflate(R.layout.fragment_settings, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        nightMode = view.findViewById(R.id.nightmodeSwitch);
+        Spinner currSpinner = (Spinner) view.findViewById(R.id.spinner);
+        progressBarCurr = view.findViewById(R.id.progBarCurrency);
         progressBarCurr.setVisibility(View.INVISIBLE);
         thisFragment = this;
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.currencies));
@@ -79,7 +83,7 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
         currSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                ((TextView) view).setTextColor(getResources().getColor(R.color.fonts));
+                ((TextView) view).setTextColor(getResources().getColor(R.color.mainText));
                 ((TextView) view).setTextSize(17);
                 String oldCurr = Helper.currency;
                 Helper.currency = currSpinner.getItemAtPosition(position).toString();
@@ -102,8 +106,6 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
 
             }
         });
-
-        return settView;
     }
 
     public void ConvertCoins() {
@@ -118,7 +120,6 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
 
     private void changeTheme(boolean isChecked) {
         nightMode.setChecked(!isChecked);
-        Helper.sharedPrefs.edit().putBoolean("nightMode", !isChecked).apply();
 
         Helper.nightMode = !isChecked;
         if (!isChecked) {
@@ -126,6 +127,8 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+        getActivity().getWindow().setWindowAnimations(R.style.WindowAnimationTransition);
+        getActivity().recreate();
     }
 
 

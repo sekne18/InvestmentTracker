@@ -51,6 +51,12 @@ public class FavouriteFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.fragment_favourite, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         Helper.connected = Helper.CheckConnection(getContext());
         if (Helper.connected) {
             new Helper.InternetCheck(internet -> { Helper.connected = internet; });
@@ -59,13 +65,12 @@ public class FavouriteFragment extends Fragment {
             }
         }
         mCoinsList = new ArrayList<>();
-        final View favView = inflater.inflate(R.layout.fragment_favourite, container, false);
-        mRecyclerView = favView.findViewById(R.id.recycle_Favourite);
-        mTextLastDate = favView.findViewById(R.id.textViewLastDate);
+        mRecyclerView = view.findViewById(R.id.recycle_Favourite);
+        mTextLastDate = view.findViewById(R.id.textViewLastDate);
         while (api_coin.Coins.isEmpty()) {
         }
 
-        swipeLayout = favView.findViewById(R.id.swipeLayoutPort);
+        swipeLayout = view.findViewById(R.id.swipeLayoutPort);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -81,7 +86,6 @@ public class FavouriteFragment extends Fragment {
 
         getFavCoins();
         buildRecycleView();
-        return favView;
     }
 
     private void changeStateOfFavouriteCoin(int position) {

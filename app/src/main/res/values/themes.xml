@@ -15,15 +15,18 @@
         <item name="android:textColor">@color/mainText</item>
         <item name="android:textSize">18sp</item>
     </style>
-    <style name="roundCornersCardView" parent="CardView">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">0dp</item>
-        <item name="cornerSizeTopLeft">16dp</item>
-        <item name="cornerSizeBottomRight">16dp</item>
-        <item name="cornerSizeBottomLeft">16dp</item>
-    </style>
-<!--    <style name="roundedCard" parent="Widget.MaterialComponents.CardView">-->
-<!--        <item name="shapeAppearance">@style/RoundedCornersCard</item>-->
-<!--        <item name="backgroundTint">@null</item>-->
+
+<!--    <style name="AppThemeLight" parent="Theme.AppCompat.Light">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>-->
 <!--    </style>-->
+<!--    <style name="AppThemeDark" parent="Theme.AppCompat">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>-->
+<!--    </style>-->
+    <!-- This will set the fade in animation on all your activities by default -->
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
 </resources>

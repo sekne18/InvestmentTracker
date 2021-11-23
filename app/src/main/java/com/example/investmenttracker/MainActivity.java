@@ -1,8 +1,10 @@
 package com.example.investmenttracker;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -15,6 +17,7 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.os.SystemClock;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -46,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         Helper.coinViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(CoinViewModel.class);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
     }
 
     @Override
     protected void onResume() {
         if (!Helper.connected)
             Helper.openDialogForNetworkConnection(this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
         super.onResume();
     }
 
@@ -68,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Helper.currency = Helper.sharedPrefs.getString("currency", "$");
             }
+            if (Helper.sharedPrefs.getBoolean("nightMode", false)) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+
             api_coin = new API_CoinGecko();
             api_coin.RefreshDataFromAPI();
         }
