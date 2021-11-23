@@ -49,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         Helper.coinViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(CoinViewModel.class);
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
     }
 
     @Override
     protected void onResume() {
         if (!Helper.connected)
             Helper.openDialogForNetworkConnection(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
         super.onResume();
     }
 
@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new SettingsFragment();
                     break;
             }
-
             addFragmentOnlyOnce(getSupportFragmentManager(),selectedFragment,tag);
             getSupportFragmentManager().beginTransaction().replace(R.id.content_container, selectedFragment, tag).commit();
             return true;

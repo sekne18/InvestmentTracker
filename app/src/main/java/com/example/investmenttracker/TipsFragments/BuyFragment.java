@@ -25,7 +25,7 @@ public class BuyFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageButton closeButton = view.findViewById(R.id.closeButton5);
-        FrameLayout container = view.findViewById(R.id.fragment_container);
+        FrameLayout container = getActivity().findViewById(R.id.fragment_container);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

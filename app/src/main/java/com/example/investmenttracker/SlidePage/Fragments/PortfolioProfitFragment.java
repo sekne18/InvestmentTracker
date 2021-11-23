@@ -79,11 +79,12 @@ public class PortfolioProfitFragment extends Fragment {
         }
         while(api_coin.Coins.isEmpty()){}
 
-        for (Coin coin : Helper.mCoinsList) {
-            sumCoinPrices += coin.getPrice_curr()*coin.getOwned();
-            System.out.println(api_coin.Coins.get(coin.getName().toLowerCase()));
-            sumCurrentPrice += Float.parseFloat(api_coin.Coins.get(coin.getName().toLowerCase()).get("current_price").toString())*coin.getOwned();
-        }
+//        for (Coin coin : Helper.mCoinsList) {
+//            sumCoinPrices += coin.getPrice_curr()*coin.getOwned();
+//            System.out.println(api_coin.Coins.get(coin.getName().toLowerCase()));
+//            sumCurrentPrice += Float.parseFloat(api_coin.Coins.get(coin.getName().toLowerCase()).get("current_price").toString())*coin.getOwned();
+//        }
+
 
         balanceText.setText(df.format(sumCurrentPrice) + " " + Helper.currency);
         if (sumCurrentPrice > sumCoinPrices) {

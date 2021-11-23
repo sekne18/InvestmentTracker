@@ -60,7 +60,7 @@ public class PortfolioFragment extends Fragment {
     private Float portfolio_value = 0f;
     private ConstraintLayout popUpLayout;
     private Button confButton, cancelButton;
-    private boolean canReset = true;
+    private boolean canReset = false;
     private int posOfChart;
     private Map<String, Map<Float,Float>> grouppedcoins = new HashMap<>();
     private ArrayList<PieEntry> percValues, moneyAllocValues;
@@ -217,6 +217,7 @@ public class PortfolioFragment extends Fragment {
             }
             if (canReset) {
                 drawCharts();
+                canReset = false;
             }
         });
     }
@@ -225,7 +226,7 @@ public class PortfolioFragment extends Fragment {
         if (mPagerAdapter.getCurrFragment() != null) {
             if (posOfChart == 0) {
                 PortfolioProfitFragment.getInstance().createProfitChart();
-            } else if (posOfChart == 1){
+            } else if (posOfChart == 1) {
                 PercentFragment.getInstance().createPercChart(percValues, portfolio_value.toString());
             } else if (posOfChart == 2) {
                 MoneyAllocFragment.getInstance().createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
