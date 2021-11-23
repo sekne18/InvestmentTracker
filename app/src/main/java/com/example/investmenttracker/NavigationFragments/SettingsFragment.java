@@ -76,7 +76,7 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
         nightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                changeTheme(!isChecked);
+                changeTheme(isChecked);
             }
         });
 
@@ -119,16 +119,13 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
     }
 
     private void changeTheme(boolean isChecked) {
-        nightMode.setChecked(!isChecked);
-
-        Helper.nightMode = !isChecked;
-        if (!isChecked) {
+        nightMode.setChecked(isChecked);
+        Helper.nightMode = isChecked;
+        if (isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-        getActivity().getWindow().setWindowAnimations(R.style.WindowAnimationTransition);
-        getActivity().recreate();
     }
 
 

@@ -72,10 +72,11 @@ public class MainActivity extends AppCompatActivity {
                 Helper.currency = Helper.sharedPrefs.getString("currency", "$");
             }
             if (Helper.sharedPrefs.getBoolean("nightMode", false)) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                setTheme(R.style.darkTheme);
             } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                setTheme(R.style.appTheme);
             }
+
 
             api_coin = new API_CoinGecko();
             api_coin.RefreshDataFromAPI();

@@ -77,29 +77,27 @@ public class PortfolioProfitFragment extends Fragment {
             imageUpOrDown.setVisibility(View.VISIBLE);
             profitText.setVisibility(View.VISIBLE);
         }
+        while(api_coin.Coins.isEmpty()){}
 
-        if (!api_coin.Coins.isEmpty()) {
-            for (Coin coin : Helper.mCoinsList) {
-                sumCoinPrices += coin.getPrice_curr()*coin.getOwned();
-                System.out.println(api_coin.Coins.get(coin.getName().toLowerCase()));
-                sumCurrentPrice += Float.parseFloat(api_coin.Coins.get(coin.getName().toLowerCase()).get("current_price").toString())*coin.getOwned();
-            }
+        for (Coin coin : Helper.mCoinsList) {
+            sumCoinPrices += coin.getPrice_curr()*coin.getOwned();
+            System.out.println(api_coin.Coins.get(coin.getName().toLowerCase()));
+            sumCurrentPrice += Float.parseFloat(api_coin.Coins.get(coin.getName().toLowerCase()).get("current_price").toString())*coin.getOwned();
+        }
+
+        balanceText.setText(df.format(sumCurrentPrice) + " " + Helper.currency);
+        if (sumCurrentPrice > sumCoinPrices) {
+            profitText.setTextColor(getResources().getColor(R.color.mainText));
+            textPercentage.setTextColor(getResources().getColor(R.color.mainText));
+            imageUpOrDown.setImageResource(R.drawable.ic_baseline_arrow_drop_up_24);
+            textPercentage.setText(df.format(((sumCurrentPrice - sumCoinPrices) * 100) / sumCoinPrices) + " %");
+            profitText.setText("+" + df.format(sumCurrentPrice - sumCoinPrices) + " " + Helper.currency);
         } else {
-            balanceText.setText(df.format(sumCurrentPrice) + " " + Helper.currency);
-            if (sumCurrentPrice > sumCoinPrices) {
-                profitText.setTextColor(getResources().getColor(R.color.mainText));
-                textPercentage.setTextColor(getResources().getColor(R.color.mainText));
-                imageUpOrDown.setImageResource(R.drawable.ic_baseline_arrow_drop_up_24);
-                textPercentage.setText(df.format(((sumCurrentPrice - sumCoinPrices) * 100) / sumCoinPrices) + " %");
-                profitText.setText("+" + df.format(sumCurrentPrice - sumCoinPrices) + " " + Helper.currency);
-            } else {
-                profitText.setTextColor(getResources().getColor(R.color.mainText));
-                textPercentage.setTextColor(getResources().getColor(R.color.mainText));
-                imageUpOrDown.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
-                textPercentage.setText(df.format(((sumCurrentPrice - sumCoinPrices) * 100) / sumCoinPrices) + " %");
-                profitText.setText("-" + df.format(sumCurrentPrice - sumCoinPrices) + " " + Helper.currency);
-            }
+            profitText.setTextColor(getResources().getColor(R.color.mainText));
+            textPercentage.setTextColor(getResources().getColor(R.color.mainText));
+            imageUpOrDown.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24);
+            textPercentage.setText(df.format(((sumCurrentPrice - sumCoinPrices) * 100) / sumCoinPrices) + " %");
+            profitText.setText("-" + df.format(sumCurrentPrice - sumCoinPrices) + " " + Helper.currency);
         }
     }
-
 }
