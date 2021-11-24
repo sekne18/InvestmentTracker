@@ -60,14 +60,13 @@ public class PortfolioFragment extends Fragment {
     private Float portfolio_value = 0f;
     private ConstraintLayout popUpLayout;
     private Button confButton, cancelButton;
-    private boolean canReset = false;
+    private boolean canReset = true;
     private int posOfChart;
     private Map<String, Map<Float,Float>> grouppedcoins = new HashMap<>();
     private ArrayList<PieEntry> percValues, moneyAllocValues;
     private ViewPagerAdapter mPagerAdapter;
     private SwipeRefreshLayout swipeLayoutPort;
     private ImageButton add_button;
-
 
     @Nullable
     @Override
@@ -94,7 +93,10 @@ public class PortfolioFragment extends Fragment {
         pager.setAdapter(mPagerAdapter);
         getOwnedCoins();
         buildRecycleView();
+        setUpListeners();
+    }
 
+    private void setUpListeners() {
         swipeLayoutPort.setRefreshing(false);
         swipeLayoutPort.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -180,13 +182,6 @@ public class PortfolioFragment extends Fragment {
         Helper.connected = Helper.CheckConnection(getContext());
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
         super.onStart();
-    }
-
-    @Override
-    public void onResume() {
-        if (!Helper.connected)
-            Helper.openDialogForNetworkConnection(getContext());
-        super.onResume();
     }
 
     private void getOwnedCoins() {

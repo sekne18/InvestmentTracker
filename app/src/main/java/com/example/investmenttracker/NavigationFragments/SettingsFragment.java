@@ -4,11 +4,17 @@ import static com.example.investmenttracker.Helper.mCoinsList;
 import static com.example.investmenttracker.MainActivity.api_coin;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -20,6 +26,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.widget.CompoundButtonCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.investmenttracker.API.API_CurrencyExchange;
@@ -38,6 +45,8 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
     private ProgressBar progressBarCurr;
     private SettingsFragment thisFragment;
     private Switch nightMode;
+    private Spinner currSpinner;
+    private CompoundButton.OnCheckedChangeListener listener;
 
     @Nullable
     @Override
@@ -50,7 +59,7 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         nightMode = view.findViewById(R.id.nightmodeSwitch);
-        Spinner currSpinner = (Spinner) view.findViewById(R.id.spinner);
+        currSpinner = (Spinner) view.findViewById(R.id.spinner);
         progressBarCurr = view.findViewById(R.id.progBarCurrency);
         progressBarCurr.setVisibility(View.INVISIBLE);
         thisFragment = this;
@@ -58,27 +67,32 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         currSpinner.setAdapter(myAdapter);
 
-        if (Helper.nightMode) {
-            nightMode.setChecked(true);
-        } else {
-            nightMode.setChecked(false);
-        }
-
-        switch (Helper.currency) {
-            case "$":
-                currSpinner.setSelection(0);
-                break;
-            case "€":
-                currSpinner.setSelection(1);
-                break;
-        }
-
-        nightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Animation fadein = new AlphaAnimation(1.f, 0.f);
+        fadein.setDuration(1000);
+        fadein.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                changeTheme(isChecked);
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                changeTheme();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
             }
         });
+
+
+        listener = new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                getActivity().findViewById(R.id.fragment_main).startAnimation(fadein);
+            }
+        };
+
+//        nightMode.setOnCheckedChangeListener(listener);
 
         currSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -108,6 +122,22 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        nightMode.setOnCheckedChangeListener(null);
+        nightMode.setChecked(Helper.sharedPrefs.getBoolean("nightMode", false));
+        nightMode.setOnCheckedChangeListener(listener);
+        switch (Helper.currency) {
+            case "$":
+                currSpinner.setSelection(0);
+                break;
+            case "€":
+                currSpinner.setSelection(1);
+                break;
+        }
+    }
+
     public void ConvertCoins() {
         DecimalFormat df = new DecimalFormat(".#");
         for (Coin coin: mCoinsList) {
@@ -118,11 +148,10 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
         }
     }
 
-    private void changeTheme(boolean isChecked) {
-        nightMode.setChecked(isChecked);
-        Helper.nightMode = isChecked;
-        Helper.NightModeState = new SettingsFragment();
-        if (isChecked) {
+    private void changeTheme() {
+        Helper.sharedPrefs.edit().putBoolean("nightMode", nightMode.isChecked()).apply();
+        Helper.returnToSettings = true;
+        if (Helper.sharedPrefs.getBoolean("nightMode", false)) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);

@@ -20,7 +20,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-    Fragment fragment = null;
+        Fragment fragment = null;
         switch (position) {
             case 0:
                 fragment = new PortfolioProfitFragment();

@@ -32,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         Helper.coinViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(CoinViewModel.class);
-        if (Helper.NightModeState != null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, Helper.NightModeState).commit();
+        if (Helper.returnToSettings) {
+            Helper.returnToSettings = false;
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new SettingsFragment()).commit();
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
         }
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
             api_coin = new API_CoinGecko();
             api_coin.RefreshDataFromAPI();
             Helper.sharedPrefs = getSharedPreferences("InvestmentTracker", 0);
-            Helper.nightMode = Helper.sharedPrefs.getBoolean("nightMode", false);
             if (!Helper.sharedPrefs.contains("currency")) {
             } else {
                 Helper.currency = Helper.sharedPrefs.getString("currency", "$");
