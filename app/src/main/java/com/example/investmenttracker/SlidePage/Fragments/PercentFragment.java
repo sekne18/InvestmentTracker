@@ -71,7 +71,7 @@ public class PercentFragment extends Fragment {
         dataSet.setValueLinePart1OffsetPercentage(100f);
         dataSet.setValueLinePart1Length(0.6f);
         dataSet.setValueLinePart2Length(0.6f);
-        percChart.setEntryLabelColor(Color.BLACK);
+        percChart.setEntryLabelColor(R.color.mainText);
 
         data.setValueFormatter(new PercentFormatter());
         percChart.setData(data);

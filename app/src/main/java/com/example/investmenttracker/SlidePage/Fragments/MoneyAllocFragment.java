@@ -67,7 +67,7 @@ public class MoneyAllocFragment extends Fragment {
         dataSet.setValueLinePart1OffsetPercentage(100f);
         dataSet.setValueLinePart1Length(0.6f);
         dataSet.setValueLinePart2Length(0.6f);
-        moneyAllocChart.setEntryLabelColor(Color.BLACK);
+        moneyAllocChart.setEntryLabelColor(R.color.mainText);
 
         data.setValueFormatter(new PercentFormatter());
         moneyAllocChart.setData(data);
