@@ -5,5 +5,5 @@ App is not finished as there's still a lot of room for improvements.
 
 Demo:
 
-<img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/app.gif" width="340" height="630" />
+<img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/app.gif" width="290" height="570" />
 
