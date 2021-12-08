@@ -4,15 +4,8 @@ This is android app written in android studio and was made for pesonal use only.
 App is not finished as there's still a lot of room for improvements.
 
 Screenshots: 
-![Alt Text](https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/app.gif)
-<p float="left">
-  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr1.png" width="230" height="450" />
-  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr2.png" width="230" height="450" /> 
-  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr3.png" width="230" height="450" />
-  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr4.png" width="230" height="450" />
-  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr5.png" width="230" height="450" />
-  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr6.png" width="230" height="450" />
-  <img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/scr7.png" width="230" height="450" />
+<p float="left" width="230" height="450">
+![Alt Text](https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/app.gif) 
 </p>
 
 Update: 
