@@ -4,5 +4,5 @@ This is android app written in android studio and was made for pesonal use only.
 App is not finished as there's still a lot of room for improvements.
 
 Demo:
-<img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/app.gif" width="450" height="450" />
+<img src="https://github.com/sekne18/InvestmentTracker/blob/main/app/src/main/res/drawable/screenshots/app.gif" width="410" height="480" />
 
