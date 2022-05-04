@@ -1,5 +1,7 @@
 package com.example.investmenttracker;
 
+import static com.example.investmenttracker.Helper.openDialogForNetworkConnection;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -21,29 +23,37 @@ import com.example.investmenttracker.NavigationFragments.PortfolioFragment;
 import com.example.investmenttracker.NavigationFragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
-    public static API_CoinGecko api_coin;
-    public static boolean canRefresh = true;
+import java.math.BigDecimal;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity implements API_CoinGecko.OnAsyncRequestComplete {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
-        Helper.coinViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(CoinViewModel.class);
-        if (Helper.returnToSettings) {
-            Helper.returnToSettings = false;
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new SettingsFragment()).commit();
+    }
+
+    private void loadData() {
+        Helper.getCoinsData(this);
+        Helper.sharedPrefs = getSharedPreferences("InvestmentTracker", 0);
+        Helper.currency = Helper.sharedPrefs.getString("currency", "$");
+        //Sets theme
+        if (Helper.sharedPrefs.getBoolean("nightMode", false)) {
+            setTheme(R.style.darkTheme);
         } else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
+            setTheme(R.style.appTheme);
         }
     }
 
     @Override
     protected void onResume() {
-        if (!Helper.connected)
-            Helper.openDialogForNetworkConnection(this);
+        Helper.connected = Helper.CheckConnection(this);
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
+        if (!Helper.connected) {
+            openDialogForNetworkConnection(this);
+        } else {
+            loadData();
+        }
         super.onResume();
     }
 
@@ -51,20 +61,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         Helper.connected = Helper.CheckConnection(this);
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
-
-        if (Helper.connected) {
-            api_coin = new API_CoinGecko();
-            api_coin.RefreshDataFromAPI();
-            Helper.sharedPrefs = getSharedPreferences("InvestmentTracker", 0);
-            if (!Helper.sharedPrefs.contains("currency")) {
-            } else {
-                Helper.currency = Helper.sharedPrefs.getString("currency", "$");
-            }
-            if (Helper.sharedPrefs.getBoolean("nightMode", false)) {
-                setTheme(R.style.darkTheme);
-            } else {
-                setTheme(R.style.appTheme);
-            }
+        if (!Helper.connected) {
+            openDialogForNetworkConnection(this);
+        } else {
+            loadData();
         }
         super.onStart();
     }
@@ -112,6 +112,22 @@ public class MainActivity extends AppCompatActivity {
         if (fragmentManager.findFragmentByTag(tag) == null) {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.content_container,fragment, tag).commit();
+        }
+    }
+
+
+    @Override
+    public void onPostExecute(Map<String, Map<String, BigDecimal>> coins) {
+        //After coins are gathered, create objects
+        setContentView(R.layout.activity_main);
+        BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        Helper.coinViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(CoinViewModel.class);
+        if (Helper.returnToSettings) {
+            Helper.returnToSettings = false;
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new SettingsFragment()).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
         }
     }
 

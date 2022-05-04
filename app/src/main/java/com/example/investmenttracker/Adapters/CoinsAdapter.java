@@ -24,7 +24,7 @@ import java.util.List;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
-import static com.example.investmenttracker.MainActivity.api_coin;
+import static com.example.investmenttracker.Helper.api_coin;
 
 public class CoinsAdapter extends RecyclerView.Adapter<CoinsAdapter.CoinsViewHolder> {
     private List<Coin> mCoinsList;

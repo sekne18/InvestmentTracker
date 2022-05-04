@@ -6,30 +6,18 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.Interpolator;
-import android.view.animation.Transformation;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static com.example.investmenttracker.MainActivity.api_coin;
-import static com.example.investmenttracker.MainActivity.canRefresh;
 
+import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
 
@@ -41,6 +29,8 @@ public class Helper {
     public static ArrayList<Coin> mCoinsList = new ArrayList<>();
     public static SharedPreferences sharedPrefs;
     public static boolean returnToSettings;
+    public static API_CoinGecko api_coin;
+    public static boolean canRefresh = true;
 
     public static class InternetCheck extends AsyncTask<Void,Void,Boolean> {
 
@@ -59,6 +49,23 @@ public class Helper {
         @Override protected void onPostExecute(Boolean internet) { mConsumer.accept(internet); }
     }
 
+    public static void getCoinsData(API_CoinGecko.OnAsyncRequestComplete caller) {
+        api_coin = new API_CoinGecko(caller);
+        try {
+            switch (Helper.currency) {
+                case "$":
+                    api_coin.execute("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false");
+                    api_coin.currentStatus = AsyncTask.Status.RUNNING;
+                    break;
+                case "€":
+                    api_coin.execute("https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false");
+                    api_coin.currentStatus = AsyncTask.Status.RUNNING;
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static boolean CheckConnection(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -72,81 +79,23 @@ public class Helper {
     }
 
     public static void openDialogForNetworkConnection(Context context) {
+        Helper.connected = Helper.CheckConnection(context);
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(context));
         builder.setTitle("No internet. Please check your connection status!");
 
-        builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+        builder.setCancelable(false).setPositiveButton("Retry", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                connected = CheckConnection(context);
-                new Helper.InternetCheck(internet -> { connected = internet; });
 
                 if (!connected) {
                     openDialogForNetworkConnection(context);
                 }
                 else if (canRefresh){
-                    api_coin.RefreshDataFromAPI();
+                    Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) context);
                 }
             }
         });
         builder.show();
     }
-
-//    public static void expand(final View v) {
-//        int matchParentMeasureSpec = View.MeasureSpec.makeMeasureSpec(((View) v.getParent()).getWidth(), View.MeasureSpec.EXACTLY);
-//        int wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-//        v.measure(matchParentMeasureSpec, wrapContentMeasureSpec);
-//        final int targetHeight = v.getMeasuredHeight();
-//
-//        // Older versions of android (pre API 21) cancel animations for views with a height of 0.
-//        v.getLayoutParams().height = 1;
-//        v.setVisibility(View.VISIBLE);
-//        Animation a = new Animation()
-//        {
-//            @Override
-//            protected void applyTransformation(float interpolatedTime, Transformation t) {
-//                v.getLayoutParams().height = interpolatedTime == 1
-//                        ? ViewGroup.LayoutParams.WRAP_CONTENT
-//                        : (int)(targetHeight * interpolatedTime);
-//                v.requestLayout();
-//            }
-//
-//            @Override
-//            public boolean willChangeBounds() {
-//                return true;
-//            }
-//        };
-//
-//        // Expansion speed of 1dp/ms
-//        a.setDuration(((int)(targetHeight / v.getContext().getResources().getDisplayMetrics().density)) * 4);
-//        v.startAnimation(a);
-//    }
-//
-//    public static void collapse(final View v) {
-//        final int initialHeight = v.getMeasuredHeight();
-//
-//        Animation a = new Animation()
-//        {
-//            protected void applyTransformation(float interpolatedTime, Transformation t) {
-//                if(interpolatedTime == 1){
-//                    v.setVisibility(View.GONE);
-//                }else{
-//                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
-//                    v.requestLayout();
-//                }
-//            }
-//
-//            @Override
-//            public boolean willChangeBounds() {
-//                return true;
-//            }
-//        };
-//
-//        // Collapse speed of 1dp/ms
-//        a.setDuration(((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density)) * 4L);
-//        v.startAnimation(a);
-//    }
-
-
-    
 }

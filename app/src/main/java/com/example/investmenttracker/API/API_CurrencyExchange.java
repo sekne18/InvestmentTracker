@@ -15,28 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-//public class API_CurrencyExchange {
-//    public Map<String, Double> Currency = new HashMap<String, Double>();
-//    public AsyncTask.Status currentStatus = AsyncTask.Status.RUNNING;
-//
-//    public void RefreshDataFromAPI(String convertTo) {
-//        API_CurrencyExchange.DownloadTask getCurrencies = new API_CurrencyExchange.DownloadTask();
-//
-//        try {
-//            if (convertTo.equals("€")) {
-//                getCurrencies.execute("https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1");
-//                currentStatus = AsyncTask.Status.RUNNING;
-//            }
-//            else if (convertTo.equals("$")) {
-//                getCurrencies.execute("https://api.exchangerate.host/convert?from=EUR&to=USD&amount=1");
-//                currentStatus = AsyncTask.Status.RUNNING;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
     public class API_CurrencyExchange extends AsyncTask<String, Void, Map<String, Double>> {
 
         private final OnAsyncRequestComplete caller;
@@ -95,4 +73,4 @@ import java.util.Scanner;
         }
 
     }
-//}
+

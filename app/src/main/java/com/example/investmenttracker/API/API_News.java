@@ -17,24 +17,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
-//public class API_News {
-//
-//    public Map<Integer, Map<String, String>> News = new HashMap<Integer, Map<String, String>>();
-//    public String last_updated;
-//    public AsyncTask.Status currentStatus = AsyncTask.Status.RUNNING;
-//
-//    public void RefreshDataFromAPI() {
-//        API_News.DownloadTask getNews = new API_News.DownloadTask();
-//
-//        try {
-//            getNews.execute("https://min-api.cryptocompare.com/data/v2/news/?lang=EN");
-//            AsyncTask.Status currentStatus = AsyncTask.Status.RUNNING;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
     public class API_News extends AsyncTask<String, Void, Map<Integer, Map<String, String>>> {
 
         private final OnAsyncRequestComplete caller;

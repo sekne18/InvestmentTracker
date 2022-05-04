@@ -1,20 +1,13 @@
 package com.example.investmenttracker.NavigationFragments;
 
 import static com.example.investmenttracker.Helper.mCoinsList;
-import static com.example.investmenttracker.MainActivity.api_coin;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -26,14 +19,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.widget.CompoundButtonCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.API.API_CurrencyExchange;
-import com.example.investmenttracker.API.API_News;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Helper;
-import com.example.investmenttracker.MainActivity;
 import com.example.investmenttracker.R;
 
 import java.text.DecimalFormat;
@@ -106,12 +97,12 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
                     if (Helper.currency.equals("€")) {
                         Helper.sharedPrefs.edit().putString("currency", "$").apply();
                         api_currencies.execute("https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1");
-                        api_coin.RefreshDataFromAPI();
+                        Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFragment);
                     }
                     else if (Helper.currency.equals("$")) {
                         Helper.sharedPrefs.edit().putString("currency", "€").apply();
                         api_currencies.execute("https://api.exchangerate.host/convert?from=EUR&to=USD&amount=1");
-                        api_coin.RefreshDataFromAPI();
+                        Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFragment);
                     }
                 }
             }
@@ -169,4 +160,5 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
     public void onPreExecute() {
         progressBarCurr.setVisibility(View.VISIBLE);
     }
+
 }

@@ -12,9 +12,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Adapters.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
@@ -37,6 +36,7 @@ import com.example.investmenttracker.SlidePage.Fragments.PortfolioProfitFragment
 import com.example.investmenttracker.SlidePage.ViewPagerAdapter;
 import com.github.mikephil.charting.data.PieEntry;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,11 +45,11 @@ import java.util.Objects;
 
 import static com.example.investmenttracker.Helper.coinViewModel;
 import static com.example.investmenttracker.Helper.mCoinsList;
-import static com.example.investmenttracker.MainActivity.api_coin;
-import static com.example.investmenttracker.MainActivity.canRefresh;
+import static com.example.investmenttracker.Helper.openDialogForNetworkConnection;
+import static com.example.investmenttracker.Helper.api_coin;
 
 
-public class PortfolioFragment extends Fragment {
+public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsyncRequestComplete {
 
     private RecyclerView mRecyclerView;
     private CoinsAdapter mAdapter;
@@ -67,11 +67,13 @@ public class PortfolioFragment extends Fragment {
     private ViewPagerAdapter mPagerAdapter;
     private SwipeRefreshLayout swipeLayoutPort;
     private ImageButton add_button;
+    private PortfolioFragment thisFrag;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         CoinsAdapter.CoinsViewHolder.setRocketAnimEnabled(false);
+        thisFrag = this;
         return inflater.inflate(R.layout.fragment_portfolio, container, false);
     }
 
@@ -101,8 +103,8 @@ public class PortfolioFragment extends Fragment {
         swipeLayoutPort.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if (api_coin.isCompleted)
-                    api_coin.RefreshDataFromAPI();
+                if (api_coin.currentStatus == AsyncTask.Status.FINISHED)
+                    Helper.getCoinsData(thisFrag);
                 PortfolioProfitFragment.getInstance().createProfitChart();
                 swipeLayoutPort.setRefreshing(false);
             }
@@ -152,8 +154,8 @@ public class PortfolioFragment extends Fragment {
                             }).show();
                         } else {
                             if (switchLiveData.isChecked()) {
-                                if (api_coin.isCompleted)
-                                    api_coin.RefreshDataFromAPI();
+                                if (api_coin.currentStatus == AsyncTask.Status.FINISHED)
+                                    Helper.getCoinsData(thisFrag);
                                 addCoin(textVnosName.getText().toString(), Float.parseFloat(api_coin.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                             } else {
                                 addCoin(textVnosName.getText().toString(), Float.parseFloat(textVnosValue.getText().toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
@@ -181,6 +183,8 @@ public class PortfolioFragment extends Fragment {
     public void onStart() {
         Helper.connected = Helper.CheckConnection(getContext());
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
+        if (!Helper.connected)
+            openDialogForNetworkConnection(getContext());
         super.onStart();
     }
 
@@ -312,5 +316,19 @@ public class PortfolioFragment extends Fragment {
                 changeStateOfFavouriteCoin(position);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        Helper.connected = Helper.CheckConnection(getContext());
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
+        if (!Helper.connected)
+            openDialogForNetworkConnection(getContext());
+        super.onResume();
+    }
+
+    @Override
+    public void onPostExecute(Map<String, Map<String, BigDecimal>> coins) {
+
     }
 }

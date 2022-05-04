@@ -1,41 +1,25 @@
 package com.example.investmenttracker.SlidePage.Fragments;
 
-import static com.example.investmenttracker.MainActivity.api_coin;
+import static com.example.investmenttracker.Helper.api_coin;
 
-import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
-import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.MPPointF;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class PortfolioProfitFragment extends Fragment {
 
@@ -77,6 +61,7 @@ public class PortfolioProfitFragment extends Fragment {
             imageUpOrDown.setVisibility(View.VISIBLE);
             profitText.setVisibility(View.VISIBLE);
         }
+
 
         while(api_coin.Coins.isEmpty()){
         }

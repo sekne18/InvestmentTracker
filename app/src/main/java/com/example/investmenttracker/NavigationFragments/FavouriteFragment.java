@@ -1,6 +1,7 @@
 package com.example.investmenttracker.NavigationFragments;
 
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.investmenttracker.API.API_CoinGecko;
 import com.example.investmenttracker.Adapters.CoinsAdapter;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Database.model.CoinViewModel;
@@ -34,8 +36,8 @@ import java.util.Objects;
 import static com.example.investmenttracker.Helper.CheckConnection;
 import static com.example.investmenttracker.Helper.coinViewModel;
 import static com.example.investmenttracker.Helper.openDialogForNetworkConnection;
-import static com.example.investmenttracker.MainActivity.api_coin;
-import static com.example.investmenttracker.MainActivity.canRefresh;
+import static com.example.investmenttracker.Helper.api_coin;
+import static com.example.investmenttracker.Helper.canRefresh;
 
 public class FavouriteFragment extends Fragment {
 
@@ -45,12 +47,14 @@ public class FavouriteFragment extends Fragment {
     private SwipeRefreshLayout swipeLayout;
     private TextView mTextLastDate;
     private boolean isDetailsActive;
+    private FavouriteFragment thisFrag;
     ArrayList<Coin> mCoinsList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+        thisFrag = this;
         return inflater.inflate(R.layout.fragment_favourite, container, false);
     }
 
@@ -75,8 +79,8 @@ public class FavouriteFragment extends Fragment {
             @Override
             public void onRefresh() {
                 if (Helper.connected & canRefresh) {
-                    if (api_coin.isCompleted)
-                        api_coin.RefreshDataFromAPI();
+                    if (api_coin.currentStatus == AsyncTask.Status.FINISHED)
+                        Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFrag);
                     buildRecycleView();
                     refreshTimeOfUpdate();
                 }
@@ -116,6 +120,8 @@ public class FavouriteFragment extends Fragment {
 
     @Override
     public void onResume() {
+        Helper.connected = Helper.CheckConnection(getContext());
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
         if (!Helper.connected)
             openDialogForNetworkConnection(getContext());
         refreshTimeOfUpdate();
