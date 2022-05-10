@@ -74,6 +74,10 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         CoinsAdapter.CoinsViewHolder.setRocketAnimEnabled(false);
         thisFrag = this;
+        mPagerAdapter = new ViewPagerAdapter(getFragmentManager(), getLifecycle());
+        mPagerAdapter.addFragment(new PortfolioProfitFragment());
+        mPagerAdapter.addFragment(new MoneyAllocFragment());
+        mPagerAdapter.addFragment(new PercentFragment());
         return inflater.inflate(R.layout.fragment_portfolio, container, false);
     }
 
@@ -91,7 +95,6 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
         swipeLayoutPort = view.findViewById(R.id.swipeLayoutPort);
         add_button = (ImageButton) view.findViewById(R.id.add_button);
         pager = view.findViewById(R.id.viewPager);
-        mPagerAdapter = new ViewPagerAdapter(getActivity());
         pager.setAdapter(mPagerAdapter);
         getOwnedCoins();
         buildRecycleView();
@@ -99,26 +102,25 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
     }
 
     private void setUpListeners() {
-        swipeLayoutPort.setRefreshing(false);
-        swipeLayoutPort.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if (api_coin.currentStatus == AsyncTask.Status.FINISHED)
-                    Helper.getCoinsData(thisFrag);
-                PortfolioProfitFragment.getInstance().createProfitChart();
-                swipeLayoutPort.setRefreshing(false);
-            }
-        });
+//        swipeLayoutPort.setRefreshing(false);
+//        swipeLayoutPort.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                if (api_coin.currentStatus == AsyncTask.Status.FINISHED)
+//                    Helper.getCoinsData(thisFrag);
+//                swipeLayoutPort.setRefreshing(false);
+//            }
+//        });
 
         pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    PortfolioProfitFragment.getInstance().createProfitChart();
+                    ((PortfolioProfitFragment)mPagerAdapter.createFragment(0)).createProfitChart();
                 } else if (position == 1) {
-                    MoneyAllocFragment.getInstance().createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
+                    ((MoneyAllocFragment)mPagerAdapter.createFragment(1)).createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
                 } else if (position == 2) {
-                    PercentFragment.getInstance().createPercChart(percValues, portfolio_value.toString());
+                    ((PercentFragment)mPagerAdapter.createFragment(2)).createPercChart(percValues, portfolio_value.toString());
                 }
                 posOfChart = position;
             }
@@ -155,7 +157,8 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
                         } else {
                             if (switchLiveData.isChecked()) {
                                 if (api_coin.currentStatus == AsyncTask.Status.FINISHED)
-                                    Helper.getCoinsData(thisFrag);
+                                    Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFrag);
+
                                 addCoin(textVnosName.getText().toString(), Float.parseFloat(api_coin.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                             } else {
                                 addCoin(textVnosName.getText().toString(), Float.parseFloat(textVnosValue.getText().toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
@@ -214,7 +217,8 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
                 percValues.add(new PieEntry(hm.get(key), key));
                 moneyAllocValues.add(new PieEntry(hm.get(key), key));
             }
-            if (canReset) {
+
+            if (canReset && mPagerAdapter.createFragment(0).isAdded()) {
                 drawCharts();
                 canReset = false;
             }
@@ -222,16 +226,14 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
     }
 
     private void drawCharts() {
-        if (mPagerAdapter.getCurrFragment() != null) {
-            if (posOfChart == 0) {
-                PortfolioProfitFragment.getInstance().createProfitChart();
-            } else if (posOfChart == 1) {
-                PercentFragment.getInstance().createPercChart(percValues, portfolio_value.toString());
-            } else if (posOfChart == 2) {
-                MoneyAllocFragment.getInstance().createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
-            }
-            mPagerAdapter.notifyItemChanged(pager.getCurrentItem());
+        if (posOfChart == 0) {
+            ((PortfolioProfitFragment)mPagerAdapter.createFragment(0)).createProfitChart();
+        } else if (posOfChart == 1) {
+            ((PercentFragment)mPagerAdapter.createFragment(1)).createPercChart(percValues, portfolio_value.toString());
+        } else if (posOfChart == 2) {
+            ((MoneyAllocFragment)mPagerAdapter.createFragment(2)).createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
         }
+            mPagerAdapter.notifyItemChanged(pager.getCurrentItem());
     }
 
     private void addCoin(String name, Float value, float owned) {
@@ -329,6 +331,6 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
 
     @Override
     public void onPostExecute(Map<String, Map<String, BigDecimal>> coins) {
-
+        ((PortfolioProfitFragment)mPagerAdapter.createFragment(0)).createProfitChart();
     }
 }

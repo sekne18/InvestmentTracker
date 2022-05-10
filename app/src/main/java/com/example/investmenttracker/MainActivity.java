@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity implements API_CoinGecko.OnA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Helper.connected = Helper.CheckConnection(this);
+        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
+        if (!Helper.connected) {
+            openDialogForNetworkConnection(this);
+        } else {
+            loadData();
+        }
     }
 
     private void loadData() {
@@ -47,13 +54,6 @@ public class MainActivity extends AppCompatActivity implements API_CoinGecko.OnA
 
     @Override
     protected void onResume() {
-        Helper.connected = Helper.CheckConnection(this);
-        new Helper.InternetCheck(internet -> { Helper.connected = internet; });
-        if (!Helper.connected) {
-            openDialogForNetworkConnection(this);
-        } else {
-            loadData();
-        }
         super.onResume();
     }
 
@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements API_CoinGecko.OnA
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
         if (!Helper.connected) {
             openDialogForNetworkConnection(this);
-        } else {
-            loadData();
         }
         super.onStart();
     }
@@ -101,20 +99,11 @@ public class MainActivity extends AppCompatActivity implements API_CoinGecko.OnA
                     selectedFragment = new SettingsFragment();
                     break;
             }
-            addFragmentOnlyOnce(getSupportFragmentManager(),selectedFragment,tag);
+            Helper.addFragmentOnlyOnce(getSupportFragmentManager(),selectedFragment,tag);
             getSupportFragmentManager().beginTransaction().replace(R.id.content_container, selectedFragment, tag).commit();
             return true;
         }
     };
-
-    public static void addFragmentOnlyOnce(FragmentManager fragmentManager, Fragment fragment, String tag) {
-        fragmentManager.executePendingTransactions();
-        if (fragmentManager.findFragmentByTag(tag) == null) {
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.content_container,fragment, tag).commit();
-        }
-    }
-
 
     @Override
     public void onPostExecute(Map<String, Map<String, BigDecimal>> coins) {

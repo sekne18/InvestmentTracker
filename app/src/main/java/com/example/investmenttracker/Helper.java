@@ -8,6 +8,9 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 import java.io.IOException;
@@ -64,6 +67,14 @@ public class Helper {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void addFragmentOnlyOnce(FragmentManager fragmentManager, Fragment fragment, String tag) {
+        fragmentManager.executePendingTransactions();
+        if (fragmentManager.findFragmentByTag(tag) == null) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.content_container,fragment, tag).commit();
         }
     }
 

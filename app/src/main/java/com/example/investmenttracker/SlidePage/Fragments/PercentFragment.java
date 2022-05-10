@@ -27,14 +27,13 @@ import java.util.ArrayList;
 
 public class PercentFragment extends Fragment {
 
-    private static PercentFragment instance = null;
     public static PieChart percChart;
     public static ArrayList<PieEntry> mProcValues;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return (ViewGroup) inflater.inflate(R.layout.fragment_percent, container, false);
+        return inflater.inflate(R.layout.fragment_percent, container, false);
     }
 
     @Override
@@ -42,15 +41,9 @@ public class PercentFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         percChart = view.findViewById(R.id.percentChart);
         mProcValues = new ArrayList<>();
-        instance = this;
         createPercChart(mProcValues, "0.0");
     }
 
-    public static PercentFragment getInstance() {
-        return instance != null ? instance : new PercentFragment();
-    }
-
-    @SuppressLint("DefaultLocale")
     public void createPercChart(ArrayList<PieEntry> procValues, String portValue) {
         percChart.setExtraOffsets(12f, 12f,12f,12f);
         percChart.getDescription().setEnabled(false);

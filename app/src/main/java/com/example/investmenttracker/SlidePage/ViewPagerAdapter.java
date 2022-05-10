@@ -3,46 +3,42 @@ package com.example.investmenttracker.SlidePage;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.investmenttracker.SlidePage.Fragments.MoneyAllocFragment;
 import com.example.investmenttracker.SlidePage.Fragments.PercentFragment;
 import com.example.investmenttracker.SlidePage.Fragments.PortfolioProfitFragment;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    private Fragment currFragment;
+    private int NUMBER_OF_PAGES_IN_PAGER = 3;
+    private ArrayList<Fragment> fragmentList = new ArrayList<>();
 
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
+    public ViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new PortfolioProfitFragment();
-                break;
-            case 1:
-                fragment = new MoneyAllocFragment();
-                break;
-            case 2:
-                fragment = new PercentFragment();
-                break;
-        }
-        currFragment = fragment;
-        return fragment;
+        return fragmentList.get(position);
     }
 
-    public Fragment getCurrFragment() {
-        return currFragment;
+    public void addFragment(Fragment fragment) {
+        fragmentList.add(fragment);
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return NUMBER_OF_PAGES_IN_PAGER;
     }
 
 

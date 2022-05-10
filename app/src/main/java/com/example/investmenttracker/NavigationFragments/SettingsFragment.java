@@ -27,10 +27,11 @@ import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Map;
 
-public class SettingsFragment extends Fragment implements API_CurrencyExchange.OnAsyncRequestComplete {
+public class SettingsFragment extends Fragment implements API_CurrencyExchange.OnAsyncRequestComplete, API_CoinGecko.OnAsyncRequestComplete {
 
     private API_CurrencyExchange api_currencies;
     private ProgressBar progressBarCurr;
@@ -97,12 +98,10 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
                     if (Helper.currency.equals("€")) {
                         Helper.sharedPrefs.edit().putString("currency", "$").apply();
                         api_currencies.execute("https://api.exchangerate.host/convert?from=USD&to=EUR&amount=1");
-                        Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFragment);
                     }
                     else if (Helper.currency.equals("$")) {
                         Helper.sharedPrefs.edit().putString("currency", "€").apply();
                         api_currencies.execute("https://api.exchangerate.host/convert?from=EUR&to=USD&amount=1");
-                        Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFragment);
                     }
                 }
             }
@@ -151,8 +150,9 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
 
 
     @Override
-    public void onPostExecute(Map<String, Double> currencies) {
+    public void onPostExecuteCurrency(Map<String, Double> currencies) {
         progressBarCurr.setVisibility(View.INVISIBLE);
+        Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFragment);
         ConvertCoins();
     }
 
@@ -161,4 +161,8 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
         progressBarCurr.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void onPostExecute(Map<String, Map<String, BigDecimal>> coins) {
+
+    }
 }

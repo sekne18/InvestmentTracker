@@ -71,22 +71,22 @@ public class FavouriteFragment extends Fragment {
         mCoinsList = new ArrayList<>();
         mRecyclerView = view.findViewById(R.id.recycle_Favourite);
         mTextLastDate = view.findViewById(R.id.textViewLastDate);
-        while (api_coin.Coins.isEmpty()) {
-        }
+//        while (api_coin.Coins.isEmpty()) {
+//        }
 
-        swipeLayout = view.findViewById(R.id.swipeLayoutPort);
-        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if (Helper.connected & canRefresh) {
-                    if (api_coin.currentStatus == AsyncTask.Status.FINISHED)
-                        Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFrag);
-                    buildRecycleView();
-                    refreshTimeOfUpdate();
-                }
-                swipeLayout.setRefreshing(false);
-            }
-        });
+//        swipeLayout = view.findViewById(R.id.swipeLayoutPort);
+//        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                if (Helper.connected & canRefresh) {
+//                    if (api_coin.currentStatus == AsyncTask.Status.FINISHED)
+//                        Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFrag);
+//                    buildRecycleView();
+//                    refreshTimeOfUpdate();
+//                }
+//                swipeLayout.setRefreshing(false);
+//            }
+//        });
 
         getFavCoins();
         buildRecycleView();

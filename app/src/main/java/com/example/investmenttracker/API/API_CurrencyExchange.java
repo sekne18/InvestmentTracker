@@ -58,7 +58,7 @@ import java.util.Scanner;
         @Override
         protected void onPostExecute(Map<String, Double> currencies) {
             super.onPostExecute(currencies);
-            caller.onPostExecute(currencies);
+            caller.onPostExecuteCurrency(currencies);
         }
 
         @Override
@@ -68,7 +68,7 @@ import java.util.Scanner;
         }
 
         public interface OnAsyncRequestComplete {
-            void onPostExecute(Map<String, Double> currencies);
+            void onPostExecuteCurrency(Map<String, Double> currencies);
             void onPreExecute();
         }
 

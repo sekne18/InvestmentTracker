@@ -26,14 +26,13 @@ import java.util.ArrayList;
 
 public class MoneyAllocFragment extends Fragment {
 
-    private static MoneyAllocFragment instance = null;
     public PieChart moneyAllocChart;
     public ArrayList<PieEntry> mMoneyAllocValues;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return (ViewGroup) inflater.inflate(R.layout.fragment_money_allocated, container, false);
+        return inflater.inflate(R.layout.fragment_money_allocated, container, false);
     }
 
     @Override
@@ -41,12 +40,7 @@ public class MoneyAllocFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         moneyAllocChart = view.findViewById(R.id.moneyAllocChart);
         mMoneyAllocValues = new ArrayList<>();
-        instance = this;
         createMoneyAllocChart(mMoneyAllocValues, "0.0");
-    }
-
-    public static MoneyAllocFragment getInstance() {
-        return instance != null ? instance : new MoneyAllocFragment();
     }
 
     public void createMoneyAllocChart(ArrayList<PieEntry> moneyAllocValues, String portValue) {
