@@ -156,9 +156,6 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
                             }).show();
                         } else {
                             if (switchLiveData.isChecked()) {
-                                if (api_coin.currentStatus == AsyncTask.Status.FINISHED)
-                                    Helper.getCoinsData((API_CoinGecko.OnAsyncRequestComplete) thisFrag);
-
                                 addCoin(textVnosName.getText().toString(), Float.parseFloat(api_coin.Coins.get(textVnosName.getText().toString().toLowerCase()).get("current_price").toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
                             } else {
                                 addCoin(textVnosName.getText().toString(), Float.parseFloat(textVnosValue.getText().toString()), Float.parseFloat(textVnosQuantity.getText().toString()));
@@ -218,7 +215,7 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
                 moneyAllocValues.add(new PieEntry(hm.get(key), key));
             }
 
-            if (canReset && mPagerAdapter.createFragment(0).isAdded()) {
+            if (canReset && mPagerAdapter.createFragment(posOfChart).isAdded()) {
                 drawCharts();
                 canReset = false;
             }
@@ -227,11 +224,11 @@ public class PortfolioFragment extends Fragment implements API_CoinGecko.OnAsync
 
     private void drawCharts() {
         if (posOfChart == 0) {
-            ((PortfolioProfitFragment)mPagerAdapter.createFragment(0)).createProfitChart();
+            ((PortfolioProfitFragment)mPagerAdapter.createFragment(posOfChart)).createProfitChart();
         } else if (posOfChart == 1) {
-            ((PercentFragment)mPagerAdapter.createFragment(1)).createPercChart(percValues, portfolio_value.toString());
+            ((MoneyAllocFragment)mPagerAdapter.createFragment(posOfChart)).createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
         } else if (posOfChart == 2) {
-            ((MoneyAllocFragment)mPagerAdapter.createFragment(2)).createMoneyAllocChart(moneyAllocValues, portfolio_value.toString());
+            ((PercentFragment)mPagerAdapter.createFragment(posOfChart)).createPercChart(percValues, portfolio_value.toString());
         }
             mPagerAdapter.notifyItemChanged(pager.getCurrentItem());
     }
