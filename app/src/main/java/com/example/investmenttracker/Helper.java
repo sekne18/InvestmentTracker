@@ -1,5 +1,6 @@
 package com.example.investmenttracker;
 
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -31,6 +32,7 @@ public class Helper {
     public static CoinViewModel coinViewModel;
     public static ArrayList<Coin> mCoinsList = new ArrayList<>();
     public static SharedPreferences sharedPrefs;
+    public static UiModeManager uiModeManager;
     public static boolean returnToSettings;
     public static API_CoinGecko api_coin;
     public static boolean canRefresh = true;

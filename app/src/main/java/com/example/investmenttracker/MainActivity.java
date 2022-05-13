@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.UiModeManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -28,9 +29,13 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements API_CoinGecko.OnAsyncRequestComplete {
 
+    public static BottomNavigationView bottomNav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Helper.uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
+        Helper.sharedPrefs = getSharedPreferences("InvestmentTracker", 0);
         Helper.connected = Helper.CheckConnection(this);
         new Helper.InternetCheck(internet -> { Helper.connected = internet; });
         if (!Helper.connected) {
@@ -42,13 +47,12 @@ public class MainActivity extends AppCompatActivity implements API_CoinGecko.OnA
 
     private void loadData() {
         Helper.getCoinsData(this);
-        Helper.sharedPrefs = getSharedPreferences("InvestmentTracker", 0);
         Helper.currency = Helper.sharedPrefs.getString("currency", "$");
         //Sets theme
         if (Helper.sharedPrefs.getBoolean("nightMode", false)) {
-            setTheme(R.style.darkTheme);
+            Helper.uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_YES);
         } else {
-            setTheme(R.style.appTheme);
+            Helper.uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
         }
     }
 
@@ -109,12 +113,13 @@ public class MainActivity extends AppCompatActivity implements API_CoinGecko.OnA
     public void onPostExecute(Map<String, Map<String, BigDecimal>> coins) {
         //After coins are gathered, create objects
         setContentView(R.layout.activity_main);
-        BottomNavigationView bottomNav = findViewById(R.id.nav_bar);
+        bottomNav = findViewById(R.id.nav_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         Helper.coinViewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(CoinViewModel.class);
         if (Helper.returnToSettings) {
             Helper.returnToSettings = false;
             getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new SettingsFragment()).commit();
+            bottomNav.getMenu().getItem(3).setChecked(true);
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new PortfolioFragment()).commit();
         }

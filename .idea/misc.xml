@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jans/AppData/Local/Android/Sdk/platforms/android-30/data/res/layout/simple_spinner_dropdown_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_favourite.xml" value="0.25" />
+        <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/menu/bottom_navigation.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/drawable/add_coin.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/drawable/heart_border_empty.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/sekne/Documents/GitHub/InvestmentTracker/app/src/main/res/drawable/heart_border_full.xml" value="0.21875" />

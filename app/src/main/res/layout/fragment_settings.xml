@@ -121,9 +121,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="14dp"
                 android:layout_marginEnd="15dp"
+                android:backgroundTint="@color/mainText"
                 android:minHeight="48dp"
                 android:popupBackground="@color/mainBackground"
-                android:backgroundTint="@color/mainText"
                 android:textAlignment="center"
                 android:theme="@style/SpinnerTheme"
                 tools:ignore="SpeakableTextPresentCheck" />

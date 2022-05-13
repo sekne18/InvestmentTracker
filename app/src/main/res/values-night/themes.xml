@@ -11,6 +11,7 @@
         <item name="android:paddingEnd">0dp</item>
         <item name="android:textColor">@color/mainBackground</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:background">@android:color/white</item>
     </style>
 
     <style name="AppThemeLight" parent="Theme.AppCompat.Light">
@@ -19,6 +20,11 @@
 
     <style name="AppThemeDark" parent="Theme.AppCompat">
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/mainBackground</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@android:color/black</item>
     </style>
 
     <style name="WindowAnimationTransition">

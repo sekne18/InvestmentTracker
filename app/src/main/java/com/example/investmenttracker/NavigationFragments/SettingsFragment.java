@@ -1,7 +1,9 @@
 package com.example.investmenttracker.NavigationFragments;
 
 import static com.example.investmenttracker.Helper.mCoinsList;
+import static com.example.investmenttracker.MainActivity.bottomNav;
 
+import android.app.UiModeManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ import com.example.investmenttracker.API.API_CurrencyExchange;
 import com.example.investmenttracker.Database.model.Coin;
 import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -142,9 +145,11 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
         Helper.sharedPrefs.edit().putBoolean("nightMode", nightMode.isChecked()).apply();
         Helper.returnToSettings = true;
         if (Helper.sharedPrefs.getBoolean("nightMode", false)) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            Helper.uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_YES);
         } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            Helper.uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
         }
     }
 
