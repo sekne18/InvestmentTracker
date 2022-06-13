@@ -4,7 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/jans/AppData/Local/Android/Sdk/platforms/android-30/data/res/layout/simple_spinner_dropdown_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/drawable/add_coin.xml" value="0.3425" />
+        <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/drawable/ic_baseline_explore_24.xml" value="0.3425" />
         <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/activity_search.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_explore.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_favourite.xml" value="0.25" />
         <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/jans/Documents/GitHub/InvestmentTracker/app/src/main/res/menu/bottom_navigation.xml" value="0.36666666666666664" />

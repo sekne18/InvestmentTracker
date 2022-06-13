@@ -1,10 +1,13 @@
 package com.example.investmenttracker.NavigationFragments;
 
+import android.app.UiModeManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +19,7 @@ import com.example.investmenttracker.Activities.Search.SearchActivity;
 import com.example.investmenttracker.Activities.Strategies.StrategiesActivity;
 import com.example.investmenttracker.Activities.Technicals.TechnicalsActivity;
 import com.example.investmenttracker.Activities.Tips.TipsActivity;
+import com.example.investmenttracker.Helper;
 import com.example.investmenttracker.R;
 
 public class ExploreFragment extends Fragment {
@@ -34,6 +38,25 @@ public class ExploreFragment extends Fragment {
         CardView strategiesCard = view.findViewById(R.id.strategiesCard);
         CardView technicalsCard = view.findViewById(R.id.technicalsCard);
         CardView searchCard = view.findViewById(R.id.searchCard);
+        ImageView newsImg = view.findViewById(R.id.newsImage);
+        ImageView tipsImg = view.findViewById(R.id.imageTips);
+        ImageView technicalsImg = view.findViewById(R.id.imageTechnicals);
+        ImageView strategiesImg = view.findViewById(R.id.strategieImage);
+        ImageView searchImg = view.findViewById(R.id.imageSearch);
+
+        if (Helper.uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES) {
+            newsImg.setColorFilter(Color.WHITE);
+            tipsImg.setColorFilter(Color.WHITE);
+            technicalsImg.setColorFilter(Color.WHITE);
+            strategiesImg.setColorFilter(Color.WHITE);
+            searchImg.setColorFilter(Color.WHITE);
+        } else {
+            newsImg.setColorFilter(Color.BLACK);
+            tipsImg.setColorFilter(Color.BLACK);
+            technicalsImg.setColorFilter(Color.BLACK);
+            strategiesImg.setColorFilter(Color.BLACK);
+            searchImg.setColorFilter(Color.BLACK);
+        }
 
         newsCard.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -36,7 +36,7 @@
             android:background="@color/mainBackground">
 
             <ImageView
-                android:id="@+id/imageCoin2"
+                android:id="@+id/imageDarkMode"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="25dp"
@@ -52,7 +52,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="21dp"
-                android:layout_toEndOf="@id/imageCoin2"
+                android:layout_toEndOf="@id/imageDarkMode"
                 android:text="Dark Mode"
                 android:textColor="@color/mainText"
                 android:textSize="21sp"
@@ -91,7 +91,7 @@
             android:background="@color/mainBackground">
 
             <ImageView
-                android:id="@+id/imageView11"
+                android:id="@+id/imageCurrConv"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="25dp"
@@ -107,7 +107,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="21dp"
-                android:layout_toEndOf="@id/imageView11"
+                android:layout_toEndOf="@id/imageCurrConv"
                 android:text="@string/currency"
                 android:textColor="@color/mainText"
                 android:textSize="21sp"

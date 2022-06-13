@@ -1,6 +1,7 @@
 package com.example.investmenttracker.SlidePage.Fragments;
 
 import android.annotation.SuppressLint;
+import android.app.UiModeManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -62,7 +63,6 @@ public class MoneyAllocFragment extends Fragment {
         dataSet.setValueLinePart1Length(0.6f);
         dataSet.setValueLinePart2Length(0.6f);
         moneyAllocChart.setEntryLabelColor(R.color.mainText);
-
         data.setValueFormatter(new PercentFormatter());
         moneyAllocChart.setData(data);
         moneyAllocChart.setDrawHoleEnabled(true);
@@ -70,7 +70,14 @@ public class MoneyAllocFragment extends Fragment {
         moneyAllocChart.setHoleRadius(46f);
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         data.setValueTextSize(13f);
-        data.setValueTextColor(Color.DKGRAY);
+
+        if (Helper.uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES) {
+            moneyAllocChart.setEntryLabelColor(Color.WHITE);
+            data.setValueTextColor(Color.WHITE);
+        } else {
+            moneyAllocChart.setEntryLabelColor(Color.BLACK);
+            data.setValueTextColor(Color.BLACK);
+        }
 
         moneyAllocChart.animateXY(0, 2000, Easing.EaseInOutCubic);
     }

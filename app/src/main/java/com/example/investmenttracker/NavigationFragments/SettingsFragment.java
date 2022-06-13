@@ -4,6 +4,7 @@ import static com.example.investmenttracker.Helper.mCoinsList;
 import static com.example.investmenttracker.MainActivity.bottomNav;
 
 import android.app.UiModeManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -40,6 +42,7 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
     private ProgressBar progressBarCurr;
     private SettingsFragment thisFragment;
     private Switch nightMode;
+    ImageView nMode, currConv;
     private Spinner currSpinner;
     private CompoundButton.OnCheckedChangeListener listener;
 
@@ -57,6 +60,15 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
         currSpinner = (Spinner) view.findViewById(R.id.spinner);
         progressBarCurr = view.findViewById(R.id.progBarCurrency);
         progressBarCurr.setVisibility(View.INVISIBLE);
+        nMode = view.findViewById(R.id.imageDarkMode);
+        currConv = view.findViewById(R.id.imageCurrConv);
+        if (Helper.uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES) {
+            nMode.setColorFilter(Color.WHITE);
+            currConv.setColorFilter(Color.WHITE);
+        } else  {
+            nMode.setColorFilter(Color.BLACK);
+            currConv.setColorFilter(Color.BLACK);
+        }
         thisFragment = this;
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.currencies));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -86,8 +98,6 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
                 getActivity().findViewById(R.id.fragment_main).startAnimation(fadein);
             }
         };
-
-//        nightMode.setOnCheckedChangeListener(listener);
 
         currSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -143,12 +153,17 @@ public class SettingsFragment extends Fragment implements API_CurrencyExchange.O
 
     private void changeTheme() {
         Helper.sharedPrefs.edit().putBoolean("nightMode", nightMode.isChecked()).apply();
+        if (nightMode.isChecked()) {
+            nMode.setColorFilter(Color.WHITE);
+            currConv.setColorFilter(Color.WHITE);
+        } else  {
+            nMode.setColorFilter(Color.BLACK);
+            currConv.setColorFilter(Color.BLACK);
+        }
         Helper.returnToSettings = true;
         if (Helper.sharedPrefs.getBoolean("nightMode", false)) {
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             Helper.uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_YES);
         } else {
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             Helper.uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
         }
     }

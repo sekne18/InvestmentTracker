@@ -1,6 +1,7 @@
 package com.example.investmenttracker.SlidePage.Fragments;
 
 import android.annotation.SuppressLint;
+import android.app.UiModeManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -64,8 +65,6 @@ public class PercentFragment extends Fragment {
         dataSet.setValueLinePart1OffsetPercentage(100f);
         dataSet.setValueLinePart1Length(0.6f);
         dataSet.setValueLinePart2Length(0.6f);
-        percChart.setEntryLabelColor(R.color.mainText);
-
         data.setValueFormatter(new PercentFormatter());
         percChart.setData(data);
         percChart.setDrawHoleEnabled(true);
@@ -73,7 +72,14 @@ public class PercentFragment extends Fragment {
         percChart.setHoleRadius(46f);
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         data.setValueTextSize(13f);
-        data.setValueTextColor(Color.DKGRAY);
+
+        if (Helper.uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES) {
+            percChart.setEntryLabelColor(Color.WHITE);
+            data.setValueTextColor(Color.WHITE);
+        } else {
+            percChart.setEntryLabelColor(Color.BLACK);
+            data.setValueTextColor(Color.BLACK);
+        }
 
         percChart.animateXY(0, 2000, Easing.EaseInOutCubic);
     }
