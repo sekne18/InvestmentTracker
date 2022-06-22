@@ -26,6 +26,7 @@
         <activity android:name=".Activities.Strategies.StrategiesActivity" android:configChanges="orientation" android:screenOrientation="portrait"/>
         <activity android:name=".Activities.Technicals.TechnicalsActivity" android:configChanges="orientation" android:screenOrientation="portrait"/>
         <activity android:name=".Activities.Search.SearchActivity" android:configChanges="orientation" android:screenOrientation="portrait"/>
+        <service android:name=".Services.DataRefreshService"></service>
     </application>
 
 </manifest>

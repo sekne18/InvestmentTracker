@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.app.UiModeManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,6 +23,7 @@ import com.example.investmenttracker.NavigationFragments.ExploreFragment;
 import com.example.investmenttracker.NavigationFragments.FavouriteFragment;
 import com.example.investmenttracker.NavigationFragments.PortfolioFragment;
 import com.example.investmenttracker.NavigationFragments.SettingsFragment;
+import com.example.investmenttracker.Services.DataRefreshService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.math.BigDecimal;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements API_CoinGecko.OnA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent serviceIntent = new Intent(this, DataRefreshService.class);
+        startService(serviceIntent);
         Helper.uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
         Helper.sharedPrefs = getSharedPreferences("InvestmentTracker", 0);
         Helper.connected = Helper.CheckConnection(this);
