@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;

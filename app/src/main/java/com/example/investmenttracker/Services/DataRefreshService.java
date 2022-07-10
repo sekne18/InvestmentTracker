@@ -18,20 +18,17 @@ public class DataRefreshService extends Service implements API_CoinGecko.OnAsync
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        while(true) {
-                            try {
-                                Thread.sleep(300000);
-                                Helper.getCoinsData(this);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                () -> {
+                    while(true) {
+                        try {
+                            Thread.sleep(300000); // 300000
+                            Helper.getCoinsData(this);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
-        );
+        ).start();
         return super.onStartCommand(intent, flags, startId);
     }
 
