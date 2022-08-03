@@ -1,4 +1,4 @@
-package com.example.investmenttracker.AnalysisFragments;
+package com.example.investmenttracker.TipsFragments;
 
 import android.os.Bundle;
 
@@ -14,18 +14,18 @@ import android.widget.ImageButton;
 
 import com.example.investmenttracker.R;
 
-public class FundamentalsFragment extends Fragment {
+public class PatternsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fundamentals, container, false);
+        return inflater.inflate(R.layout.fragment_patterns, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ImageButton closeButton = view.findViewById(R.id.closeButton10);
-        FrameLayout container = getActivity().findViewById(R.id.fragment_container2);
+        ImageButton closeButton = view.findViewById(R.id.closeButton12);
+        FrameLayout container = getActivity().findViewById(R.id.fragment_container);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

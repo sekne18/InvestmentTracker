@@ -75,5 +75,6 @@
         android:src="@drawable/ic_baseline_add_24"
         android:tint="@color/mainText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 </FrameLayout>

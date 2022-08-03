@@ -1,4 +1,4 @@
-package com.example.investmenttracker.StrategieFragments;
+package com.example.investmenttracker.TipsFragments;
 
 import android.os.Bundle;
 
@@ -14,18 +14,20 @@ import android.widget.ImageButton;
 
 import com.example.investmenttracker.R;
 
-public class RuleFragment extends Fragment {
+public class ChartLinesFragment extends Fragment {
+
+    private View chartView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_rule, container, false);
+        return inflater.inflate(R.layout.fragment_chart_lines, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ImageButton closeButton = view.findViewById(R.id.closeButton8);
-        FrameLayout container = getActivity().findViewById(R.id.fragment_container3);
+        ImageButton closeButton = view.findViewById(R.id.closeButton11);
+        FrameLayout container = getActivity().findViewById(R.id.fragment_container);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

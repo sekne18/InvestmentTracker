@@ -1,4 +1,4 @@
-package com.example.investmenttracker.AnalysisFragments;
+package com.example.investmenttracker.TipsFragments;
 
 import android.os.Bundle;
 
@@ -26,7 +26,7 @@ public class IndicatorsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageButton closeButton = view.findViewById(R.id.closeButton9);
-        FrameLayout container = getActivity().findViewById(R.id.fragment_container2);
+        FrameLayout container = getActivity().findViewById(R.id.fragment_container);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

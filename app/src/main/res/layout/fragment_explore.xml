@@ -115,151 +115,51 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/strategiesCard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="100dp"
-        android:clickable="true"
-        android:elevation="8dp"
-        android:foreground="?attr/selectableItemBackground"
-        android:stateListAnimator="@animator/lift_on_touch"
-        app:cardBackgroundColor="@color/colorPrimaryDark"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="8dp"
-        app:cardPreventCornerOverlap="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".22"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipsCard"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintWidth_percent=".40">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/strategies"
-                android:textColor="@color/mainText"
-                android:textSize="27sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/strategieImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:padding="30dp"
-                app:srcCompat="@drawable/strategies" />
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/technicalsCard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="250dp"
-        android:clickable="true"
-        android:elevation="8dp"
-        android:foreground="?attr/selectableItemBackground"
-        android:stateListAnimator="@animator/lift_on_touch"
-        app:cardBackgroundColor="@color/colorPrimaryDark"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="8dp"
-        app:cardPreventCornerOverlap="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/strategiesCard"
-        app:layout_constraintHeight_percent=".22"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newsCard"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintWidth_percent=".40">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/technicals"
-                android:textSize="27sp"
-                android:textColor="@color/mainText"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageTechnicals"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:padding="30dp"
-                app:srcCompat="@drawable/analytics" />
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
         android:id="@+id/searchCard"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="25dp"
-        android:clickable="true"
+        android:clickable="false"
         android:elevation="8dp"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@animator/lift_on_touch"
-        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardBackgroundColor="@color/mainNavBackground"
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
         app:cardPreventCornerOverlap="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".40"
+        app:layout_constraintHeight_percent=".67"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/strategiesCard">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/mainText"
-                android:text="@string/search_coins"
-                android:textSize="27sp"
-                android:textStyle="bold" />
+            <SearchView
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:inputType="text">
 
-            <ImageView
-                android:id="@+id/imageSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:padding="45dp"
-                app:srcCompat="@drawable/find" />
+            </SearchView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/search_bar"
+                android:padding="10dp">
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

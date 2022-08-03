@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="15dp"
     android:background="@drawable/rounded_frames"
-    tools:context=".AnalysisFragments.ChartLinesFragment">
+    tools:context=".TipsFragments.ChartLinesFragment">
 
     <ScrollView
         android:id="@+id/scrollView5"
